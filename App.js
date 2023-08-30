@@ -8,8 +8,12 @@ import { CustomTheme } from "./src/constants/theme";
 
 import { Provider as AuthProvider } from "./src/helpers/useAuth";
 import { Provider as NetworkProvider } from "./src/helpers/useNetwork";
-import { Provider as ThemeProvider } from "react-native-paper";
+import {
+  ActivityIndicator,
+  Provider as ThemeProvider,
+} from "react-native-paper";
 import { client } from "./src/graphql/client";
+import { useFonts } from "expo-font";
 
 // Initialize Apollo Client
 // const client = new ApolloClient({
@@ -23,6 +27,16 @@ import { client } from "./src/graphql/client";
 I18nManager.forceRTL(CustomTheme.isRTL); // experimental
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    "SourceSansPro-Regular": require("./assets/fonts/SourceSansPro-Regular.ttf"),
+    "SourceSansPro-Italic": require("./assets/fonts/SourceSansPro-Italic.ttf"),
+    "SourceSansPro-Bold": require("./assets/fonts/SourceSansPro-Bold.ttf"),
+    "SourceSansPro-SemiBold": require("./assets/fonts/SourceSansPro-SemiBold.ttf"),
+  });
+  if (!fontsLoaded) {
+    return <ActivityIndicator />;
+  }
+
   return (
     <ApolloProvider client={client}>
       <StatusBar barStyle="dark-content" />

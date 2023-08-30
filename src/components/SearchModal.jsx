@@ -139,7 +139,7 @@ export default function SearchModal(props) {
             ) : searchText !== "" ? (
               renderList({ results })
             ) : (
-              renderList({ recent: recentSearch.recentSearch })
+              renderList({ recent: [] })
             )}
           </View>
         </SafeAreaView>

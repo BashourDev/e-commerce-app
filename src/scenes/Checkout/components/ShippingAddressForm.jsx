@@ -29,13 +29,13 @@ export default function ShippingAddressForm(props) {
     zipRef.current?.focus();
   };
 
-  let lastNameRef = useRef < TextInputType > null;
-  let address1Ref = useRef < TextInputType > null;
-  let address2Ref = useRef < TextInputType > null;
-  let provinceRef = useRef < TextInputType > null;
-  let cityRef = useRef < TextInputType > null;
-  let zipRef = useRef < TextInputType > null;
-  let phoneRef = useRef < TextInputType > null;
+  let lastNameRef = useRef();
+  let address1Ref = useRef();
+  let address2Ref = useRef();
+  let provinceRef = useRef();
+  let cityRef = useRef();
+  let zipRef = useRef();
+  let phoneRef = useRef();
 
   return (
     <View style={styles.flex}>

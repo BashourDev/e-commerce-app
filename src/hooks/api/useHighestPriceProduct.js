@@ -11,14 +11,14 @@ function useGetHighestPrice(options) {
     ...otherOptions,
     onCompleted: ({ products }) => {
       let formattedPrice = Math.ceil(
-        Number(products.edges[0].node.priceRange.maxVariantPrice.amount)
+        Number(products.edges[0]?.node.priceRange.maxVariantPrice.amount || 0)
       );
       onCompleted(formattedPrice);
     },
   });
 
   let formattedPrice = Math.ceil(
-    Number(data?.products.edges[0].node.priceRange.maxVariantPrice.amount)
+    Number(data?.products.edges[0]?.node.priceRange.maxVariantPrice.amount || 0)
   );
 
   return { formattedPrice, error, loading, refetch };

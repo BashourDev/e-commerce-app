@@ -33,6 +33,7 @@ export default function SearchModal(props) {
   } = useSearchProductsQuery();
   let { data: recentSearch, loading: recentSearchLoading } =
     useGetRecentSearch();
+
   let { setRecentSearch } = useSetRecentSearch();
   let {
     data: { countryCode },
@@ -139,7 +140,7 @@ export default function SearchModal(props) {
             ) : searchText !== "" ? (
               renderList({ results })
             ) : (
-              renderList({ recent: [] })
+              renderList({ recent: recentSearch?.recentSearch || [] })
             )}
           </View>
         </SafeAreaView>

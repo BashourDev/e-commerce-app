@@ -13,6 +13,7 @@ import { useSearchProductsQuery } from "../../hooks/api/useSearchProduct";
 import { ProductsView } from "./components";
 import { IconButton } from "react-native-paper";
 import { COLORS } from "../../constants/colors";
+import { ProductSortKeys } from "../../helpers/enums";
 
 export default function SearchResultsScene() {
   let {

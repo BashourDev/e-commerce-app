@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Animated,
   FlatList,
@@ -7,20 +7,18 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-} from 'react-native';
-import { IconButton, Menu } from 'react-native-paper';
+} from "react-native";
+import { IconButton, Menu } from "react-native-paper";
 
-import { COLORS } from '../constants/colors';
-import { Text } from '../core-ui';
-import useDefaultCountry from '../hooks/api/useDefaultCountry';
-import useLocalization from '../hooks/api/useLocalization';
+import { COLORS } from "../constants/colors";
+import { Text } from "../core-ui";
+import useDefaultCountry from "../hooks/api/useDefaultCountry";
+import useLocalization from "../hooks/api/useLocalization";
 
 export default function CurrencyPicker() {
   let [visible, setVisible] = useState(false);
-  let {
-    setDefaultCountryCode,
-    data: selectedCountryCode,
-  } = useDefaultCountry();
+  let { setDefaultCountryCode, data: selectedCountryCode } =
+    useDefaultCountry();
 
   let { data } = useLocalization();
 
@@ -52,7 +50,7 @@ export default function CurrencyPicker() {
                       {
                         rotate: animatedValue.interpolate({
                           inputRange: [-180, 0],
-                          outputRange: ['180deg', '0deg'],
+                          outputRange: ["180deg", "0deg"],
                         }),
                       },
                     ],
@@ -69,7 +67,7 @@ export default function CurrencyPicker() {
             </TouchableWithoutFeedback>
           }
           contentStyle={[
-            Platform.OS === 'ios' && styles.topMargin,
+            Platform.OS === "ios" && styles.topMargin,
             styles.zeroPadding,
           ]}
         >
@@ -109,26 +107,26 @@ export default function CurrencyPicker() {
 let styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     paddingLeft: 24,
   },
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   topMargin: { marginTop: 32 },
   smallTriangle: { margin: 0, height: 18, width: 18 },
   zeroPadding: { paddingVertical: 0 },
   menuItemContainer: {
-    backgroundColor: 'white',
-    shadowColor: 'black',
+    backgroundColor: "white",
+    shadowColor: "black",
     shadowOffset: { height: 4, width: 0 },
     shadowOpacity: 0.16,
     shadowRadius: 4,
     zIndex: 1,
   },
   menuListContainer: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     width: 100,
     maxHeight: 170,
   },

@@ -88,9 +88,9 @@ export default function StackNavigator() {
             return {
               title:
                 authToken && userData?.authenticatedUser.firstName
-                  ? `${t("Hello")}, ${userData.authenticatedUser.firstName}`
-                  : t("Hello"),
-              headerLeft: () => <LocalizationPicker />,
+                  ? `${t("welcome")}, ${userData.authenticatedUser.firstName}`
+                  : t("welcome"),
+              headerLeft: () => <LocalizationPicker navigation={navigation} />,
               headerRight: () => (
                 <HeaderIconButton
                   icon="cart"

@@ -1,7 +1,8 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const GET_HIGHEST_PRICE = gql`
-  query GetHighestPrice($country: CountryCode!) @inContext(country: $country) {
+  query GetHighestPrice($country: CountryCode!, $language: LanguageCode)
+  @inContext(country: $country, language: $language) {
     products(first: 1, sortKey: PRICE, reverse: true) {
       edges {
         node {
@@ -25,7 +26,8 @@ export const SEARCH_RESULTS = gql`
     $first: Int!
     $after: String
     $country: CountryCode!
-  ) @inContext(country: $country) {
+    $language: LanguageCode
+  ) @inContext(country: $country, language: $language) {
     products(
       first: $first
       query: $searchText

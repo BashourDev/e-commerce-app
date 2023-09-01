@@ -1,8 +1,11 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const GET_PRODUCT_BY_HANDLE = gql`
-  query GetProductByHandle($productHandle: String!, $country: CountryCode!)
-    @inContext(country: $country) {
+  query GetProductByHandle(
+    $productHandle: String!
+    $country: CountryCode!
+    $language: LanguageCode
+  ) @inContext(country: $country, language: $language) {
     productByHandle(handle: $productHandle) {
       id
       title
@@ -49,7 +52,8 @@ export const GET_PRODUCT_VARIANT = gql`
     $selectedOptions: [SelectedOptionInput!]!
     $handle: String!
     $country: CountryCode!
-  ) @inContext(country: $country) {
+    $language: LanguageCode
+  ) @inContext(country: $country, language: $language) {
     productByHandle(handle: $handle) {
       id
       variantBySelectedOptions(selectedOptions: $selectedOptions) {

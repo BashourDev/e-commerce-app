@@ -72,7 +72,7 @@ function getOrders(customerData) {
   return [];
 }
 
-function useOrderHistory(first, customerAccessToken, options) {
+function useOrderHistory(first, language, customerAccessToken, options) {
   let [isInitFetching, setInitFetching] = useState(true);
   let [orderHistory, setOrderHistory] = useState([]);
   let isFetchingMore = useRef(false);
@@ -91,6 +91,7 @@ function useOrderHistory(first, customerAccessToken, options) {
       customerAccessToken,
       first,
       country: countryCode,
+      language: language,
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",

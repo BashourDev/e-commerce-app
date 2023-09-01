@@ -41,13 +41,19 @@ export default function ProductCollectionScene() {
   } = useDefaultCountry();
 
   let { collection, loading, hasMore, refetch, isFetchingMore, error } =
-    useCollectionQuery(collectionHandle, first, priceRange);
+    useCollectionQuery(
+      collectionHandle,
+      first,
+      priceRange,
+      i18n.language.toUpperCase()
+    );
 
   let { loading: maxPriceLoading } = useGetHighestPrice({
     onCompleted: (value) => {
       setMaxPrice(value);
       setPriceRange([0, value]);
     },
+    language: i18n.language.toUpperCase(),
     skip: maxPriceValue !== 0,
   });
 

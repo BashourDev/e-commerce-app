@@ -24,9 +24,7 @@ function useGetCart(options) {
   let { data, error, loading, refetch } = useQuery(GET_SHOPPING_CART, {
     ...options,
   });
-  console.log("====================================");
-  console.log("useShoppingCart", loading, error, data);
-  console.log("====================================");
+
   return { data, error, loading, refetch };
 }
 

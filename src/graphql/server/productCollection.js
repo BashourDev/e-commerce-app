@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const GET_COLLECTION = gql`
   query GetCollection(
@@ -8,7 +8,8 @@ export const GET_COLLECTION = gql`
     $first: Int!
     $after: String
     $country: CountryCode!
-  ) @inContext(country: $country) {
+    $language: LanguageCode
+  ) @inContext(country: $country, language: $language) {
     collectionByHandle(handle: $collectionHandle) {
       id
       title

@@ -25,12 +25,12 @@ export default function SearchModal(props) {
   let [debouncedSearchText, setDebouncedSearchtext] = useState("");
   let { isVisible, setVisible, onItemPress, onSubmit } = props;
   let { isRTL } = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   let {
     searchProducts,
     results,
     loading: searchLoading,
-  } = useSearchProductsQuery();
+  } = useSearchProductsQuery(i18n.language.toUpperCase());
   let { data: recentSearch, loading: recentSearchLoading } =
     useGetRecentSearch();
 

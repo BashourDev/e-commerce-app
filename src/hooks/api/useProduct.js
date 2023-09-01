@@ -12,13 +12,14 @@ import { getDiscount } from "../../helpers/getDiscount";
 
 function useGetProductDetails(options) {
   let [productDetails, setProductDetails] = useState(emptyProduct);
-
+  let language = options.language;
   let { data, error, loading, refetch } = useQuery(GET_PRODUCT_BY_HANDLE, {
     ...options,
   });
   let [getVariant, { data: variantData, loading: variantLoading }] =
     useLazyQuery(GET_PRODUCT_VARIANT, {
       fetchPolicy: "network-only",
+      language: language,
     });
   let productByHandle = data?.productByHandle;
   let variantProductByHandle = variantData?.productByHandle;

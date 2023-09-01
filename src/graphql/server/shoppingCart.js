@@ -1,10 +1,11 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const SHOPPING_CART_CREATE = gql`
   mutation ShoppingCartCreate(
     $checkoutCreateInput: CheckoutCreateInput!
     $country: CountryCode!
-  ) @inContext(country: $country) {
+    $language: LanguageCode
+  ) @inContext(country: $country, language: $language) {
     checkoutCreate(input: $checkoutCreateInput) {
       checkoutUserErrors {
         message
@@ -66,7 +67,8 @@ export const SHOPPING_CART_REPLACE_ITEMS = gql`
     $lineItems: [CheckoutLineItemInput!]!
     $checkoutID: ID!
     $country: CountryCode!
-  ) @inContext(country: $country) {
+    $language: LanguageCode
+  ) @inContext(country: $country, language: $language) {
     checkoutLineItemsReplace(lineItems: $lineItems, checkoutId: $checkoutID) {
       checkout {
         lineItemsSubtotalPrice {
@@ -211,7 +213,8 @@ export const SHOPPING_CART_DISCOUNT_CODE_APPLY = gql`
     $checkoutId: ID!
     $discountCode: String!
     $country: CountryCode!
-  ) @inContext(country: $country) {
+    $language: LanguageCode
+  ) @inContext(country: $country, language: $language) {
     checkoutDiscountCodeApplyV2(
       checkoutId: $checkoutId
       discountCode: $discountCode

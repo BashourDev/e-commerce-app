@@ -1,11 +1,12 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const GET_FEATURED_PRODUCTS_AND_CATEGORIES = gql`
   query GetFeaturedProductsAndCategories(
     $first: Int!
     $after: String
     $country: CountryCode!
-  ) @inContext(country: $country) {
+    $language: LanguageCode
+  ) @inContext(country: $country, language: $language) {
     collections(first: 250) {
       edges {
         cursor

@@ -97,7 +97,7 @@ export default function LoginScene() {
         setAuthToken(accessToken);
         login({ variables: { accessToken } });
       } else {
-        setErrorMessage(t("Your email or password might be wrong!"));
+        setErrorMessage(t("LoginScene.Your email or password might be wrong!"));
         toggleModalVisible();
       }
     },

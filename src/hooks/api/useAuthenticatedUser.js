@@ -20,9 +20,6 @@ function useGetAuthenticatedUser(options) {
     notifyOnNetworkStatusChange: true,
     ...options,
   });
-  console.log("====================================");
-  console.log("ProfileScene:", loading, error, data);
-  console.log("====================================");
   return { data, error, loading, refetch };
 }
 

@@ -12,12 +12,13 @@ import { useTranslation } from "react-i18next";
 
 export default function OrderHistoryScene() {
   let { navigate } = useNavigation();
+  const { t, i18n } = useTranslation();
   let {
     params: { customerAccessToken },
   } = useRoute();
   let first = 10;
   let { orderHistory, error, loading, refetch, isFetchingMore, hasMore } =
-    useOrderHistory(first, customerAccessToken);
+    useOrderHistory(first, i18n.language.toUpperCase(), customerAccessToken);
 
   let {
     data: { countryCode },
@@ -51,7 +52,6 @@ export default function OrderHistoryScene() {
       });
     }
   };
-  const { t } = useTranslation();
   return (
     <FlatList
       data={orderHistory}

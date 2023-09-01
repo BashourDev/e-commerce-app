@@ -65,7 +65,7 @@ function mapLineItemsToOrder(items, onChangeQuantity, onRemovePress) {
 }
 
 export default function ShoppingCartScene() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   let { authToken } = useAuth();
   let { screenSize } = useDimensions();
   let { navigate } = useNavigation();
@@ -92,6 +92,7 @@ export default function ShoppingCartScene() {
 
   let { shoppingCartDiscountApply, loading: DiscountCodeApplyLoading } =
     useCheckoutDiscountApply({
+      language: i18n.language.toUpperCase(),
       onCompleted: ({ checkoutDiscountCodeApplyV2 }) => {
         if (
           checkoutDiscountCodeApplyV2 &&
@@ -235,6 +236,7 @@ export default function ShoppingCartScene() {
     loading: replaceLoading,
     error: replaceError,
   } = useCheckoutReplaceItem({
+    language: i18n.language.toUpperCase(),
     fetchPolicy: "no-cache",
     onCompleted: async ({ checkoutLineItemsReplace }) => {
       if (checkoutLineItemsReplace && checkoutLineItemsReplace.checkout) {
@@ -278,6 +280,7 @@ export default function ShoppingCartScene() {
     variables: {
       checkoutCreateInput: { lineItems: shoppingCartItems },
       country: countryCode,
+      language: i18n.language.toUpperCase(),
     },
     onCompleted: async ({ checkoutCreate }) => {
       if (checkoutCreate && checkoutCreate.checkout) {

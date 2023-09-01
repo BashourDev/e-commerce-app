@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const GET_ORDER_HISTORY = gql`
   query GetOrderHistory(
@@ -6,7 +6,8 @@ export const GET_ORDER_HISTORY = gql`
     $first: Int!
     $after: String
     $country: CountryCode!
-  ) @inContext(country: $country) {
+    $language: LanguageCode
+  ) @inContext(country: $country, language: $language) {
     customer(customerAccessToken: $customerAccessToken) {
       id
       orders(

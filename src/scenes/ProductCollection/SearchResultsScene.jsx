@@ -39,6 +39,7 @@ export default function SearchResultsScene() {
       setMaxPrice(value);
       setPriceRange([0, value]);
     },
+    language: i18n.language.toUpperCase(),
     skip: maxPriceValue !== 0,
   });
 
@@ -50,7 +51,7 @@ export default function SearchResultsScene() {
     hasMore,
     error,
     loading,
-  } = useSearchProductsQuery();
+  } = useSearchProductsQuery(i18n.language.toUpperCase());
 
   let getSortKeys = (value) => {
     let sortKey = ProductSortKeys.BEST_SELLING;

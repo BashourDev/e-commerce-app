@@ -37,6 +37,7 @@ export default function ProductDetailsScene() {
   let {
     params: { productHandle },
   } = useRoute();
+  const { t, i18n } = useTranslation();
 
   let [isToastVisible, setIsToastVisible] = useState(false);
   let [isWishlistActive, setWishlistActive] = useState(false);
@@ -74,6 +75,7 @@ export default function ProductDetailsScene() {
         }
       }
     },
+    language: i18n.language.toUpperCase(),
   });
 
   let { getCustomer } = useGetCustomerData({
@@ -146,7 +148,7 @@ export default function ProductDetailsScene() {
   };
 
   let { shoppingCartReplaceItems, loading: shoppingCartLoading } =
-    useCheckoutReplaceItem();
+    useCheckoutReplaceItem(i18n.language.toUpperCase());
 
   let { addToCart, loading: addToCartLoading } = useAddToCart({
     onCompleted: async ({ addToShoppingCart }) => {
@@ -176,6 +178,7 @@ export default function ProductDetailsScene() {
     variables: {
       productHandle,
       country: countryCode,
+      language: i18n.language.toUpperCase(),
     },
     fetchPolicy: "network-only",
 
@@ -187,7 +190,6 @@ export default function ProductDetailsScene() {
       setSelectedOptions(defaultOptions);
     },
   });
-
   useEffect(() => {
     let queryVariantID = extractOptionsData(selectedOptions);
     getVariant({
@@ -217,7 +219,6 @@ export default function ProductDetailsScene() {
 
   let { screenSize } = useDimensions();
   let isLandscape = screenSize === ScreenSize.Large;
-  const { t } = useTranslation();
   if (getProductDetailsError) {
     return <ErrorPage onRetry={getProductDetailsRefetch} />;
   }

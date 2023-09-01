@@ -270,5 +270,11 @@
   },
   "OrderItem": {
     "Remove": "Remove"
+  },
+  "OrderPlacedConfimationScene": {
+    "Thank you for your purchase! Your order": "Thank you for your purchase! Your order",
+    "has been received and will be processed shortly.": "has been received and will be processed shortly.",
+    "View Order History": "View Order History",
+    "Back To Home": "Back To Home"
   }
 }

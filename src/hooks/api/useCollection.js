@@ -32,7 +32,7 @@ function getProducts(collectionData, priceRange) {
   return [];
 }
 
-function useCollectionQuery(collectionHandle, first, priceRange) {
+function useCollectionQuery(collectionHandle, first, priceRange, language) {
   let [isInitFetching, setInitFetching] = useState(true);
   let [isReloading, setIsReloading] = useState(true);
   let [collection, setCollection] = useState([]);
@@ -54,6 +54,7 @@ function useCollectionQuery(collectionHandle, first, priceRange) {
       first,
       sortKey: ProductCollectionSortKeys.BEST_SELLING,
       country: countryCode,
+      language: language,
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "no-cache",
@@ -150,7 +151,7 @@ function useCollectionQuery(collectionHandle, first, priceRange) {
   };
 }
 
-function useProductsAndCategoriesQuery(first) {
+function useProductsAndCategoriesQuery(first, language = "EN") {
   let [categories, setCategories] = useState([]);
   let [products, setProducts] = useState([]);
   let [isInitFetching, setInitFetching] = useState(true);
@@ -169,6 +170,7 @@ function useProductsAndCategoriesQuery(first) {
     variables: {
       first,
       country: countryCode,
+      language: language,
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "no-cache",

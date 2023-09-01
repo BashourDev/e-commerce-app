@@ -22,7 +22,7 @@ export default function HomeScene() {
   let first = numColumns * 6;
   let { isConnected } = useNetwork();
   let [isSearchModalVisible, setSearchModalVisible] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   let {
     data: { countryCode },
     loading: loadingCountryCode,
@@ -36,7 +36,7 @@ export default function HomeScene() {
     hasMore,
     isFetchingMore,
     error,
-  } = useProductsAndCategoriesQuery(first);
+  } = useProductsAndCategoriesQuery(first, i18n.language.toUpperCase());
 
   useEffect(() => {
     refetch("update", {

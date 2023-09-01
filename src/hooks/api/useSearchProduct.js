@@ -15,7 +15,7 @@ export default function getProducts(searchData) {
   return [];
 }
 
-function useSearchProductsQuery() {
+function useSearchProductsQuery(language) {
   let [results, setResults] = useState([]);
   let [isSearching, setIsSearching] = useState(true);
   let isFetchingMore = useRef(false);
@@ -25,6 +25,7 @@ function useSearchProductsQuery() {
     useLazyQuery(SEARCH_RESULTS, {
       notifyOnNetworkStatusChange: true,
       fetchPolicy: "network-only",
+      language: language,
     });
 
   let refetch = async (type, variables) => {
@@ -67,9 +68,6 @@ function useSearchProductsQuery() {
 
 function useGetRecentSearch() {
   let { data, error, loading, refetch } = useQuery(GET_RECENT_SEARCH);
-  console.log("====================================");
-  console.log(data, error, loading);
-  console.log("====================================");
   return { data, error, loading, refetch };
 }
 

@@ -270,5 +270,11 @@
   },
   "OrderItem": {
     "Remove": "إزالة"
+  },
+  "OrderPlacedConfimationScene": {
+    "Thank you for your purchase! Your order": "شكرا لك! طلبك",
+    "has been received and will be processed shortly.": "تم استلامه وسيتم معالجته قريبا.",
+    "View Order History": "عرض تاريخ الطلب",
+    "Back To Home": "العودة إلى الرئيسية"
   }
 }

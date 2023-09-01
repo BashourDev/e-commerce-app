@@ -7,7 +7,7 @@ import { FONT_SIZE } from "../constants/fonts";
 import { Text } from "../core-ui";
 import formatAddress from "../helpers/formatAddress";
 import { getFullName } from "../helpers/getFullName";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 /**
  * { id, firstName, lastName, default: primary, phone } = data
@@ -21,7 +21,7 @@ export default function ManageAddress(props) {
   let fullName = getFullName(firstName, lastName);
 
   let [showMenu, setShowMenu] = useState(false);
-
+  const { t } = useTranslation();
   return (
     <TouchableOpacity style={[styles.container, style]}>
       <View style={styles.header}>
@@ -48,7 +48,7 @@ export default function ManageAddress(props) {
             }}
           >
             <Text weight="medium" style={[styles.label, styles.padding]}>
-              {t("Edit")}
+              {t("ManageAddress.Edit")}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -58,7 +58,7 @@ export default function ManageAddress(props) {
             }}
           >
             <Text style={[styles.deleteLabel, styles.padding]} weight="medium">
-              {t("Delete")}
+              {t("ManageAddress.Delete")}
             </Text>
           </TouchableOpacity>
         </Menu>
@@ -69,11 +69,13 @@ export default function ManageAddress(props) {
             {item}
           </Text>
         ) : (
-          <Text>{t("No Addresses To Display")}</Text>
+          <Text>{t("ManageAddress.No Addresses To Display")}</Text>
         )
       )}
       <Text style={[styles.opacity, styles.phone]}>
-        {t("Phone: {phone}", { phone })}
+        {t("ManageAddress.Phone")}
+        {": "}
+        {phone}
       </Text>
       <View style={styles.indicatorContainer}>
         {primary ? (
@@ -88,7 +90,7 @@ export default function ManageAddress(props) {
               style={[styles.label, styles.blueText, styles.opacity]}
               weight="medium"
             >
-              {t("Primary Address")}
+              {t("ManageAddress.Primary Address")}
             </Text>
           </View>
         ) : (
@@ -97,7 +99,7 @@ export default function ManageAddress(props) {
             onPress={() => onPressSetPrimary(id)}
           >
             <Text style={[styles.label, styles.blueText]} weight="medium">
-              {t("Set as Primary Address")}
+              {t("ManageAddress.Set as Primary Address")}
             </Text>
           </TouchableOpacity>
         )}

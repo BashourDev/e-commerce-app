@@ -28,7 +28,7 @@ import {
   useGetCustomerData,
 } from "../hooks/api/useCustomer";
 import { useSetShoppingCart } from "../hooks/api/useShoppingCart";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function LoginScene() {
   let { navigate, reset } = useNavigation();
@@ -149,11 +149,11 @@ export default function LoginScene() {
     setShoppingCartLoading;
 
   let toggleModalVisible = () => setIsModalVisible(!isModalVisible);
-
+  const { t } = useTranslation();
   return (
     <SafeAreaView style={styles.flex}>
       <ModalBottomSheet
-        title={t("Something went wrong!")}
+        title={t("LoginScene.Something went wrong!")}
         isModalVisible={isModalVisible}
         toggleModal={toggleModalVisible}
       >
@@ -172,7 +172,7 @@ export default function LoginScene() {
             returnKeyType="next"
             ref={emailRef}
             mode="flat"
-            label={t("Email Address")}
+            label={t("LoginScene.Email Address")}
             value={email}
             onChangeText={setEmail}
             labelStyle={textInputLabel}
@@ -183,7 +183,7 @@ export default function LoginScene() {
           <TextInput
             returnKeyType="done"
             ref={passwordRef}
-            label={t("Password")}
+            label={t("LoginScene.Password")}
             value={password}
             onChangeText={setPassword}
             autoCapitalize="none"
@@ -201,7 +201,7 @@ export default function LoginScene() {
               style={[styles.colorPrimary, styles.textSize]}
               weight="medium"
             >
-              {t("Forgot Password?")}
+              {t("LoginScene.Forgot Password?")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -211,7 +211,7 @@ export default function LoginScene() {
           labelStyle={defaultButtonLabel}
           onPress={onSubmit}
         >
-          {!isLoading && t("Log in")}
+          {!isLoading && t("LoginScene.Log in")}
         </Button>
       </View>
     </SafeAreaView>

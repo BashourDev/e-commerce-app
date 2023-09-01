@@ -16,17 +16,18 @@ import { FONT_SIZE } from "../constants/fonts";
 import { Text, TextInput } from "../core-ui";
 import { useKeyboardListener } from "../helpers/keyboardListener";
 import { useGetShop } from "../hooks/api/useCustomerAddress";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 function EmptyCountryList(searchCountry) {
+  const { t } = useTranslation();
   return (
     <View style={styles.emptyContainer}>
       <Image source={searchImage} style={styles.searchImage} />
       <View style={styles.flexRow}>
-        <Text>{t("There's no result for")}</Text>
+        <Text>{t("CountryModal.There's no result for")}</Text>
         <Text weight="medium">{searchCountry}</Text>
       </View>
-      <Text>{t("Please try another word")}</Text>
+      <Text>{t("CountryModal.Please try another word")}</Text>
     </View>
   );
 }
@@ -41,7 +42,7 @@ export default function CountryModal(props) {
   let [countryList, setCountryList] = useState([]);
 
   let { data } = useGetShop();
-
+  const { t } = useTranslation();
   useEffect(() => {
     if (data) {
       let countryCodes = [];
@@ -79,10 +80,10 @@ export default function CountryModal(props) {
         <Animated.View style={[styles.defaultModal, animatedViewStyle()]}>
           <View style={styles.modalTitleContainer}>
             <Text weight="medium" style={styles.modalTitle}>
-              {t("Select Country")}
+              {t("CountryModal.Select Country")}
             </Text>
             <TextInput
-              placeholder={t("Find Country")}
+              placeholder={t("CountryModal.Find Country")}
               containerStyle={styles.textInputContainer}
               value={searchCountry}
               onChangeText={setSearchCountry}

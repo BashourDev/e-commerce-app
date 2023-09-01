@@ -1,5 +1,5 @@
-import { getLocales } from "expo-localization";
-// export const LOCALE = getLocales()[0].;
+import { getLocales, locale } from "expo-localization";
+export const LOCALE = locale;
 
 // This matches words inside curly braces.
 const PLACEHOLDER = /\{(\w+)\}/g;

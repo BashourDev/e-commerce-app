@@ -8,7 +8,7 @@ import { ErrorPage, OrderHistoryItem } from "../components";
 import { Text } from "../core-ui";
 import { useOrderHistory } from "../hooks/api/useOrderHistory";
 import useDefaultCountry from "../hooks/api/useDefaultCountry";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function OrderHistoryScene() {
   let { navigate } = useNavigation();
@@ -51,7 +51,7 @@ export default function OrderHistoryScene() {
       });
     }
   };
-
+  const { t } = useTranslation();
   return (
     <FlatList
       data={orderHistory}
@@ -66,7 +66,7 @@ export default function OrderHistoryScene() {
       ListEmptyComponent={() => {
         return hasMore ? null : (
           <View style={styles.center}>
-            <Text>{t("No orders yet")}</Text>
+            <Text>{t("OrderHistoryScene.No orders yet")}</Text>
           </View>
         );
       }}

@@ -9,13 +9,15 @@ import { FONT_SIZE } from "../constants/fonts";
 import { Text } from "../core-ui";
 import { useColumns } from "../helpers/columns";
 import { useGetWishlistData } from "../hooks/api/useWishlist";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function WishlistScene() {
   let { navigate } = useNavigation();
   let numColumns = useColumns();
 
   let { data: wishlistData, error, refetch } = useGetWishlistData();
+
+  const { t } = useTranslation();
 
   if (error && !wishlistData?.wishlist.length) {
     return <ErrorPage onRetry={refetch} />;
@@ -24,16 +26,18 @@ export default function WishlistScene() {
   if (!wishlistData || wishlistData.wishlist.length === 0) {
     return (
       <View style={styles.emptyWishlist}>
-        <Text style={styles.emptyWishlistText}>{t("No products yet.")}</Text>
+        <Text style={styles.emptyWishlistText}>
+          {t("WishlistScene.No products yet.")}
+        </Text>
       </View>
     );
   } else {
     return (
       <View style={styles.container}>
         <Text style={styles.count}>
-          {t("Showing {count} item(s)", {
-            count: wishlistData.wishlist.length,
-          })}
+          {t("WishlistScene.Showing")}&nbsp; {wishlistData.wishlist.length}
+          &nbsp;
+          {t("WishlistScene.item(s)")}
         </Text>
         <ProductList
           data={wishlistData.wishlist}

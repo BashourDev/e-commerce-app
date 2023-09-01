@@ -7,6 +7,7 @@ import { outlinedTextInput } from "../constants/theme";
 import { Text, TextInput } from "../core-ui";
 import { valueBetweenZeroToMax } from "../helpers/valueBetweenZeroToMax";
 import useCurrencyFormatter from "../hooks/api/useCurrencyFormatter";
+import { useTranslation } from "react-i18next";
 
 export default function OrderItem(props) {
   let {
@@ -24,6 +25,7 @@ export default function OrderItem(props) {
   let [quantity, setQuantity] = useState(props.orderItem.quantity);
   let [itemPrice] = useState(originalPrice);
   let formatCurrency = useCurrencyFormatter();
+  const { t } = useTranslation();
   return (
     <View style={[styles.container, containerStyle]}>
       <View style={styles.imageContainer}>
@@ -90,7 +92,7 @@ export default function OrderItem(props) {
               onRemovePress ? onRemovePress(variantID) : null;
             }}
           >
-            <Text style={styles.redText}>Remove</Text>
+            <Text style={styles.redText}>{t("OrderItem.Remove")}</Text>
           </TouchableOpacity>
         </View>
       ) : null}

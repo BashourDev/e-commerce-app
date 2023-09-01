@@ -13,7 +13,7 @@ import { ScreenSize, useDimensions } from "../helpers/dimensions";
 import { NetworkStateEnum, useNetwork } from "../helpers/useNetwork";
 import { useProductsAndCategoriesQuery } from "../hooks/api/useCollection";
 import useDefaultCountry from "../hooks/api/useDefaultCountry";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function HomeScene() {
   let { navigate } = useNavigation();
@@ -22,7 +22,7 @@ export default function HomeScene() {
   let first = numColumns * 6;
   let { isConnected } = useNetwork();
   let [isSearchModalVisible, setSearchModalVisible] = useState(false);
-
+  const { t } = useTranslation();
   let {
     data: { countryCode },
     loading: loadingCountryCode,
@@ -95,7 +95,7 @@ export default function HomeScene() {
       /> */}
 
       <View>
-        <Text style={styles.subTitle}>{t("Browse By Category")}</Text>
+        <Text style={styles.subTitle}>{t("HomeScene.Browse By Category")}</Text>
         <CategoryList
           categories={categories}
           onSelect={(collection) => {
@@ -105,7 +105,7 @@ export default function HomeScene() {
           }}
         />
       </View>
-      <Text style={styles.subTitle}>{t("Featured Products")}</Text>
+      <Text style={styles.subTitle}>{t("HomeScene.Featured Products")}</Text>
     </View>
   );
 
@@ -118,7 +118,7 @@ export default function HomeScene() {
         <View style={styles.searchInputContainer}>
           <SearchInput
             pointerEvents="none"
-            placeholder={t("Search")}
+            placeholder={t("HomeScene.Search")}
             editable={false}
             style={styles.searchInput}
           />

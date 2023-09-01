@@ -8,7 +8,8 @@ import { RichRadioGroup, Text, TextInput } from "../../../core-ui";
 import { priceAfterDiscount } from "../../../helpers/priceAfterDiscount";
 import { valueBetweenZeroToMax } from "../../../helpers/valueBetweenZeroToMax";
 import useCurrencyFormatter from "../../../hooks/api/useCurrencyFormatter";
-import { t } from "../../../helpers/translate";
+
+import { useTranslation } from "react-i18next";
 
 export default function ProductInfo(props) {
   let {
@@ -52,7 +53,7 @@ export default function ProductInfo(props) {
       onChangeQuantity(quantityAvailable);
     }
   }, [quantityAvailable]); // eslint-disable-line react-hooks/exhaustive-deps
-
+  const { t } = useTranslation();
   return (
     <>
       <View style={styles.padding}>
@@ -74,7 +75,7 @@ export default function ProductInfo(props) {
       </View>
       {radioGroupRenderView}
       <View style={styles.paddingHorizontal}>
-        <Text style={styles.quantityText}>{t("Quantity")}</Text>
+        <Text style={styles.quantityText}>{t("ProductInfo.Quantity")}</Text>
         <TextInput
           containerStyle={[outlinedTextInput, styles.textInputWidth]}
           style={outlinedTextInput}
@@ -89,8 +90,8 @@ export default function ProductInfo(props) {
         />
       </View>
       <View style={[styles.paddingHorizontal, styles.description]}>
-        <Text style={styles.labelStyle}>{t("Description")}</Text>
-        <Text>{description || t("No description")}</Text>
+        <Text style={styles.labelStyle}>{t("ProductInfo.Description")}</Text>
+        <Text>{description || t("ProductInfo.No description")}</Text>
       </View>
     </>
   );

@@ -32,7 +32,8 @@ import {
 
 import { BottomButton, ShoppingCartPayment } from "./components";
 import useDefaultCountry from "../../hooks/api/useDefaultCountry";
-import { t } from "../../helpers/translate";
+
+import { useTranslation } from "react-i18next";
 
 function extractDataCheckout(checkout) {
   let {
@@ -64,6 +65,7 @@ function mapLineItemsToOrder(items, onChangeQuantity, onRemovePress) {
 }
 
 export default function ShoppingCartScene() {
+  const { t } = useTranslation();
   let { authToken } = useAuth();
   let { screenSize } = useDimensions();
   let { navigate } = useNavigation();
@@ -357,7 +359,9 @@ export default function ShoppingCartScene() {
             style={styles.emptyCartImage}
           />
           <Text style={styles.opacity}>
-            {t("Shopping cart is empty. Please add item to the cart.")}
+            {t(
+              "ShoppingCartScene.Shopping cart is empty. Please add item to the cart."
+            )}
           </Text>
         </View>
         <View
@@ -368,7 +372,7 @@ export default function ShoppingCartScene() {
           }
         >
           <BottomButton
-            label={t("Back To Home")}
+            label={t("ShoppingCartScene.Back To Home")}
             onPressAction={() => navigate("Home")}
           />
         </View>
@@ -390,7 +394,7 @@ export default function ShoppingCartScene() {
           <View style={styles.horizontalPaymentView}>
             {renderPaymentView()}
             <BottomButton
-              label={t("Checkout")}
+              label={t("ShoppingCartScene.Checkout")}
               onPressAction={() => navigate("Checkout", { cartData })}
             />
           </View>
@@ -410,7 +414,7 @@ export default function ShoppingCartScene() {
             <View style={styles.verticalPaymentView}>
               {renderPaymentView()}
               <BottomButton
-                label={t("Checkout")}
+                label={t("ShoppingCartScene.Checkout")}
                 onPressAction={() => navigate("Checkout", { cartData })}
               />
             </View>
@@ -419,7 +423,7 @@ export default function ShoppingCartScene() {
       )}
       <Toast
         data={{
-          message: t("Item successfully removed"),
+          message: t("ShoppingCartScene.Item successfully removed"),
           isVisible: isToastVisible,
           hideToast,
         }}

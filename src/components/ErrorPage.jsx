@@ -3,20 +3,21 @@ import { Image, SafeAreaView, StyleSheet, View } from "react-native";
 
 import { defaultButton, defaultButtonLabel } from "../constants/theme";
 import { Button, Text } from "../core-ui";
-import { ERRORS } from "../constants/values";
+import { ERRORS, ERRORS_ARABIC } from "../constants/values";
 import { FONT_SIZE } from "../constants/fonts";
 import { COLORS } from "../constants/colors";
 import { NetworkStateEnum, useNetwork } from "../helpers/useNetwork";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function ErrorPage(props) {
   let { isConnected, retryConnection } = useNetwork();
   let { onRetry } = props;
-
+  const { i18n } = useTranslation();
   let errorType =
     isConnected === NetworkStateEnum.CONNECTED ? "data" : "noInternet";
-  let { title, message, image } = ERRORS[errorType];
-
+  let { title, message, image } =
+    i18n.language === "en" ? ERRORS[errorType] : ERRORS_ARABIC[errorType];
+  const { t } = useTranslation();
   return (
     <SafeAreaView style={styles.flex}>
       <View style={styles.center}>
@@ -38,7 +39,7 @@ export default function ErrorPage(props) {
             onRetry();
           }}
         >
-          {t("Try Again")}
+          {t("ErrorPage.Try Again")}
         </Button>
       </View>
     </SafeAreaView>

@@ -30,7 +30,8 @@ import {
   ImageModal,
   ProductInfo,
 } from "./components";
-import { t } from "../../helpers/translate";
+
+import { useTranslation } from "react-i18next";
 
 export default function ProductDetailsScene() {
   let {
@@ -216,7 +217,7 @@ export default function ProductDetailsScene() {
 
   let { screenSize } = useDimensions();
   let isLandscape = screenSize === ScreenSize.Large;
-
+  const { t } = useTranslation();
   if (getProductDetailsError) {
     return <ErrorPage onRetry={getProductDetailsRefetch} />;
   }
@@ -267,7 +268,7 @@ export default function ProductDetailsScene() {
       </View>
       <Toast
         data={{
-          message: t("Item successfully added"),
+          message: t("ProductDetailsScene.Item successfully added"),
           isVisible: isToastVisible,
           hideToast,
         }}

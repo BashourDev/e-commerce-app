@@ -1,0 +1,274 @@
+{
+  "StackNavigator": {
+    "Hello": "مرحباً",
+    "Wishlist": "قائمة الرغبات",
+    "My Profile": "ملفي الشخصي",
+    "Welcome": "مرحباً",
+    "Forgot Password": "هل نسيت كلمة السر",
+    "Manage Addresses": "إدارة العناوين",
+    "Edit Profile": "تعديل الملف الشخصي",
+    "Order History": "تاريخ الطلبات",
+    "Order Details": "تفاصيل الطلبات",
+    "Product Details": "تفاصيل المنتج",
+    "Shopping Cart": "عربة التسوق",
+    "Search Results": "نتائج البحث",
+    "Checkout": "الدفع",
+    "Order Placed": "تم الطلب"
+  },
+  "CheckoutAddress": {
+    "Edit": "تعديل",
+    "No Addresses To Display": "لا توجد عناوين",
+    "Phone": "الهاتف"
+  },
+  "CountryModal": {
+    "There's no result for": "لا توجد نتيجة لـ",
+    "Please try another word": "يرجى المحاولة بكلمة أخرى",
+    "Select Country": "اختبار الدولة",
+    "Find Country": "البحث عن دولة"
+  },
+  "ErrorPage": {
+    "Try Again": "حاول مجدداً"
+  },
+  "ManageAddress": {
+    "Edit": "تعديل",
+    "Delete": "حذف",
+    "No Addresses To Display": "لا توجد عناوين",
+    "Phone": "الهاتف",
+    "Primary Address": "العنوان الرئيسي",
+    "Set as Primary Address": "تعيين كعنوان رئيسي"
+  },
+  "ModalBottomSheetMessage": {
+    "Close": "إغلاق"
+  },
+  "OrderHistoryItem": {
+    "Order": "الطلب",
+    "Ordered": "تم طلبه",
+    "Total": "المجموع الإجمالي"
+  },
+  "ProductItem": {
+    "Out of Stock": "إنتهى من المخزن"
+  },
+  "SearchModal": {
+    "Find by brand, category, etc.": "البحث حسب العلامة التجارية أو الفئة ..الخ.",
+    "Recent Searches": "عمليات البحث الأخيرة",
+    "Search Results": "نتائج البحث"
+  },
+  "values": {
+    "Popularity": "الشعبية",
+    "Price from Low to High": "السعر من الأقل إلى الأعلى",
+    "Price from High to Low": "السعر من الأعلى إلى الأقل",
+    "No Internet Connection": "لا يوجد اتصال بالإنترنت",
+    "Please check your internet settings and try again later": "يرجى التحقق من إعدادات الإنترنت لديك والمحاولة مرة أخرى لاحقًا",
+    "Something Went Wrong": "حدث خطأ ما",
+    "We encounter some error while processing your request. Please try again later": "نواجه بعض الأخطاء أثناء معالجة طلبك. الرجاء معاودة المحاولة في وقت لاحق"
+  },
+  "DiscountBadge": {
+    "off": "حسم"
+  },
+  "validation": {
+    "Email is not valid": "البريد الإلكتروني غير صالح",
+    "Password is too short (minimum is 5 characters)": "كلمة المرور قصيرة جدًا (الحد الأدنى 5 أحرف)",
+    "Card number is not valid": "رقم البطاقة غير صالح",
+    "Expiration date is not valid": "تاريخ انتهاء الصلاحية غير صالح"
+  },
+  "TabNavigator": {
+    "Home": "الرئيسية",
+    "Wishlist": "قائمة الرغبات",
+    "Profile": "الملف الشخصي",
+    "My Profile": "ملفي الشخصي"
+  },
+  "EditProfileScene": {
+    "First Name": "الاسم الأول",
+    "Last Name": "الكنية",
+    "Email Address": "البريد الإلكتروني",
+    "Phone Number": "رقم الهاتف",
+    "Password": "كلمة المرور",
+    "Save Changes": "حفظ التغييرات"
+  },
+  "ForgotPasswordScene": {
+    "An email has been sent to reset your password. Please check your email.": "تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور الخاصة بك. تفقد بريدك الالكتروني من فضلك.",
+    "An Error Occured!": "حدث خطأ!",
+    "Email Has Been Sent!": "تم ارسال البريد الالكتروني!",
+    "Try Again": "حاول مجدداً",
+    "Back To Login": "العودة إلى تسجيل الدخول",
+    "Email Address": "البريد الإلكتروني",
+    "Reset Password": "إعادة تعيين كلمة المرور"
+  },
+  "HomeScene": {
+    "Browse By Category": "تصفح حسب الفئة",
+    "Featured Products": "منتجات مميزة",
+    "Search": "بحث"
+  },
+  "LockScene": {
+    "Hey there! To continue please log in or create an account.": "مرحبًا! للمتابعة يرجى تسجيل الدخول أو إنشاء حساب.",
+    "Register": "اشتراك",
+    "Already have an account?": "هل لديك حساب؟",
+    "Log In": "تسجيل دخول"
+  },
+  "LoginScene": {
+    "Your email or password might be wrong!": "قد يكون بريدك الإلكتروني أو كلمة المرور خاطئة!",
+    "Something went wrong!": "هناك خطأ ما!",
+    "Email Address": "البريد الإلكتروني",
+    "Password": "كلمة المرور",
+    "Forgot Password?": "هل نسيت كلمة السر؟",
+    "Log in": "تسجيل الدخول"
+  },
+  "OrderDetailsScene": {
+    "Subtotal": "المجموع الجزئي",
+    "Shipping": "الشحن",
+    "Free": "مجاني",
+    "Total": "المجموع الإجمالي",
+    "Order No.": "الطلب رقم",
+    "Ordered": "تم طلبه",
+    "Product Details": "تفاصيل المنتج",
+    "Shipping Address": "عنوان الشحن",
+    "Phone:": "رقم الهاتف:",
+    "Payemnt Details": "تفاصيل الدفع"
+  },
+  "OrderHistoryScene": {
+    "No orders yet": "لا توجد طلبات حتى الآن"
+  },
+  "ProfileScene": {
+    "Edit Profile": "تعديل الملف الشخصي",
+    "Manage Addresses": "إدارة العناوين",
+    "Order History": "تاريخ الطلبات",
+    "About Us": "معلومات عنا",
+    "Terms & Conditions": "الشروط والأحكام",
+    "Privacy & Policy": "سياسة الخصوصية",
+    "Log Out": "تسجيل الخروج"
+  },
+  "RegisterScene": {
+    "Something went wrong!": "هناك خطأ ما!",
+    "Close": "إغلاق",
+    "First Name": "الاسم الأول",
+    "Last Name": "الكنية",
+    "Email Address": "البريد الإلكتروني",
+    "Password": "كلمة المرور",
+    "Password does not match": "كلمة السر غير متطابقة",
+    "Confirm Password": "تأكيد كلمة المرور",
+    "By clicking Register, you agree with our": "بالنقر فوق اشتراك فإنك توافق على ",
+    "Terms & Conditions": "الشروط والأحكام",
+    "Register": "اشتراك"
+  },
+  "WebViewScene": {
+    "Privacy Policy": "سياسة الخصوصية",
+    "Terms & Conditions": "الشروط والأحكام",
+    "Payment": "الدفع",
+    "Please check your connection.": "يرجى التحقق من الاتصال بالانترنت."
+  },
+  "WishlistScene": {
+    "No products yet.": "لا توجد منتجات حتى الآن.",
+    "Showing": "يتم عرض",
+    "item(s)": "قطع\\ة"
+  },
+  "AddEditAddressScene": {
+    "New Address": "عنوان جديد",
+    "Edit Address": "تعديل عنوان",
+    "Delete": "حذف",
+    "An Error Occured!": "حدث خطأ!",
+    "Close": "إغلاق",
+    "First Name": "الاسم الأول",
+    "Last Name": "الكنية",
+    "Address": "العنوان",
+    "Country": "الدولة",
+    "State / Province": "الولاية / المقاطعة",
+    "City": "المدينة",
+    "Postal / Zip Code": "الرمز البريدي",
+    "Phone Number": "رقم الهاتف",
+    "Save Address": "حفظ العنوان"
+  },
+  "AddressManagementScene": {
+    "Address is Empty. Please add new address": "العنوان فارغ. الرجاء إضافة عنوان جديد",
+    "Add New Address": "إضافة عنوان جديد"
+  },
+  "DeleteAddressModal": {
+    "Delete Address": "حذف العنوان",
+    "Are you sure you want to delete this address? This action cannot be undone": "هل أنت متأكد أنك تريد حذف هذا العنوان؟ لا يمكن التراجع عن هذا الإجراء",
+    "No, Cancel": "لا، إلغاء",
+    "Yes, Delete": "نعم، احذف"
+  },
+  "CheckoutScene": {
+    "Shipping Address": "عنوان الشحن",
+    "Add New Address": "إضافة عنوان جديد",
+    "Subtotal": "المجموع الجزئي",
+    "Shipping": "الشحن",
+    "Calculated at next step": "يتم حسابه بالخطوة التالية",
+    "Total": "المجموع الإجمالي",
+    "Proceed to payment": "الانتقال إلى الدفع",
+    "An Error Occured!": "حدث خطأ!",
+    "Please insert a valid address": "يرجى إدخال عنوان صالح",
+    "Close": "إغلاق"
+  },
+  "AddressList": {
+    "No address yet": "لا يوجد عنوان بعد"
+  },
+  "ShippingAddressForm": {
+    "Shipping Information": "معلومات الشحن",
+    "First Name": "الاسم الأول",
+    "Last Name": "الكنية",
+    "Address 1": "العنوان الأول",
+    "Address 2 (optional)": "العنوان الثاني (اختياري)",
+    "City": "المدينة",
+    "Province": "المقاطعة",
+    "Country": "الدولة",
+    "Postal Code": "الرمز البريدي",
+    "Phone Number": "رقم الهاتف"
+  },
+  "FilterModal": {
+    "Price": "السعر",
+    "Clear": "حذف",
+    "Set Filter": "وضع الفلتر"
+  },
+  "PriceSlider": {
+    "Min Price": "سعر الحد الأدنى",
+    "Max Price": "سعر الحد الأعلى"
+  },
+  "ProductView": {
+    "Sort By": "ترتيب حسب",
+    "Price": "السعر",
+    "Clear": "حذف",
+    "Set Filter": "وضع الفلتر",
+    "Filter": "فلتر",
+    "Showing": "يتم عرض",
+    "item(s)": "قطع\\ة"
+  },
+  "SortModal": {
+    "Sort By": "ترتيب حسب"
+  },
+  "ProductDetailsScene": {
+    "Item successfully added": "تمت إضافة المنتج بنجاح"
+  },
+  "BottomActionBar": {
+    "Check out this product from": "تعرف على هذا المنتج من",
+    "Check out this product": "تعرف على هذا المنتج",
+    "Unavailable": "غير متوفر",
+    "Add to Cart": "إضافة إلى عربة التسوق",
+    "Out of Stock": "إنتهى من المخزن"
+  },
+  "ProductInfo": {
+    "Quantity": "الكمية",
+    "Description": "الوصف",
+    "No description": "لا يوجد وصف"
+  },
+  "ShoppingCartScene": {
+    "Shopping cart is empty. Please add item to the cart.": "عربة التسوق فارغة. الرجاء إضافة منتج إلى عربة التسوق.",
+    "Back To Home": "العودة إلى الرئيسية",
+    "Checkout": "الدفع",
+    "Item successfully removed": "تم إزالة المنتج"
+  },
+  "ShoppingCartPayment": {
+    "Subtotal": "المجموع الجزئي",
+    "Discount": "الحسم",
+    "Total": "المجموع الإجمالي",
+    "Voucher code or giftcard": "رمز القسيمة أو بطاقة الهدية",
+    "Voucher code does not exist": "رمز القسيمة غير موجود",
+    "Add": "إضافة"
+  },
+  "AuthScene": {
+    "Login": "تسجيل الدخول",
+    "Register": "اشتراك"
+  },
+  "OrderItem": {
+    "Remove": "إزالة"
+  }
+}

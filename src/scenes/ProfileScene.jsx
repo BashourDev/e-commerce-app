@@ -13,7 +13,7 @@ import { useGetAuthenticatedUser } from "../hooks/api/useAuthenticatedUser";
 import { useDeactivateCustomerToken } from "../hooks/api/useCustomer";
 import { useGetShop } from "../hooks/api/useCustomerAddress";
 import { useResetCart } from "../hooks/api/useShoppingCart";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function ProfileScene() {
   let { navigate } = useNavigation();
@@ -48,7 +48,7 @@ export default function ProfileScene() {
   };
 
   let { email, firstName, lastName } = authenticatedUser.authenticatedUser;
-
+  const { t } = useTranslation();
   return (
     <ScrollView style={styles.container}>
       <TouchableOpacity
@@ -72,7 +72,9 @@ export default function ProfileScene() {
             navigate("EditProfile", { customerAccessToken: authToken })
           }
         >
-          <Text style={styles.buttonLabelStyle}>{t("Edit Profile")}</Text>
+          <Text style={styles.buttonLabelStyle}>
+            {t("ProfileScene.Edit Profile")}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.menuItem}
@@ -80,7 +82,9 @@ export default function ProfileScene() {
             navigate("AddressManagement", { customerAccessToken: authToken })
           }
         >
-          <Text style={styles.buttonLabelStyle}>{t("Manage Addresses")}</Text>
+          <Text style={styles.buttonLabelStyle}>
+            {t("ProfileScene.Manage Addresses")}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.menuItem}
@@ -88,10 +92,14 @@ export default function ProfileScene() {
             navigate("OrderHistory", { customerAccessToken: authToken })
           }
         >
-          <Text style={styles.buttonLabelStyle}>{t("Order History")}</Text>
+          <Text style={styles.buttonLabelStyle}>
+            {t("ProfileScene.Order History")}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem} onPress={() => {}}>
-          <Text style={styles.buttonLabelStyle}>{t("About Us")}</Text>
+          <Text style={styles.buttonLabelStyle}>
+            {t("ProfileScene.About Us")}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.menuItem}
@@ -102,7 +110,9 @@ export default function ProfileScene() {
             });
           }}
         >
-          <Text style={styles.buttonLabelStyle}>{t("Terms & Conditions")}</Text>
+          <Text style={styles.buttonLabelStyle}>
+            {t("ProfileScene.Terms & Conditions")}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.menuItem}
@@ -113,7 +123,9 @@ export default function ProfileScene() {
             });
           }}
         >
-          <Text style={styles.buttonLabelStyle}>{t("Privacy & Policy")}</Text>
+          <Text style={styles.buttonLabelStyle}>
+            {t("ProfileScene.Privacy & Policy")}
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.menuContainer}>
@@ -125,7 +137,7 @@ export default function ProfileScene() {
           }}
         >
           <Text style={[styles.buttonLabelStyle, styles.redTextColor]}>
-            {t("Log Out")}
+            {t("ProfileScene.Log Out")}
           </Text>
         </TouchableOpacity>
       </View>

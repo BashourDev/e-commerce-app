@@ -36,7 +36,7 @@ import {
 import { newAddress } from "../../constants/defaultValues";
 
 import { DeleteAddressModal } from "./components";
-import { t } from "../../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function AddEditAddressScene() {
   let { authToken: customerAccessToken } = useAuth();
@@ -44,7 +44,7 @@ export default function AddEditAddressScene() {
   let {
     params: { address, rootScene },
   } = useRoute();
-
+  const { t } = useTranslation();
   let [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   let [isCountryModalVisible, setIsCountryModalVisible] = useState(false);
   let [addressData, setAddressData] = useState(newAddress);
@@ -167,7 +167,10 @@ export default function AddEditAddressScene() {
   };
   useEffect(() => {
     setOptions({
-      title: address == null ? t("New Address") : t("Edit Address"),
+      title:
+        address == null
+          ? t("AddEditAddressScene.New Address")
+          : t("AddEditAddressScene.Edit Address"),
       headerRight: () => {
         return address != null ? (
           <Text
@@ -175,7 +178,7 @@ export default function AddEditAddressScene() {
             style={styles.headerRightText}
             onPress={toggleDeleteModal}
           >
-            {t("Delete")}
+            {t("AddEditAddressScene.Delete")}
           </Text>
         ) : null;
       },
@@ -189,7 +192,7 @@ export default function AddEditAddressScene() {
   return (
     <KeyboardAvoidingView keyboardVerticalOffset={bottomButtonHeight}>
       <ModalBottomSheet
-        title={t("An Error Occured!")}
+        title={t("AddEditAddressScene.An Error Occured!")}
         isModalVisible={isModalVisible}
         toggleModal={toggleModalVisible}
       >
@@ -197,7 +200,7 @@ export default function AddEditAddressScene() {
           isError={true}
           message={errorMessage}
           onPressModalButton={toggleModalVisible}
-          buttonText={t("Close")}
+          buttonText={t("AddEditAddressScene.Close")}
         />
       </ModalBottomSheet>
       <DeleteAddressModal
@@ -221,7 +224,7 @@ export default function AddEditAddressScene() {
           }}
           returnKeyType="next"
           mode="flat"
-          label={t("First Name")}
+          label={t("AddEditAddressScene.First Name")}
           labelStyle={textInputLabel}
           value={addressData.firstName}
           onChangeText={(firstName) =>
@@ -237,7 +240,7 @@ export default function AddEditAddressScene() {
           ref={lastNameRef}
           returnKeyType="next"
           mode="flat"
-          label={t("Last Name")}
+          label={t("AddEditAddressScene.Last Name")}
           labelStyle={textInputLabel}
           value={addressData.lastName}
           onChangeText={(lastName) =>
@@ -251,7 +254,7 @@ export default function AddEditAddressScene() {
           returnKeyType="next"
           ref={address1Ref}
           mode="flat"
-          label={t("Address")}
+          label={t("AddEditAddressScene.Address")}
           labelStyle={textInputLabel}
           value={addressData.address1}
           onChangeText={(address1) =>
@@ -264,7 +267,7 @@ export default function AddEditAddressScene() {
         <TouchableOpacity onPress={toggleCountryModal}>
           <TextInput
             mode="flat"
-            label={t("Country")}
+            label={t("AddEditAddressScene.Country")}
             labelStyle={textInputLabel}
             value={addressData.country}
             pointerEvents="none"
@@ -280,7 +283,7 @@ export default function AddEditAddressScene() {
           returnKeyType="next"
           ref={provinceRef}
           mode="flat"
-          label={t("State / Province")}
+          label={t("AddEditAddressScene.State / Province")}
           labelStyle={textInputLabel}
           value={addressData.province}
           onChangeText={(province) =>
@@ -297,7 +300,7 @@ export default function AddEditAddressScene() {
           returnKeyType="next"
           ref={cityRef}
           mode="flat"
-          label={t("City")}
+          label={t("AddEditAddressScene.City")}
           labelStyle={textInputLabel}
           value={addressData.city}
           onChangeText={(city) => setAddressData({ ...addressData, city })}
@@ -312,7 +315,7 @@ export default function AddEditAddressScene() {
           returnKeyType="next"
           ref={zipRef}
           mode="flat"
-          label={t("Postal / Zip Code")}
+          label={t("AddEditAddressScene.Postal / Zip Code")}
           labelStyle={textInputLabel}
           value={addressData.zip}
           onChangeText={(zip) => setAddressData({ ...addressData, zip })}
@@ -323,7 +326,7 @@ export default function AddEditAddressScene() {
           returnKeyType="done"
           ref={phoneRef}
           mode="flat"
-          label={t("Phone Number")}
+          label={t("AddEditAddressScene.Phone Number")}
           labelStyle={textInputLabel}
           value={addressData.phone}
           onChangeText={(phone) => setAddressData({ ...addressData, phone })}
@@ -346,7 +349,9 @@ export default function AddEditAddressScene() {
           loading={loadingAddNewAddress || loadingEditAddress}
         >
           <Text weight="medium" style={styles.buttonText}>
-            {!loadingAddNewAddress && !loadingEditAddress && t("Save Address")}
+            {!loadingAddNewAddress &&
+              !loadingEditAddress &&
+              t("AddEditAddressScene.Save Address")}
           </Text>
         </Button>
       </View>

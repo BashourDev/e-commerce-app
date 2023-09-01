@@ -14,7 +14,7 @@ import { lock } from "../../assets/images";
 import { COLORS } from "../constants/colors";
 import { defaultButton, defaultButtonLabel } from "../constants/theme";
 import { Button, Text } from "../core-ui";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function LockScene() {
   let { navigate, setOptions } = useNavigation();
@@ -31,13 +31,15 @@ export default function LockScene() {
       ),
     });
   });
-
+  const { t } = useTranslation();
   return (
     <SafeAreaView style={styles.scene}>
       <View style={styles.imageContainer}>
         <Image source={lock} style={styles.image} />
         <Text style={styles.descriptionText}>
-          {t("Hey there! To continue please log in or create an account.")}
+          {t(
+            "LockScene.Hey there! To continue please log in or create an account."
+          )}
         </Text>
       </View>
       <Button
@@ -47,15 +49,16 @@ export default function LockScene() {
           navigate("Auth", { initialRouteKey: "Register" });
         }}
       >
-        {t("Register")}
+        {t("LockScene.Register")}
       </Button>
       <View style={styles.flexRow}>
-        <Text>{t("Already have an account? ")}</Text>
+        <Text>{t("LockScene.Already have an account?")}</Text>
         <TouchableOpacity
           onPress={() => navigate("Auth", { initialRouteKey: "Login" })}
         >
           <Text style={styles.loginText} weight="medium">
-            {t("Log In")}
+            {" "}
+            {t("LockScene.Log In")}
           </Text>
         </TouchableOpacity>
       </View>

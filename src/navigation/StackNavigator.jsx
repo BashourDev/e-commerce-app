@@ -30,7 +30,7 @@ import {
 } from "../scenes";
 
 import TabNavigator from "./TabNavigator";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 const Stack = createStackNavigator();
 
@@ -67,6 +67,7 @@ export default function StackNavigator() {
   let { authToken } = useAuth();
   let { data: userData } = useGetAuthenticatedUser();
   let { isRTL } = useTheme();
+  const { t } = useTranslation();
 
   function getTabSceneName(route) {
     const routeName = getFocusedRouteNameFromRoute(route) || "HomeTab";
@@ -88,9 +89,11 @@ export default function StackNavigator() {
             return {
               title:
                 authToken && userData?.authenticatedUser.firstName
-                  ? `${t("welcome")}, ${userData.authenticatedUser.firstName}`
-                  : t("welcome"),
-              headerLeft: () => <LocalizationPicker navigation={navigation} />,
+                  ? `${t("StackNavigator.Hello")}, ${
+                      userData.authenticatedUser.firstName
+                    }`
+                  : t("StackNavigator.Hello"),
+              headerLeft: () => <LocalizationPicker />,
               headerRight: () => (
                 <HeaderIconButton
                   icon="cart"
@@ -105,13 +108,13 @@ export default function StackNavigator() {
           } else if (tabScene === "WishlistTab") {
             return {
               headerLeft: () => null,
-              title: t("Wishlist"),
+              title: t("StackNavigator.Wishlist"),
             };
           } else {
             return authToken
               ? {
                   headerLeft: () => null,
-                  title: t("My Profile"),
+                  title: t("StackNavigator.My Profile"),
                 }
               : {
                   headerLeft: () =>
@@ -134,7 +137,7 @@ export default function StackNavigator() {
         name="Auth"
         component={AuthScene}
         options={() => ({
-          title: t("Welcome"),
+          title: t("StackNavigator.Welcome"),
           headerStyle: {
             shadowColor: COLORS.transparent,
             elevation: 0,
@@ -145,7 +148,7 @@ export default function StackNavigator() {
         name="ForgotPassword"
         component={ForgotPasswordScene}
         options={() => ({
-          title: t("Forgot Password"),
+          title: t("StackNavigator.Forgot Password"),
           cardStyle: {
             backgroundColor: COLORS.white,
           },
@@ -155,7 +158,7 @@ export default function StackNavigator() {
         name="AddressManagement"
         component={AddressManagementScene}
         options={() => ({
-          title: t("Manage Addresses"),
+          title: t("StackNavigator.Manage Addresses"),
         })}
       />
       <Stack.Screen name="AddEditAddress" component={AddEditAddressScene} />
@@ -163,14 +166,14 @@ export default function StackNavigator() {
         name="EditProfile"
         component={EditProfileScene}
         options={() => ({
-          title: t("Edit Profile"),
+          title: t("StackNavigator.Edit Profile"),
         })}
       />
       <Stack.Screen
         name="OrderHistory"
         component={OrderHistoryScene}
         options={() => ({
-          title: t("Order History"),
+          title: t("StackNavigator.Order History"),
           cardStyle: {
             backgroundColor: COLORS.darkWhite,
           },
@@ -180,14 +183,14 @@ export default function StackNavigator() {
         name="OrderDetails"
         component={OrderDetailsScene}
         options={() => ({
-          title: t("Order Details"),
+          title: t("StackNavigator.Order Details"),
         })}
       />
       <Stack.Screen
         name="ProductDetails"
         component={ProductDetailsScene}
         options={({ navigation }) => ({
-          title: t("Product Details"),
+          title: t("StackNavigator.Product Details"),
           headerRight: () => (
             <HeaderIconButton
               icon="cart"
@@ -200,7 +203,7 @@ export default function StackNavigator() {
         name="ShoppingCart"
         component={ShoppingCartScene}
         options={() => ({
-          title: t("Shopping Cart"),
+          title: t("StackNavigator.Shopping Cart"),
         })}
       />
       <Stack.Screen
@@ -214,14 +217,14 @@ export default function StackNavigator() {
         name="SearchResults"
         component={SearchResultsScene}
         options={() => ({
-          title: t("Search Results"),
+          title: t("StackNavigator.Search Results"),
         })}
       />
       <Stack.Screen
         name="Checkout"
         component={CheckoutScene}
         options={() => ({
-          title: t("Checkout"),
+          title: t("StackNavigator.Checkout"),
         })}
       />
       <Stack.Screen name="WebView" component={WebViewScene} />
@@ -230,7 +233,7 @@ export default function StackNavigator() {
         name="OrderPlacedConfirmation"
         component={OrderPlacedConfirmationScene}
         options={() => ({
-          title: t("Order Placed"),
+          title: t("StackNavigator.Order Placed"),
           headerLeft: () => null,
         })}
       />

@@ -31,14 +31,16 @@ import { ScreenSize, useDimensions } from "../helpers/dimensions";
 import { useAuth } from "../helpers/useAuth";
 import {
   INVALID_EMAIL_MESSAGE,
+  INVALID_EMAIL_MESSAGE_ARABIC,
   INVALID_PASSWORD_MESSAGE,
+  INVALID_PASSWORD_MESSAGE_ARABIC,
   validateEmail,
   validatePassword,
 } from "../helpers/validation";
 import { useSetAuthenticatedUser } from "../hooks/api/useAuthenticatedUser";
 import { useCustomerRegister } from "../hooks/api/useCustomer";
 import { useGetShop } from "../hooks/api/useCustomerAddress";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function RegisterScene() {
   let { navigate, reset } = useNavigation();
@@ -158,13 +160,13 @@ export default function RegisterScene() {
         });
       },
     });
-
+  const { t } = useTranslation();
   let isLoading = setAuthenticatedUserLoading || registerLoading;
   return (
     <SafeAreaView style={containerStyle()}>
       <Portal>
         <ModalBottomSheet
-          title={t("Something went wrong!")}
+          title={t("RegisterScene.Something went wrong!")}
           isModalVisible={isVisible}
           toggleModal={toggleModalVisible}
         >
@@ -172,7 +174,7 @@ export default function RegisterScene() {
             isError={true}
             message={errorMessage}
             onPressModalButton={toggleModalVisible}
-            buttonText={t("Close")}
+            buttonText={t("RegisterScene.Close")}
           />
         </ModalBottomSheet>
       </Portal>
@@ -186,7 +188,7 @@ export default function RegisterScene() {
             mode="flat"
             value={firstName}
             onChangeText={setFirstName}
-            label={t("First Name")}
+            label={t("RegisterScene.First Name")}
             labelStyle={textInputLabel}
             returnKeyType="next"
             ref={firstNameRef}
@@ -203,7 +205,7 @@ export default function RegisterScene() {
             textContentType="name"
             mode="flat"
             value={lastName}
-            label={t("Last Name")}
+            label={t("RegisterScene.Last Name")}
             labelStyle={textInputLabel}
             onChangeText={setLastName}
             returnKeyType="next"
@@ -224,10 +226,16 @@ export default function RegisterScene() {
             onBlur={() => {
               setIsEmailValid(validateEmail(email));
             }}
-            errorMessage={!isEmailValid ? INVALID_EMAIL_MESSAGE : undefined}
+            errorMessage={
+              !isEmailValid
+                ? i18n.language === "en"
+                  ? INVALID_EMAIL_MESSAGE
+                  : INVALID_EMAIL_MESSAGE_ARABIC
+                : undefined
+            }
             textContentType="emailAddress"
             mode="flat"
-            label={t("Email Address")}
+            label={t("RegisterScene.Email Address")}
             labelStyle={textInputLabel}
             value={email}
             errorMessageStyle={styles.errorMessage}
@@ -249,12 +257,16 @@ export default function RegisterScene() {
               setIsPasswordValid(validatePassword(password));
             }}
             errorMessage={
-              !isPasswordValid ? INVALID_PASSWORD_MESSAGE : undefined
+              !isPasswordValid
+                ? i18n.language === "en"
+                  ? INVALID_PASSWORD_MESSAGE
+                  : INVALID_PASSWORD_MESSAGE_ARABIC
+                : undefined
             }
             returnKeyType="next"
             secureTextEntry={true}
             mode="flat"
-            label={t("Password")}
+            label={t("RegisterScene.Password")}
             labelStyle={textInputLabel}
             value={password}
             errorMessageStyle={styles.errorMessage}
@@ -276,11 +288,13 @@ export default function RegisterScene() {
               setIsConfirmPasswordValid(confirmPassword === password);
             }}
             errorMessage={
-              !isConfirmPasswordValid ? t("Password does not match") : undefined
+              !isConfirmPasswordValid
+                ? t("RegisterScene.Password does not match")
+                : undefined
             }
             secureTextEntry={true}
             mode="flat"
-            label={t("Confirm Password")}
+            label={t("RegisterScene.Confirm Password")}
             labelStyle={textInputLabel}
             value={confirmPassword}
             onChangeText={setConfirmPassword}
@@ -298,10 +312,12 @@ export default function RegisterScene() {
         }}
       >
         <Text style={styles.termsAndConditionText}>
-          {t("By clicking Register, you agree with our")}
+          {t("RegisterScene.By clicking Register, you agree with our")}
         </Text>
         <TouchableOpacity onPress={onTermsPressed} activeOpacity={1}>
-          <Text style={styles.primaryColorText}>{t("Terms & Conditions")}</Text>
+          <Text style={styles.primaryColorText}>
+            {t("RegisterScene.Terms & Conditions")}
+          </Text>
         </TouchableOpacity>
         <Button
           loading={isLoading}
@@ -310,7 +326,7 @@ export default function RegisterScene() {
           disabled={isDisabled}
           labelStyle={defaultButtonLabel}
         >
-          {!isLoading && t("Register")}
+          {!isLoading && t("RegisterScene.Register")}
         </Button>
       </View>
     </SafeAreaView>

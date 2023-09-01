@@ -12,7 +12,8 @@ import {
   useAddItemToWishlist,
   useRemoveItemFromWishlist,
 } from "../../../hooks/api/useWishlist";
-import { t } from "../../../helpers/translate";
+
+import { useTranslation } from "react-i18next";
 
 export default function BottomActionBar(props) {
   let { addToWishlist } = useAddItemToWishlist();
@@ -25,13 +26,13 @@ export default function BottomActionBar(props) {
     isLoading,
     isButtonDisabled,
   } = props;
-
+  const { t } = useTranslation();
   let { data: shopData } = useQuery(GET_SHOP);
   let shareMessage = shopData
-    ? t("Check out this product from {shopName}", {
-        shopName: shopData.shop.name,
-      })
-    : t("Check out this product");
+    ? t("BottomActionBar.Check out this product from") +
+      " " +
+      shopData.shop.name
+    : t("BottomActionBar.Check out this product");
 
   let onPressWishlist = () => {
     onWishlistPress(!isWishlistActive);
@@ -54,12 +55,12 @@ export default function BottomActionBar(props) {
       return null;
     }
     if (!product.id) {
-      return t("Unavailable");
+      return t("BottomActionBar.Unavailable");
     }
     if (product.availableForSale) {
-      return t("Add to Cart");
+      return t("BottomActionBar.Add to Cart");
     }
-    return t("Out of Stock");
+    return t("BottomActionBar.Out of Stock");
   };
 
   let addButtonAction = !isLoading ? onAddToCartPress : () => {};

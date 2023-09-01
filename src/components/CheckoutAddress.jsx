@@ -6,7 +6,7 @@ import { FONT_SIZE } from "../constants/fonts";
 import { RadioButton, Text } from "../core-ui";
 import formatAddress from "../helpers/formatAddress";
 import { getFullName } from "../helpers/getFullName";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function CheckoutAddress({
   style,
@@ -18,7 +18,7 @@ export default function CheckoutAddress({
   let { id, firstName, lastName, phone } = data;
 
   let fullName = getFullName(firstName, lastName);
-
+  const { t } = useTranslation();
   return (
     <TouchableOpacity
       style={[
@@ -42,7 +42,7 @@ export default function CheckoutAddress({
           <Text style={styles.label}>{fullName}</Text>
           <TouchableOpacity onPress={onEditPressed}>
             <Text style={[styles.label, styles.textCapitalized]}>
-              {t("Edit")}
+              {t("CheckoutAddress.Edit")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -52,11 +52,11 @@ export default function CheckoutAddress({
               {item}
             </Text>
           ) : (
-            <Text>{t("No Addresses To Display")}</Text>
+            <Text>{t("CheckoutAddress.No Addresses To Display")}</Text>
           )
         )}
         <Text style={[styles.opacity, styles.phone]}>
-          {t("Phone: {phone}", { phone })}
+          {t("CheckoutAddress.Phone")} {phone}
         </Text>
       </View>
     </TouchableOpacity>

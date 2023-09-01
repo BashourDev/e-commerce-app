@@ -8,7 +8,7 @@ import { tabBarOptions } from "../constants/theme";
 import { Text } from "../core-ui";
 import { useAuth } from "../helpers/useAuth";
 import { HomeScene, LockScene, ProfileScene, WishlistScene } from "../scenes";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,6 +26,7 @@ function TabLabel(props) {
 
 export default function TabNavigator() {
   let { authToken } = useAuth();
+  const { t } = useTranslation();
   return (
     <Tab.Navigator initialRouteName="HomeTab" tabBarOptions={tabBarOptions}>
       <Tab.Screen
@@ -33,9 +34,13 @@ export default function TabNavigator() {
         component={HomeScene}
         options={() => {
           return {
-            title: t("Home"),
+            title: t("TabNavigator.Home"),
             tabBarLabel: ({ focused, color }) => (
-              <TabLabel focused={focused} color={color} label={t("Home")} />
+              <TabLabel
+                focused={focused}
+                color={color}
+                label={t("TabNavigator.Home")}
+              />
             ),
             tabBarIcon: ({ color }) => <IconButton icon="home" color={color} />,
           };
@@ -46,9 +51,13 @@ export default function TabNavigator() {
         component={WishlistScene}
         options={() => {
           return {
-            title: t("Wishlist"),
+            title: t("TabNavigator.Wishlist"),
             tabBarLabel: ({ focused, color }) => (
-              <TabLabel focused={focused} color={color} label={t("Wishlist")} />
+              <TabLabel
+                focused={focused}
+                color={color}
+                label={t("TabNavigator.Wishlist")}
+              />
             ),
             tabBarIcon: ({ color }) => (
               <IconButton icon="heart" color={color} />
@@ -61,13 +70,13 @@ export default function TabNavigator() {
         component={authToken ? ProfileScene : LockScene}
         options={() => {
           return {
-            title: t("Profile"),
+            title: t("TabNavigator.Profile"),
             tabBarVisible: !!authToken,
             tabBarLabel: ({ focused, color }) => (
               <TabLabel
                 focused={focused}
                 color={color}
-                label={t("My Profile")}
+                label={t("TabNavigator.My Profile")}
               />
             ),
             tabBarIcon: ({ color }) => (

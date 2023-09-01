@@ -28,7 +28,8 @@ import useCurrencyFormatter from "../../hooks/api/useCurrencyFormatter";
 import { useGetCustomerAddresses } from "../../hooks/api/useCustomer";
 import { useCheckoutUpdateAddress } from "../../hooks/api/useShopifyCart";
 import { AddressList, ShippingAddressForm } from "./components";
-import { t } from "../../helpers/translate";
+
+import { useTranslation } from "react-i18next";
 
 export default function CheckoutScene() {
   let { navigate } = useNavigation();
@@ -188,12 +189,14 @@ export default function CheckoutScene() {
       />
     );
   }
-
+  const { t } = useTranslation();
   let renderShippingAddress = () => {
     if (authToken) {
       return (
         <View style={styles.flex}>
-          <Text style={styles.opacity}>{t("Shipping Address")}</Text>
+          <Text style={styles.opacity}>
+            {t("CheckoutScene.Shipping Address")}
+          </Text>
           {loading ? (
             <ActivityIndicator />
           ) : (
@@ -213,7 +216,7 @@ export default function CheckoutScene() {
             labelStyle={defaultButtonLabel}
             onPress={addNewAddress}
           >
-            {t("Add New Address")}
+            {t("CheckoutScene.Add New Address")}
           </Button>
         </View>
       );
@@ -226,15 +229,15 @@ export default function CheckoutScene() {
 
   let paymentData = [
     {
-      name: t("Subtotal"),
+      name: t("CheckoutScene.Subtotal"),
       value: formatCurrency(subtotalPrice),
     },
     {
-      name: t("Shipping"),
-      value: t("Calculated at next step"),
+      name: t("CheckoutScene.Shipping"),
+      value: t("CheckoutScene.Calculated at next step"),
     },
     {
-      name: t("Total"),
+      name: t("CheckoutScene.Total"),
       value: formatCurrency(subtotalPrice),
     },
   ];
@@ -258,21 +261,21 @@ export default function CheckoutScene() {
         onPress={onProceedPressed}
         disabled={isDisabled || updateAddressLoading}
       >
-        {t("Proceed to payment")}
+        {t("CheckoutScene.Proceed to payment")}
       </Button>
     </View>
   );
   let renderBottomModal = () => (
     <ModalBottomSheet
-      title={t("An Error Occured!")}
+      title={t("CheckoutScene.An Error Occured!")}
       isModalVisible={isModalVisible}
       toggleModal={toggleModalVisible}
     >
       <ModalBottomSheetMessage
         isError={true}
-        message={t("Please insert a valid address")}
+        message={t("CheckoutScene.Please insert a valid address")}
         onPressModalButton={toggleModalVisible}
-        buttonText={t("Close")}
+        buttonText={t("CheckoutScene.Close")}
       />
     </ModalBottomSheet>
   );

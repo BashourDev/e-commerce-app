@@ -13,7 +13,8 @@ import {
   flatTextInputStyle,
   textInputLabel,
 } from "../../../constants/theme";
-import { t } from "../../../helpers/translate";
+
+import { useTranslation } from "react-i18next";
 
 export default function ShippingAddressForm(props) {
   let { address, onChangeAddress } = props;
@@ -36,14 +37,14 @@ export default function ShippingAddressForm(props) {
   let cityRef = useRef();
   let zipRef = useRef();
   let phoneRef = useRef();
-
+  const { t } = useTranslation();
   return (
     <View style={styles.flex}>
       <Text style={[styles.opacity, styles.shippingInfo]}>
-        {t("Shipping Information")}
+        {t("ShippingAddressForm.Shipping Information")}
       </Text>
       <TextInput
-        label={t("First name")}
+        label={t("ShippingAddressForm.First Name")}
         autoFocus={true}
         clearTextOnFocus={false}
         autoCapitalize="words"
@@ -58,7 +59,7 @@ export default function ShippingAddressForm(props) {
         style={flatTextInputStyle}
       />
       <TextInput
-        label={t("Last Name")}
+        label={t("ShippingAddressForm.Last Name")}
         ref={lastNameRef}
         clearTextOnFocus={false}
         autoCapitalize="words"
@@ -73,7 +74,7 @@ export default function ShippingAddressForm(props) {
         style={flatTextInputStyle}
       />
       <TextInput
-        label={t("Address 1")}
+        label={t("ShippingAddressForm.Address 1")}
         ref={address1Ref}
         clearTextOnFocus={false}
         autoCapitalize="none"
@@ -88,7 +89,7 @@ export default function ShippingAddressForm(props) {
         style={flatTextInputStyle}
       />
       <TextInput
-        label={t("Address 2 (optional)")}
+        label={t("ShippingAddressForm.Address 2 (optional)")}
         ref={address2Ref}
         clearTextOnFocus={false}
         autoCapitalize="none"
@@ -103,7 +104,7 @@ export default function ShippingAddressForm(props) {
         style={flatTextInputStyle}
       />
       <TextInput
-        label={t("City")}
+        label={t("ShippingAddressForm.City")}
         ref={cityRef}
         clearTextOnFocus={false}
         autoCapitalize="words"
@@ -118,7 +119,7 @@ export default function ShippingAddressForm(props) {
         style={flatTextInputStyle}
       />
       <TextInput
-        label={t("Province")}
+        label={t("ShippingAddressForm.Province")}
         ref={provinceRef}
         clearTextOnFocus={false}
         autoCapitalize="words"
@@ -134,7 +135,7 @@ export default function ShippingAddressForm(props) {
       />
       <TouchableOpacity onPress={toggleCountryModal}>
         <TextInput
-          label={t("Country")}
+          label={t("ShippingAddressForm.Country")}
           clearTextOnFocus={false}
           autoCapitalize="words"
           textContentType="countryName"
@@ -149,7 +150,7 @@ export default function ShippingAddressForm(props) {
         />
       </TouchableOpacity>
       <TextInput
-        label={t("Postal Code")}
+        label={t("ShippingAddressForm.Postal Code")}
         ref={zipRef}
         clearTextOnFocus={false}
         textContentType="postalCode"
@@ -164,7 +165,7 @@ export default function ShippingAddressForm(props) {
         style={flatTextInputStyle}
       />
       <TextInput
-        label={t("Phone Number")}
+        label={t("ShippingAddressForm.Phone Number")}
         ref={phoneRef}
         clearTextOnFocus={false}
         textContentType="telephoneNumber"

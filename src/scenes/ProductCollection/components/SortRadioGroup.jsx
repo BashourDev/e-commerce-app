@@ -3,8 +3,12 @@ import { StyleSheet } from "react-native";
 
 import { COLORS } from "../../../constants/colors";
 import { FONT_FAMILY, FONT_SIZE } from "../../../constants/fonts";
-import { PRODUCT_SORT_VALUES } from "../../../constants/values";
+import {
+  PRODUCT_SORT_VALUES,
+  PRODUCT_SORT_VALUES_ARABIC,
+} from "../../../constants/values";
 import { RadioButton } from "../../../core-ui";
+import { useTranslation } from "react-i18next";
 
 export default function SortRadioGroup(props) {
   let { radioButtonValue, onValueChange } = props;
@@ -15,36 +19,76 @@ export default function SortRadioGroup(props) {
       ? styles.activeTextStyle
       : styles.inactiveTextStyle,
   ];
-
+  const { i18n } = useTranslation();
   return (
     <RadioButton.Group
       value={
-        !!radioButtonValue ? radioButtonValue : PRODUCT_SORT_VALUES.POPULARITY
+        !!radioButtonValue
+          ? radioButtonValue
+          : i18n.language === "en"
+          ? PRODUCT_SORT_VALUES.POPULARITY
+          : PRODUCT_SORT_VALUES_ARABIC.POPULARITY
       }
       onValueChange={onValueChange}
     >
       <RadioButton
-        value={PRODUCT_SORT_VALUES.POPULARITY}
-        label={PRODUCT_SORT_VALUES.POPULARITY}
+        value={
+          i18n.language === "en"
+            ? PRODUCT_SORT_VALUES.POPULARITY
+            : PRODUCT_SORT_VALUES_ARABIC.POPULARITY
+        }
+        label={
+          i18n.language === "en"
+            ? PRODUCT_SORT_VALUES.POPULARITY
+            : PRODUCT_SORT_VALUES_ARABIC.POPULARITY
+        }
         {...(!radioButtonValue && { checked: true })}
         style={styles.radioButton}
         textStyle={
           !radioButtonValue
             ? [styles.radioButtonText, styles.activeTextStyle]
-            : textStyle(PRODUCT_SORT_VALUES.POPULARITY)
+            : textStyle(
+                i18n.language === "en"
+                  ? PRODUCT_SORT_VALUES.POPULARITY
+                  : PRODUCT_SORT_VALUES_ARABIC.POPULARITY
+              )
         }
       />
       <RadioButton
-        value={PRODUCT_SORT_VALUES.PRICE_HIGH_TO_LOW}
-        label={PRODUCT_SORT_VALUES.PRICE_HIGH_TO_LOW}
+        value={
+          i18n.language === "en"
+            ? PRODUCT_SORT_VALUES.PRICE_HIGH_TO_LOW
+            : PRODUCT_SORT_VALUES_ARABIC.PRICE_HIGH_TO_LOW
+        }
+        label={
+          i18n.language === "en"
+            ? PRODUCT_SORT_VALUES.PRICE_HIGH_TO_LOW
+            : PRODUCT_SORT_VALUES_ARABIC.PRICE_HIGH_TO_LOW
+        }
         style={styles.radioButton}
-        textStyle={textStyle(PRODUCT_SORT_VALUES.PRICE_HIGH_TO_LOW)}
+        textStyle={textStyle(
+          i18n.language === "en"
+            ? PRODUCT_SORT_VALUES.PRICE_HIGH_TO_LOW
+            : PRODUCT_SORT_VALUES_ARABIC.PRICE_HIGH_TO_LOW
+        )}
       />
       <RadioButton
-        value={PRODUCT_SORT_VALUES.PRICE_LOW_TO_HIGH}
-        label={PRODUCT_SORT_VALUES.PRICE_LOW_TO_HIGH}
+        value={
+          i18n.language === "en"
+            ? PRODUCT_SORT_VALUES.PRICE_LOW_TO_HIGH
+            : PRODUCT_SORT_VALUES_ARABIC.PRICE_LOW_TO_HIGH
+        }
+        label={
+          i18n.language === "en"
+            ? PRODUCT_SORT_VALUES.PRICE_LOW_TO_HIGH
+            : PRODUCT_SORT_VALUES_ARABIC.PRICE_LOW_TO_HIGH
+        }
         style={styles.radioButton}
-        textStyle={textStyle(PRODUCT_SORT_VALUES.PRICE_LOW_TO_HIGH)}
+        textStyle={textStyle(
+          i18n.language === "en"
+            ? PRODUCT_SORT_VALUES.PRICE_LOW_TO_HIGH
+            : PRODUCT_SORT_VALUES_ARABIC.PRICE_LOW_TO_HIGH
+        )}
       />
     </RadioButton.Group>
   );

@@ -12,11 +12,11 @@ import {
 } from "../constants/theme";
 import { Button, ModalBottomSheet, TextInput } from "../core-ui";
 import { useForgotPasswordMutation } from "../hooks/api/useAuthenticatedUser";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function ForgotPasswordScene() {
   let { navigate } = useNavigation();
-
+  const { t } = useTranslation();
   let [emailValue, setEmailValue] = useState("");
   let [isVisible, setVisible] = useState(false);
   let [error, setError] = useState("");
@@ -61,15 +61,19 @@ export default function ForgotPasswordScene() {
   };
 
   let errorMessage = isError
-    ? t("{error}", { error })
+    ? error
     : t(
-        "An email has been sent to reset your password. Please check your email."
+        "ForgotPasswordScene.An email has been sent to reset your password. Please check your email."
       );
 
   return (
     <SafeAreaView style={styles.flex}>
       <ModalBottomSheet
-        title={isError ? t("An Error Occured!") : t("Email Has Been Sent!")}
+        title={
+          isError
+            ? t("ForgotPasswordScene.An Error Occured!")
+            : t("ForgotPasswordScene.Email Has Been Sent!")
+        }
         isModalVisible={isVisible}
         toggleModal={toggleModalVisible}
       >
@@ -77,13 +81,17 @@ export default function ForgotPasswordScene() {
           isError={isError}
           message={errorMessage}
           onPressModalButton={onPressModalButton}
-          buttonText={isError ? t("Try Again") : t("Back To Login")}
+          buttonText={
+            isError
+              ? t("ForgotPasswordScene.Try Again")
+              : t("ForgotPasswordScene.Back To Login")
+          }
         />
       </ModalBottomSheet>
       <View style={styles.textInputContainer}>
         <TextInput
           mode="flat"
-          label={t("Email Address")}
+          label={t("ForgotPasswordScene.Email Address")}
           value={emailValue}
           onChangeText={setEmailValue}
           autoFocus={true}
@@ -98,7 +106,7 @@ export default function ForgotPasswordScene() {
         onPress={onPressButton}
         loading={loading}
       >
-        {!loading && t("Reset Password")}
+        {!loading && t("ForgotPasswordScene.Reset Password")}
       </Button>
     </SafeAreaView>
   );

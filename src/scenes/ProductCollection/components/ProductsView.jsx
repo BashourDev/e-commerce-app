@@ -14,7 +14,8 @@ import FilterModal from "./FilterModal";
 import PriceSlider from "./PriceSlider";
 import SortModal from "./SortModal";
 import SortRadioGroup from "./SortRadioGroup";
-import { t } from "../../../helpers/translate";
+
+import { useTranslation } from "react-i18next";
 
 export default function ProductsView(props) {
   let { onItemPress, products, sortProps, filterProps, onEndReached, hasMore } =
@@ -43,12 +44,12 @@ export default function ProductsView(props) {
     styles.flex,
     isScreenSizeLarge && styles.containerLandscape,
   ];
-
+  const { t } = useTranslation();
   let SideBarMenu = () => {
     return (
       <ScrollView style={styles.sideBarMenu}>
         <View style={[styles.menuContainer, styles.menuBorder]}>
-          <Text style={styles.menuTitle}>{t("Sort By")}</Text>
+          <Text style={styles.menuTitle}>{t("ProductView.Sort By")}</Text>
           <SortRadioGroup
             radioButtonValue={radioButtonValue}
             onValueChange={(value) => {
@@ -59,9 +60,9 @@ export default function ProductsView(props) {
         </View>
         <View style={styles.menuContainer}>
           <View style={styles.titleContainer}>
-            <Text style={styles.menuTitle}>{t("Price")}</Text>
+            <Text style={styles.menuTitle}>{t("ProductView.Price")}</Text>
             <TouchableOpacity onPress={onClearFilter}>
-              <Text style={styles.clearButton}>{t("Clear")}</Text>
+              <Text style={styles.clearButton}>{t("ProductView.Clear")}</Text>
             </TouchableOpacity>
           </View>
           <PriceSlider
@@ -72,7 +73,7 @@ export default function ProductsView(props) {
               onSetFilter(values);
               toggleFilterModal();
             }}
-            submitButtonText={t("Set Filter")}
+            submitButtonText={t("ProductView.Set Filter")}
             onValuesChangeStart={onValuesChangeStart}
             onValuesChangeFinish={onValuesChangeFinish}
             sliderStep={sliderStep}
@@ -93,7 +94,7 @@ export default function ProductsView(props) {
           labelStyle={styles.buttonLabel}
           onPress={toggleFilterModal}
         >
-          {t("Filter")}
+          {t("ProductView.Filter")}
         </Button>
         <Button
           icon="swap-vertical"
@@ -102,7 +103,7 @@ export default function ProductsView(props) {
           labelStyle={styles.buttonLabel}
           onPress={toggleSortModal}
         >
-          {t("Sort By")}
+          {t("ProductView.Sort By")}
         </Button>
       </View>
     );
@@ -113,9 +114,11 @@ export default function ProductsView(props) {
       {isScreenSizeLarge ? <SideBarMenu /> : <TopBarMenu />}
       <View style={styles.productsContainer}>
         <Text style={styles.count}>
-          {t("Showing {count} item(s)", {
-            count: products.length,
-          })}
+          {t("ProductView.Showing")}
+          &nbsp;
+          {products.length}
+          &nbsp;
+          {t("ProductView.item(s)")}
         </Text>
         <ProductList
           data={products}

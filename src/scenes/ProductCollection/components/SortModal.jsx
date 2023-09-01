@@ -4,16 +4,17 @@ import { StyleSheet, View } from "react-native";
 import { ModalBottomSheet } from "../../../core-ui";
 
 import SortRadioGroup from "./SortRadioGroup";
-import { t } from "../../../helpers/translate";
+
+import { useTranslation } from "react-i18next";
 
 export default function SortModal(props) {
   let { isModalVisible, toggleModal, radioButtonValue, onValueChange } = props;
-
+  const { t } = useTranslation();
   return (
     <ModalBottomSheet
       isModalVisible={isModalVisible}
       toggleModal={toggleModal}
-      title={t("Sort By")}
+      title={t("SortModal.Sort By")}
       height={240}
       width={360}
     >

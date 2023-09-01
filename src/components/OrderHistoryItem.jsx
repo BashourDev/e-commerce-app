@@ -12,25 +12,26 @@ import { FONT_SIZE } from "../constants/fonts";
 import { Text } from "../core-ui";
 import formatDateTime from "../helpers/formatDateTime";
 import useCurrencyFormatter from "../hooks/api/useCurrencyFormatter";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function OrderHistoryItem(props) {
   let { order, containerStyle, onPress } = props;
   let formatCurrency = useCurrencyFormatter();
+  const { t } = useTranslation();
   return (
     <TouchableOpacity
       style={[styles.container, containerStyle]}
       onPress={onPress}
     >
       <Text weight="medium" style={styles.orderNumber}>
-        {t("Order {orderID}", { orderID: order.orderNumber })}
+        {t("OrderHistoryItem.Order {orderID}", { orderID: order.orderNumber })}
       </Text>
       <View style={styles.textStyle}>
-        <Text>{t("Ordered")}</Text>
+        <Text>{t("OrderHistoryItem.Ordered")}</Text>
         <Text>{formatDateTime(order.orderTime)}</Text>
       </View>
       <View style={styles.textStyle}>
-        <Text>{t("Total")}</Text>
+        <Text>{t("OrderHistoryItem.Total")}</Text>
         <Text>{formatCurrency(order.totalPayment)}</Text>
       </View>
     </TouchableOpacity>

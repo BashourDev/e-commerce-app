@@ -14,15 +14,16 @@ import { COLORS } from "../constants/colors";
 import { Text } from "../core-ui";
 import useDefaultCountry from "../hooks/api/useDefaultCountry";
 import useLocalization from "../hooks/api/useLocalization";
+import i18next from "i18next";
 
 export default function CurrencyPicker() {
   let [visible, setVisible] = useState(false);
-  let { setDefaultCountryCode, data: selectedCountryCode } =
-    useDefaultCountry();
+  // let { setDefaultCountryCode, data: selectedCountryCode } =
+  //   useDefaultCountry();
 
-  let { data } = useLocalization();
+  // let { data } = useLocalization();
 
-  let isMultiCurrency = data && data.localization.availableCountries.length > 1;
+  // let isMultiCurrency = data && data.localization.availableCountries.length > 1;
 
   let animatedValue = new Animated.Value(0);
 
@@ -34,7 +35,7 @@ export default function CurrencyPicker() {
 
   return (
     <View style={styles.container}>
-      {isMultiCurrency ? (
+      {/* {isMultiCurrency ? (
         <Menu
           visible={visible}
           onDismiss={() => {
@@ -97,9 +98,17 @@ export default function CurrencyPicker() {
             />
           </View>
         </Menu>
-      ) : (
-        <Text weight="medium">{selectedCountryCode.countryCode}</Text>
-      )}
+      ) : ( */}
+      {/* <Text weight="medium">{selectedCountryCode.countryCode}</Text> */}
+      <Text
+        onPress={() => {
+          i18next.changeLanguage(i18next.language === "en" ? "ar" : "en");
+        }}
+        weight="medium"
+      >
+        {i18next.language === "en" ? "AR" : "EN"}
+      </Text>
+      {/* )} */}
     </View>
   );
 }

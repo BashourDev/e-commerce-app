@@ -9,7 +9,7 @@ import { Surface, Text } from "../core-ui";
 import { ScreenSize, useDimensions } from "../helpers/dimensions";
 import formatDateTime from "../helpers/formatDateTime";
 import useCurrencyFormatter from "../hooks/api/useCurrencyFormatter";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function OrderDetailsScene() {
   let {
@@ -26,20 +26,23 @@ export default function OrderDetailsScene() {
     },
   } = useRoute();
   let { screenSize } = useDimensions();
-
+  const { t } = useTranslation();
   let formatCurrency = useCurrencyFormatter();
 
   let paymentData = [
     {
-      name: t("Subtotal"),
+      name: t("OrderDetailsScene.Subtotal"),
       value: formatCurrency(subtotalPayment),
     },
     {
-      name: t("Shipping"),
-      value: shippingPrice === 0 ? t("Free") : formatCurrency(shippingPrice),
+      name: t("OrderDetailsScene.Shipping"),
+      value:
+        shippingPrice === 0
+          ? t("OrderDetailsScene.Free")
+          : formatCurrency(shippingPrice),
     },
     {
-      name: t("Total"),
+      name: t("OrderDetailsScene.Total"),
       value: formatCurrency(totalPayment),
     },
   ];
@@ -56,19 +59,21 @@ export default function OrderDetailsScene() {
         <View style={styles.orderInfoSection}>
           <Surface containerStyle={styles.surfaceOrderContainer}>
             <Text weight="medium" style={styles.mediumText}>
-              {t("Order No.")}
+              {t("OrderDetailsScene.Order No.")}
             </Text>
             <Text style={styles.mediumText}>{orderNumber}</Text>
           </Surface>
           <Surface containerStyle={styles.surfaceOrderContainer}>
             <Text weight="medium" style={styles.mediumText}>
-              {t("Ordered")}
+              {t("OrderDetailsScene.Ordered")}
             </Text>
             <Text style={styles.mediumText}>{formatDateTime(orderTime)}</Text>
           </Surface>
         </View>
         <View style={styles.productDetailsContainer}>
-          <Text style={styles.greyText}>{t("Product Details")}</Text>
+          <Text style={styles.greyText}>
+            {t("OrderDetailsScene.Product Details")}
+          </Text>
           <View style={styles.orderItemContainer}>
             {lineItems.map((item) => (
               <OrderItem
@@ -81,19 +86,22 @@ export default function OrderDetailsScene() {
           </View>
         </View>
         <View style={styles.shippingAddressContainer}>
-          <Text style={styles.greyText}>{t("Shipping Address")}</Text>
+          <Text style={styles.greyText}>
+            {t("OrderDetailsScene.Shipping Address")}
+          </Text>
           <Surface containerStyle={styles.surfaceShippingContainer}>
             <Text style={[styles.mediumText, styles.marginBottom]}>{name}</Text>
             <Text style={styles.greyText}>{address1}</Text>
             <Text style={styles.greyText}>{`${city}, ${province} ${zip}`}</Text>
             <Text style={styles.greyText}>{country}</Text>
             <Text style={styles.greyText}>
-              {t("Phone: ")}
-              {phone}
+              {t("OrderDetailsScene.Phone:")} {phone}
             </Text>
           </Surface>
         </View>
-        <Text style={styles.greyText}>{t("Payment Details")}</Text>
+        <Text style={styles.greyText}>
+          {t("OrderDetailsScene.Payment Details")}
+        </Text>
         <PaymentDetails
           data={paymentData}
           containerStyle={styles.surfacePaymentDetails}

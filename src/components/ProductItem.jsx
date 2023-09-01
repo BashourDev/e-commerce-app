@@ -12,7 +12,7 @@ import { FONT_SIZE } from "../constants/fonts";
 import { DiscountBadge, Text } from "../core-ui";
 import { priceAfterDiscount } from "../helpers/priceAfterDiscount";
 import useCurrencyFormatter from "../hooks/api/useCurrencyFormatter";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function ProductItem(props) {
   let {
@@ -23,7 +23,7 @@ export default function ProductItem(props) {
   } = props;
   let afterDiscount = priceAfterDiscount(price, discount || 0);
   let formatCurrency = useCurrencyFormatter();
-
+  const { t } = useTranslation();
   let renderImage = () => {
     return availableForSale ? (
       <View style={styles.imageContainer}>
@@ -37,7 +37,7 @@ export default function ProductItem(props) {
         >
           <View style={styles.oosBackground}>
             <Text style={styles.oosText} weight="medium">
-              {t("Out of Stock")}
+              {t("ProductItem.Out of Stock")}
             </Text>
           </View>
         </ImageBackground>

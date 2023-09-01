@@ -5,10 +5,11 @@ import { errorImage, successImage } from "../../assets/images";
 import { COLORS } from "../constants/colors";
 import { FONT_SIZE } from "../constants/fonts";
 import { Button, Text } from "../core-ui";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function ModalBottomSheetMessage(props) {
   let { isError, message, onPressModalButton, buttonText } = props;
+  const { t } = useTranslation();
   return (
     <>
       <View style={styles.iconContainer}>
@@ -18,11 +19,11 @@ export default function ModalBottomSheetMessage(props) {
           <Image source={successImage} style={styles.image} />
         )}
       </View>
-      <Text style={styles.message}>{t(" {message}", { message })}</Text>
+      <Text style={styles.message}>{message}</Text>
       {onPressModalButton ? (
         <Button style={styles.buttonStyle} onPress={onPressModalButton}>
           <Text weight="medium" style={styles.buttonText}>
-            {buttonText ? t("{buttonText}", { buttonText }) : t("Close")}
+            {buttonText ? buttonText : t("ModalBottomSheetMessage.Close")}
           </Text>
         </Button>
       ) : null}

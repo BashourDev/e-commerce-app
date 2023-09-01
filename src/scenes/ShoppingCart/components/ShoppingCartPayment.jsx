@@ -10,7 +10,8 @@ import {
 } from "../../../constants/theme";
 import { Button, Text, TextInput } from "../../../core-ui";
 import useCurrencyFormatter from "../../../hooks/api/useCurrencyFormatter";
-import { t } from "../../../helpers/translate";
+
+import { useTranslation } from "react-i18next";
 
 export default function ShoppingCartPayment(props) {
   let {
@@ -22,24 +23,27 @@ export default function ShoppingCartPayment(props) {
     isVoucherCodeValid,
   } = props;
   let formatCurrency = useCurrencyFormatter();
+  const { t } = useTranslation();
   let paymentData = [
     {
-      name: t("Subtotal"),
+      name: t("ShoppingCartPayment.Subtotal"),
       value: formatCurrency(subtotal),
     },
     {
-      name: t("Discount"),
+      name: t("ShoppingCartPayment.Discount"),
       value: formatCurrency(subtotal - total),
     },
     {
-      name: t("Total"),
+      name: t("ShoppingCartPayment.Total"),
       value: formatCurrency(total),
     },
   ];
   return (
     <>
       <View style={styles.voucherCodeContainer}>
-        <Text style={styles.opacity}>{t("Voucher code or giftcard")}</Text>
+        <Text style={styles.opacity}>
+          {t("ShoppingCartPayment.Voucher code or giftcard")}
+        </Text>
         <View style={styles.voucherInputButtonContainer}>
           <View style={styles.textInputContainer}>
             <TextInput
@@ -54,7 +58,7 @@ export default function ShoppingCartPayment(props) {
               style={outlinedTextInput}
               errorMessage={
                 !isVoucherCodeValid
-                  ? t("Voucher code does not exist")
+                  ? t("ShoppingCartPayment.Voucher code does not exist")
                   : undefined
               }
               errorMessageStyle={styles.errorMessage}
@@ -67,7 +71,7 @@ export default function ShoppingCartPayment(props) {
             labelStyle={defaultButtonLabel}
             onPress={onAddCode}
           >
-            {t("Add")}
+            {t("ShoppingCartPayment.Add")}
           </Button>
         </View>
       </View>

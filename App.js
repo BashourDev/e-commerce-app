@@ -23,7 +23,7 @@ import { useFonts } from "expo-font";
 //   },
 //   cache: new InMemoryCache(),
 // });
-
+import "./i18n";
 I18nManager.forceRTL(CustomTheme.isRTL); // experimental
 
 export default function App() {

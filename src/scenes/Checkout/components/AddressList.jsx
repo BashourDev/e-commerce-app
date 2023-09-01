@@ -4,7 +4,7 @@ import { ActivityIndicator } from "react-native-paper";
 
 import { CheckoutAddress } from "../../../components";
 import { Text } from "../../../core-ui";
-import { t } from "../../../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function AdddressList(props) {
   let {
@@ -15,7 +15,7 @@ export default function AdddressList(props) {
     onEndReached,
     hasMore,
   } = props;
-
+  const { t } = useTranslation();
   return (
     <FlatList
       data={addresses}
@@ -41,7 +41,7 @@ export default function AdddressList(props) {
       ListEmptyComponent={() => {
         return hasMore ? null : (
           <View style={styles.center}>
-            <Text>{t("No address yet")}</Text>
+            <Text>{t("AddressList.No address yet")}</Text>
           </View>
         );
       }}

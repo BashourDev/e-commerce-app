@@ -5,11 +5,11 @@ import { Modal, Portal } from "react-native-paper";
 import { COLORS } from "../../../constants/colors";
 import { FONT_SIZE } from "../../../constants/fonts";
 import { Text } from "../../../core-ui";
-import { t } from "../../../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export function DeleteAddressModal(props) {
   let { deleteVisible, toggleModal, onPressCancel, onPressDelete } = props;
-
+  const { t } = useTranslation();
   return (
     <Portal>
       <Modal
@@ -19,12 +19,12 @@ export function DeleteAddressModal(props) {
       >
         <View style={styles.modalTitleContainer}>
           <Text weight="medium" style={styles.modalTitle}>
-            {t("Delete Address")}
+            {t("DeleteAddressModal.Delete Address")}
           </Text>
         </View>
         <Text style={styles.message}>
           {t(
-            "Are you sure you want to delete this address? This action cannot be undone"
+            "DeleteAddressModal.Are you sure you want to delete this address? This action cannot be undone"
           )}
         </Text>
         <View style={styles.modalOptionContainer}>
@@ -33,7 +33,7 @@ export function DeleteAddressModal(props) {
             style={styles.modalCancel}
             onPress={onPressCancel}
           >
-            {t("No, Cancel")}
+            {t("DeleteAddressModal.No, Cancel")}
           </Text>
 
           <Text
@@ -41,7 +41,7 @@ export function DeleteAddressModal(props) {
             style={styles.modalDelete}
             onPress={onPressDelete}
           >
-            {t("Yes, Delete")}
+            {t("DeleteAddressModal.Yes, Delete")}
           </Text>
         </View>
       </Modal>

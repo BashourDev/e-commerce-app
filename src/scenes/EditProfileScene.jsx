@@ -22,7 +22,9 @@ import { Button, KeyboardAvoidingView, TextInput } from "../core-ui";
 import { ScreenSize, useDimensions } from "../helpers/dimensions";
 import {
   INVALID_EMAIL_MESSAGE,
+  INVALID_EMAIL_MESSAGE_ARABIC,
   INVALID_PASSWORD_MESSAGE,
+  INVALID_PASSWORD_MESSAGE_ARABIC,
   validateEmail,
   validatePassword,
 } from "../helpers/validation";
@@ -31,7 +33,7 @@ import {
   useSetAuthenticatedUser,
 } from "../hooks/api/useAuthenticatedUser";
 import { useUpdateCustomer } from "../hooks/api/useCustomer";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function EditProfileScene() {
   let [firstName, setFirstName] = useState("");
@@ -51,7 +53,7 @@ export default function EditProfileScene() {
   let {
     params: { customerAccessToken },
   } = useRoute();
-
+  const { i18n } = useTranslation();
   let containerStyle = () => {
     if (screenSize === ScreenSize.Small) {
       return styles.container;
@@ -111,6 +113,8 @@ export default function EditProfileScene() {
     },
   });
 
+  const { t } = useTranslation();
+
   if (error) {
     return <ErrorPage onRetry={refetch} />;
   }
@@ -133,7 +137,7 @@ export default function EditProfileScene() {
         <View style={containerStyle()}>
           <View style={styles.formsContainer}>
             <TextInput
-              label={t("First Name")}
+              label={t("EditProfileScene.First Name")}
               labelStyle={textInputLabel}
               autoFocus={true}
               clearTextOnFocus={false}
@@ -151,7 +155,7 @@ export default function EditProfileScene() {
             />
             <TextInput
               ref={lastNameRef}
-              label={t("Last Name")}
+              label={t("EditProfileScene.Last Name")}
               labelStyle={textInputLabel}
               autoFocus={true}
               clearTextOnFocus={false}
@@ -176,9 +180,15 @@ export default function EditProfileScene() {
               }}
               clearTextOnFocus={false}
               autoCapitalize="none"
-              errorMessage={!isEmailValid ? INVALID_EMAIL_MESSAGE : undefined}
+              errorMessage={
+                !isEmailValid
+                  ? i18n.language === "en"
+                    ? INVALID_EMAIL_MESSAGE
+                    : INVALID_EMAIL_MESSAGE_ARABIC
+                  : undefined
+              }
               ref={emailRef}
-              label={t("Email Address")}
+              label={t("EditProfileScene.Email Address")}
               labelStyle={textInputLabel}
               textContentType="emailAddress"
               mode="flat"
@@ -195,7 +205,7 @@ export default function EditProfileScene() {
             <TextInput
               clearTextOnFocus={false}
               ref={phoneNumberRef}
-              label={t("Phone Number")}
+              label={t("EditProfileScene.Phone Number")}
               labelStyle={textInputLabel}
               textContentType="telephoneNumber"
               keyboardType="number-pad"
@@ -222,9 +232,13 @@ export default function EditProfileScene() {
               textContentType="password"
               autoCapitalize="none"
               errorMessage={
-                !isPasswordValid ? INVALID_PASSWORD_MESSAGE : undefined
+                !isPasswordValid
+                  ? i18n.language === "en"
+                    ? INVALID_PASSWORD_MESSAGE
+                    : INVALID_PASSWORD_MESSAGE_ARABIC
+                  : undefined
               }
-              label={t("Password")}
+              label={t("EditProfileScene.Password")}
               labelStyle={textInputLabel}
               secureTextEntry={true}
               mode="flat"
@@ -243,7 +257,7 @@ export default function EditProfileScene() {
             style={[defaultButton, styles.buttonSaveContainer]}
             labelStyle={defaultButtonLabel}
           >
-            {!saving && t("Save Changes")}
+            {!saving && t("EditProfileScene.Save Changes")}
           </Button>
         </View>
       </ScrollView>

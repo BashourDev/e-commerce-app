@@ -5,7 +5,8 @@ import { COLORS } from "../../../constants/colors";
 import { FONT_FAMILY, FONT_SIZE } from "../../../constants/fonts";
 import { ModalBottomSheet, Text } from "../../../core-ui";
 import PriceSlider from "./PriceSlider";
-import { t } from "../../../helpers/translate";
+
+import { useTranslation } from "react-i18next";
 
 export default function FilterModal(props) {
   let {
@@ -24,17 +25,17 @@ export default function FilterModal(props) {
     onClear();
     priceSliderRef.current && priceSliderRef.current.clear();
   };
-
+  const { t } = useTranslation();
   return (
     <ModalBottomSheet
       isModalVisible={isModalVisible}
       toggleModal={toggleModal}
-      title={t("Price")}
+      title={t("FilterModal.Price")}
       height={284}
       width={360}
       headerRight={
         <TouchableOpacity onPress={onClearPress}>
-          <Text style={styles.clearButton}>{t("Clear")}</Text>
+          <Text style={styles.clearButton}>{t("FilterModal.Clear")}</Text>
         </TouchableOpacity>
       }
     >
@@ -46,7 +47,7 @@ export default function FilterModal(props) {
           maxPrice={maxPrice}
           initialSliderValues={initialSliderValues}
           onSubmit={onSubmit}
-          submitButtonText={t("Set Filter")}
+          submitButtonText={t("FilterModal.Set Filter")}
         />
       </View>
     </ModalBottomSheet>

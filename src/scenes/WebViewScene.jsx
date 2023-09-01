@@ -7,7 +7,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { Text } from "../core-ui";
 import { useResetCart } from "../hooks/api/useShoppingCart";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function WebScene() {
   let {
@@ -17,16 +17,16 @@ export default function WebScene() {
   let { resetShoppingCart } = useResetCart();
 
   let title;
-
+  const { t } = useTranslation();
   switch (type) {
     case "policy":
-      title = t("Privacy Policy");
+      title = t("WebViewScene.Privacy Policy");
       break;
     case "terms":
-      title = t("Terms & Conditions");
+      title = t("WebViewScene.Terms & Conditions");
       break;
     default:
-      title = t("Payment");
+      title = t("WebViewScene.Payment");
   }
   useEffect(() => {
     setOptions({
@@ -54,7 +54,7 @@ export default function WebScene() {
     </SafeAreaView>
   ) : (
     <SafeAreaView style={styles.text}>
-      <Text>{t("Please check your connection.")}</Text>
+      <Text>{t("WebViewScene.Please check your connection.")}</Text>
     </SafeAreaView>
   );
 }

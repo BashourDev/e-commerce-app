@@ -6,7 +6,10 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { ErrorPage, SearchModal } from "../../components";
 import { COLORS } from "../../constants/colors";
-import { PRODUCT_SORT_VALUES } from "../../constants/values";
+import {
+  PRODUCT_SORT_VALUES,
+  PRODUCT_SORT_VALUES_ARABIC,
+} from "../../constants/values";
 
 import { useColumns } from "../../helpers/columns";
 import { useCollectionQuery } from "../../hooks/api/useCollection";
@@ -15,9 +18,11 @@ import { useGetHighestPrice } from "../../hooks/api/useHighestPriceProduct";
 import { ProductsView } from "./components";
 import useDefaultCountry from "../../hooks/api/useDefaultCountry";
 import { ProductCollectionSortKeys } from "../../helpers/enums";
+import { useTranslation } from "react-i18next";
 
 export default function ProductCollectionScene() {
   let { navigate, setOptions } = useNavigation();
+  const { i18n } = useTranslation();
 
   let [isSearchModalVisible, setSearchModalVisible] = useState(false);
   let [radioButtonValue, setRadioButtonValue] = useState("");
@@ -76,9 +81,19 @@ export default function ProductCollectionScene() {
     let sortKey = ProductCollectionSortKeys.BEST_SELLING;
     let reverse = false;
 
-    if (value === PRODUCT_SORT_VALUES.PRICE_LOW_TO_HIGH) {
+    if (
+      value ===
+      (i18n.language === "en"
+        ? PRODUCT_SORT_VALUES.PRICE_LOW_TO_HIGH
+        : PRODUCT_SORT_VALUES_ARABIC.PRICE_LOW_TO_HIGH)
+    ) {
       sortKey = ProductCollectionSortKeys.PRICE;
-    } else if (value === PRODUCT_SORT_VALUES.PRICE_HIGH_TO_LOW) {
+    } else if (
+      value ===
+      (i18n.language === "en"
+        ? PRODUCT_SORT_VALUES.PRICE_HIGH_TO_LOW
+        : PRODUCT_SORT_VALUES_ARABIC.PRICE_HIGH_TO_LOW)
+    ) {
       sortKey = ProductCollectionSortKeys.PRICE;
       reverse = true;
     }

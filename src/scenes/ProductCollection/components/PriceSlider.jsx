@@ -7,7 +7,8 @@ import { Button, TextInput } from "../../../core-ui";
 import { ScreenSize, useDimensions } from "../../../helpers/dimensions";
 import formatNumber from "../../../helpers/formatNumber";
 import parseNumber from "../../../helpers/parseNumber";
-import { t } from "../../../helpers/translate";
+
+import { useTranslation } from "react-i18next";
 
 function PriceSlider(props, ref) {
   let {
@@ -56,7 +57,7 @@ function PriceSlider(props, ref) {
     }
     return value;
   };
-
+  const { t } = useTranslation();
   return (
     <View
       style={{ flex: 1 }}
@@ -90,7 +91,7 @@ function PriceSlider(props, ref) {
       <View style={styles.textInputContainer}>
         <TextInput
           mode="outlined"
-          label={t("Min. Price")}
+          label={t("PriceSlider.Min Price")}
           keyboardType="number-pad"
           containerStyle={[styles.textInput, styles.margin]}
           value={formatNumber(priceRange[0])}
@@ -100,7 +101,7 @@ function PriceSlider(props, ref) {
         />
         <TextInput
           mode="outlined"
-          label={t("Max. Price")}
+          label={t("PriceSlider.Max Price")}
           containerStyle={styles.textInput}
           keyboardType="number-pad"
           value={formatNumber(priceRange[1])}

@@ -20,7 +20,7 @@ import {
 } from "../../hooks/api/useCustomerAddress";
 
 import { DeleteAddressModal } from "./components";
-import { t } from "../../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function AddressManagementScene() {
   let { navigate } = useNavigation();
@@ -31,7 +31,7 @@ export default function AddressManagementScene() {
   let [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   let { screenSize } = useDimensions();
   let first = screenSize === ScreenSize.Medium ? 10 : 5;
-
+  const { t } = useTranslation();
   let {
     addresses,
     error,
@@ -164,7 +164,9 @@ export default function AddressManagementScene() {
             resizeMode="contain"
           />
           <Text style={styles.message}>
-            {t("Address is Empty. Please add new address")}
+            {t(
+              "AddressManagementScene.Address is Empty. Please add new address"
+            )}
           </Text>
         </View>
       )}
@@ -173,7 +175,7 @@ export default function AddressManagementScene() {
         style={[defaultButton, styles.bottomButton]}
         labelStyle={defaultButtonLabel}
       >
-        {t("Add New Address")}
+        {t("AddressManagementScene.Add New Address")}
       </Button>
     </SafeAreaView>
   );

@@ -18,14 +18,14 @@ import {
   useSearchProductsQuery,
   useSetRecentSearch,
 } from "../hooks/api/useSearchProduct";
-import { t } from "../helpers/translate";
+import { useTranslation } from "react-i18next";
 
 export default function SearchModal(props) {
   let [searchText, setSearchText] = useState("");
   let [debouncedSearchText, setDebouncedSearchtext] = useState("");
   let { isVisible, setVisible, onItemPress, onSubmit } = props;
   let { isRTL } = useTheme();
-
+  const { t } = useTranslation();
   let {
     searchProducts,
     results,
@@ -111,7 +111,7 @@ export default function SearchModal(props) {
               }}
             />
             <SearchInput
-              placeholder={t("Find by brand, category, etc.")}
+              placeholder={t("SearchModal.Find by brand, category, etc.")}
               style={styles.searchInput}
               autoFocus={true}
               autoCapitalize="none"
@@ -133,7 +133,9 @@ export default function SearchModal(props) {
           </View>
           <View style={styles.searchResultList}>
             <Text style={styles.labelText}>
-              {!searchText ? t("Recent Searches") : t("Search Results")}
+              {!searchText
+                ? t("SearchModal.Recent Searches")
+                : t("SearchModal.Search Results")}
             </Text>
             {searchLoading && !recentSearchLoading ? (
               <ActivityIndicator />

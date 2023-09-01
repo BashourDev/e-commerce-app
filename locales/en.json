@@ -1,0 +1,274 @@
+{
+  "StackNavigator": {
+    "Hello": "Hello",
+    "Wishlist": "Wishlist",
+    "My Profile": "My Profile",
+    "Welcome": "Welcome",
+    "Forgot Password": "Forgot Password",
+    "Manage Addresses": "Manage Addresses",
+    "Edit Profile": "Edit Profile",
+    "Order History": "Order History",
+    "Order Details": "Order Details",
+    "Product Details": "Product Details",
+    "Shopping Cart": "Shopping Cart",
+    "Search Results": "Search Results",
+    "Checkout": "Checkout",
+    "Order Placed": "Order Placed"
+  },
+  "CheckoutAddress": {
+    "Edit": "Edit",
+    "No Addresses To Display": "No Addresses To Display",
+    "Phone": "Phone"
+  },
+  "CountryModal": {
+    "There's no result for": "There's no result for",
+    "Please try another word": "Please try another word",
+    "Select Country": "Select Country",
+    "Find Country": "Find Country"
+  },
+  "ErrorPage": {
+    "Try Again": "Try Again"
+  },
+  "ManageAddress": {
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "No Addresses To Display": "No Addresses To Display",
+    "Phone": "Phone",
+    "Primary Address": "Primary Address",
+    "Set as Primary Address": "Set as Primary Address"
+  },
+  "ModalBottomSheetMessage": {
+    "Close": "Close"
+  },
+  "OrderHistoryItem": {
+    "Order": "Order",
+    "Ordered": "Ordered",
+    "Total": "Total"
+  },
+  "ProductItem": {
+    "Out of Stock": "Out of Stock"
+  },
+  "SearchModal": {
+    "Find by brand, category, etc.": "Find by brand, category, etc.",
+    "Recent Searches": "Recent Searches",
+    "Search Results": "Search Results"
+  },
+  "values": {
+    "Popularity": "Popularity",
+    "Price from Low to High": "Price from Low to High",
+    "Price from High to Low": "Price from High to Low",
+    "No Internet Connection": "No Internet Connection",
+    "Please check your internet settings and try again later": "Please check your internet settings and try again later",
+    "Something Went Wrong": "Something Went Wrong",
+    "We encounter some error while processing your request. Please try again later": "We encounter some error while processing your request. Please try again later"
+  },
+  "DiscountBadge": {
+    "off": "off"
+  },
+  "validation": {
+    "Email is not valid": "Email is not valid",
+    "Password is too short (minimum is 5 characters)": "Password is too short (minimum is 5 characters)",
+    "Card number is not valid": "Card number is not valid",
+    "Expiration date is not valid": "Expiration date is not valid"
+  },
+  "TabNavigator": {
+    "Home": "Home",
+    "Wishlist": "Wishlist",
+    "Profile": "Profile",
+    "My Profile": "My Profile"
+  },
+  "EditProfileScene": {
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Email Address": "Email Address",
+    "Phone Number": "Phone Number",
+    "Password": "Password",
+    "Save Changes": "Save Changes"
+  },
+  "ForgotPasswordScene": {
+    "An email has been sent to reset your password. Please check your email.": "An email has been sent to reset your password. Please check your email.",
+    "An Error Occured!": "An Error Occured!",
+    "Email Has Been Sent!": "Email Has Been Sent!",
+    "Try Again": "Try Again",
+    "Back To Login": "Back To Login",
+    "Email Address": "Email Address",
+    "Reset Password": "Reset Password"
+  },
+  "HomeScene": {
+    "Browse By Category": "Browse By Category",
+    "Featured Products": "Featured Products",
+    "Search": "Search"
+  },
+  "LockScene": {
+    "Hey there! To continue please log in or create an account.": "Hey there! To continue please log in or create an account.",
+    "Register": "Register",
+    "Already have an account?": "Already have an account?",
+    "Log In": "Log In"
+  },
+  "LoginScene": {
+    "Your email or password might be wrong!": "Your email or password might be wrong!",
+    "Something went wrong!": "Something went wrong!",
+    "Email Address": "Email Address",
+    "Password": "Password",
+    "Forgot Password?": "Forgot Password?",
+    "Log in": "Log in"
+  },
+  "OrderDetailsScene": {
+    "Subtotal": "Subtotal",
+    "Shipping": "Shipping",
+    "Free": "Free",
+    "Total": "Total",
+    "Order No.": "Order No.",
+    "Ordered": "Ordered",
+    "Product Details": "Product Details",
+    "Shipping Address": "Shipping Address",
+    "Phone:": "Phone:",
+    "Payemnt Details": "Payemnt Details"
+  },
+  "OrderHistoryScene": {
+    "No orders yet": "No orders yet"
+  },
+  "ProfileScene": {
+    "Edit Profile": "Edit Profile",
+    "Manage Addresses": "Manage Addresses",
+    "Order History": "Order History",
+    "About Us": "About Us",
+    "Terms & Conditions": "Terms & Conditions",
+    "Privacy & Policy": "Privacy & Policy",
+    "Log Out": "Log Out"
+  },
+  "RegisterScene": {
+    "Something went wrong!": "Something went wrong!",
+    "Close": "Close",
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Email Address": "Email Address",
+    "Password": "Password",
+    "Password does not match": "Password does not match",
+    "Confirm Password": "Confirm Password",
+    "By clicking Register, you agree with our": "By clicking Register, you agree with our",
+    "Terms & Conditions": "Terms & Conditions",
+    "Register": "Register"
+  },
+  "WebViewScene": {
+    "Privacy Policy": "Privacy Policy",
+    "Terms & Conditions": "Terms & Conditions",
+    "Payment": "Payment",
+    "Please check your connection.": "Please check your connection."
+  },
+  "WishlistScene": {
+    "No products yet.": "No products yet.",
+    "Showing": "Showing",
+    "item(s)": "item(s)"
+  },
+  "AddEditAddressScene": {
+    "New Address": "New Address",
+    "Edit Address": "Edit Address",
+    "Delete": "Delete",
+    "An Error Occured!": "An Error Occured!",
+    "Close": "Close",
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Address": "Address",
+    "Country": "Country",
+    "State / Province": "State / Province",
+    "City": "City",
+    "Postal / Zip Code": "Postal / Zip Code",
+    "Phone Number": "Phone Number",
+    "Save Address": "Save Address"
+  },
+  "AddressManagementScene": {
+    "Address is Empty. Please add new address": "Address is Empty. Please add new address",
+    "Add New Address": "Add New Address"
+  },
+  "DeleteAddressModal": {
+    "Delete Address": "Delete Address",
+    "Are you sure you want to delete this address? This action cannot be undone": "Are you sure you want to delete this address? This action cannot be undone",
+    "No, Cancel": "No, Cancel",
+    "Yes, Delete": "Yes, Delete"
+  },
+  "CheckoutScene": {
+    "Shipping Address": "Shipping Address",
+    "Add New Address": "Add New Address",
+    "Subtotal": "Subtotal",
+    "Shipping": "Shipping",
+    "Calculated at next step": "Calculated at next step",
+    "Total": "Total",
+    "Proceed to payment": "Proceed to payment",
+    "An Error Occured!": "An Error Occured!",
+    "Please insert a valid address": "Please insert a valid address",
+    "Close": "Close"
+  },
+  "AddressList": {
+    "No address yet": "No address yet"
+  },
+  "ShippingAddressForm": {
+    "Shipping Information": "Shipping Information",
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Address 1": "Address 1",
+    "Address 2 (optional)": "Address 2 (optional)",
+    "City": "City",
+    "Province": "Province",
+    "Country": "Country",
+    "Postal Code": "Postal Code",
+    "Phone Number": "Phone Number"
+  },
+  "FilterModal": {
+    "Price": "Price",
+    "Clear": "Clear",
+    "Set Filter": "Set Filter"
+  },
+  "PriceSlider": {
+    "Min Price": "Min. Price",
+    "Max Price": "Max. Price"
+  },
+  "ProductView": {
+    "Sort By": "Sort By",
+    "Price": "Price",
+    "Clear": "Clear",
+    "Set Filter": "Set Filter",
+    "Filter": "Filter",
+    "Showing": "Showing",
+    "item(s)": "item(s)"
+  },
+  "SortModal": {
+    "Sort By": "Sort By"
+  },
+  "ProductDetailsScene": {
+    "Item successfully added": "Item successfully added"
+  },
+  "BottomActionBar": {
+    "Check out this product from": "Check out this product from",
+    "Check out this product": "Check out this product",
+    "Unavailable": "Unavailable",
+    "Add to Cart": "Add to Cart",
+    "Out of Stock": "Out of Stock"
+  },
+  "ProductInfo": {
+    "Quantity": "Quantity",
+    "Description": "Description",
+    "No description": "No description"
+  },
+  "ShoppingCartScene": {
+    "Shopping cart is empty. Please add item to the cart.": "Shopping cart is empty. Please add item to the cart.",
+    "Back To Home": "Back To Home",
+    "Checkout": "Checkout",
+    "Item successfully removed": "Item successfully removed"
+  },
+  "ShoppingCartPayment": {
+    "Subtotal": "Subtotal",
+    "Discount": "Discount",
+    "Total": "Total",
+    "Voucher code or giftcard": "Voucher code or giftcard",
+    "Voucher code does not exist": "Voucher code does not exist",
+    "Add": "Add"
+  },
+  "AuthScene": {
+    "Login": "Login",
+    "Register": "Register"
+  },
+  "OrderItem": {
+    "Remove": "Remove"
+  }
+}

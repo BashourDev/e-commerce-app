@@ -18,7 +18,7 @@ export default function CheckoutAddress({
   let { id, firstName, lastName, phone } = data;
 
   let fullName = getFullName(firstName, lastName);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <TouchableOpacity
       style={[
@@ -48,14 +48,27 @@ export default function CheckoutAddress({
         </View>
         {formatAddress(data).map((item) =>
           item ? (
-            <Text key={item} style={[styles.address, styles.opacity]}>
+            <Text
+              key={item}
+              style={[
+                styles.address,
+                styles.opacity,
+                { textAlign: i18n.language === "en" ? "left" : "right" },
+              ]}
+            >
               {item}
             </Text>
           ) : (
             <Text>{t("CheckoutAddress.No Addresses To Display")}</Text>
           )
         )}
-        <Text style={[styles.opacity, styles.phone]}>
+        <Text
+          style={[
+            styles.opacity,
+            styles.phone,
+            { textAlign: i18n.language === "en" ? "left" : "right" },
+          ]}
+        >
           {t("CheckoutAddress.Phone")} {phone}
         </Text>
       </View>

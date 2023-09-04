@@ -16,6 +16,7 @@ import {
 import { useTranslation } from "react-i18next";
 
 export default function BottomActionBar(props) {
+  const { t } = useTranslation();
   let { addToWishlist } = useAddItemToWishlist();
   let { removeFromWishlist } = useRemoveItemFromWishlist();
   let {
@@ -26,7 +27,6 @@ export default function BottomActionBar(props) {
     isLoading,
     isButtonDisabled,
   } = props;
-  const { t } = useTranslation();
   let { data: shopData } = useQuery(GET_SHOP);
   let shareMessage = shopData
     ? t("BottomActionBar.Check out this product from") +

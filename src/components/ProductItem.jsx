@@ -23,7 +23,7 @@ export default function ProductItem(props) {
   } = props;
   let afterDiscount = priceAfterDiscount(price, discount || 0);
   let formatCurrency = useCurrencyFormatter();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   let renderImage = () => {
     return availableForSale ? (
       <View style={styles.imageContainer}>
@@ -54,7 +54,13 @@ export default function ProductItem(props) {
       {discount && discount > 0 ? (
         <DiscountBadge value={discount} containerStyle={styles.discountBox} />
       ) : null}
-      <Text numberOfLines={1} style={styles.nameText}>
+      <Text
+        numberOfLines={1}
+        style={[
+          styles.nameText,
+          { textAlign: i18n.language === "en" ? "left" : "right" },
+        ]}
+      >
         {title}
       </Text>
       <View style={styles.priceContainer}>

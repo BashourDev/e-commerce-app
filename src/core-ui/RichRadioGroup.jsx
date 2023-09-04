@@ -5,6 +5,7 @@ import { COLORS } from "../constants/colors";
 import { FONT_SIZE } from "../constants/fonts";
 
 import Text from "./Text";
+import { useTranslation } from "react-i18next";
 
 let defaultNameExtractor = (item) => String(item);
 
@@ -17,6 +18,8 @@ export default function RichRadioGroup(props) {
     values,
     onSelect,
     selectedValue,
+    originalValues,
+    originalValuesProvided = false,
     nameExtractor = defaultNameExtractor,
   } = props;
 
@@ -25,18 +28,27 @@ export default function RichRadioGroup(props) {
     name === "Color" && styles.capitalText,
     buttonTextStyle,
   ];
-
+  const { i18n } = useTranslation();
   return (
     <View style={[styles.container, containerStyle]}>
-      <Text style={styles.categoryTitle}>{name}</Text>
+      <Text
+        style={[
+          styles.categoryTitle,
+          { textAlign: i18n.language === "en" ? "left" : "right" },
+        ]}
+      >
+        {name}
+      </Text>
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.categoryContainer}
       >
         {values.map((item, index) => {
-          let isItemSelected = item === selectedValue;
-          let marginLeft = index === 0 ? 0 : 16;
+          let isItemSelected =
+            (originalValuesProvided ? originalValues[index] : item) ===
+            selectedValue;
+          let marginHorizontal = index === 0 ? 0 : 16;
           return (
             <TouchableOpacity
               key={index}
@@ -44,9 +56,11 @@ export default function RichRadioGroup(props) {
                 styles.buttonContainer,
                 isItemSelected && styles.activeButton,
                 buttonStyle,
-                { marginLeft },
+                { marginHorizontal },
               ]}
-              onPress={() => onSelect(item)}
+              onPress={() =>
+                onSelect(originalValuesProvided ? originalValues[index] : item)
+              }
             >
               <Text style={textStyle}>{nameExtractor(item)}</Text>
             </TouchableOpacity>

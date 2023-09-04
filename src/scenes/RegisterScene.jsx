@@ -160,7 +160,7 @@ export default function RegisterScene() {
         });
       },
     });
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   let isLoading = setAuthenticatedUserLoading || registerLoading;
   return (
     <SafeAreaView style={containerStyle()}>

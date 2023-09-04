@@ -21,10 +21,10 @@ export default function ManageAddress(props) {
   let fullName = getFullName(firstName, lastName);
 
   let [showMenu, setShowMenu] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <TouchableOpacity style={[styles.container, style]}>
-      <View style={styles.header}>
+      <View style={[styles.header, { direction: t("dir") }]}>
         <Text style={styles.label}>{fullName}</Text>
         <Menu
           style={[styles.menuBox, styles.padding]}
@@ -65,21 +65,39 @@ export default function ManageAddress(props) {
       </View>
       {formatAddress(data).map((item) =>
         item ? (
-          <Text key={item} style={[styles.address, styles.opacity]}>
+          <Text
+            key={item}
+            style={[
+              styles.address,
+              styles.opacity,
+              { textAlign: i18n.language === "en" ? "left" : "right" },
+            ]}
+          >
             {item}
           </Text>
         ) : (
           <Text>{t("ManageAddress.No Addresses To Display")}</Text>
         )
       )}
-      <Text style={[styles.opacity, styles.phone]}>
+      <Text
+        style={[
+          styles.opacity,
+          styles.phone,
+          { textAlign: i18n.language === "en" ? "left" : "right" },
+        ]}
+      >
         {t("ManageAddress.Phone")}
         {": "}
         {phone}
       </Text>
-      <View style={styles.indicatorContainer}>
+      <View style={[styles.indicatorContainer]}>
         {primary ? (
-          <View style={styles.primary}>
+          <View
+            style={[
+              styles.primary,
+              { flexDirection: i18n.language === "en" ? "row" : "row-reverse" },
+            ]}
+          >
             <IconButton
               icon="check"
               color={COLORS.primaryColor}
@@ -87,7 +105,12 @@ export default function ManageAddress(props) {
               style={styles.iconButton}
             />
             <Text
-              style={[styles.label, styles.blueText, styles.opacity]}
+              style={[
+                styles.label,
+                styles.blueText,
+                styles.opacity,
+                { textAlign: i18n.language === "en" ? "left" : "right" },
+              ]}
               weight="medium"
             >
               {t("ManageAddress.Primary Address")}
@@ -95,7 +118,10 @@ export default function ManageAddress(props) {
           </View>
         ) : (
           <TouchableOpacity
-            style={styles.setPrimary}
+            style={[
+              styles.setPrimary,
+              { flexDirection: i18n.language === "en" ? "row" : "row-reverse" },
+            ]}
             onPress={() => onPressSetPrimary(id)}
           >
             <Text style={[styles.label, styles.blueText]} weight="medium">
@@ -112,7 +138,7 @@ const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
     borderColor: COLORS.lightGrey,
-    paddingLeft: 12,
+    paddingHorizontal: 12,
     paddingTop: 6,
   },
   primary: {

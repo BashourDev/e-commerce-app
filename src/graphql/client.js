@@ -36,9 +36,16 @@ import { GET_SHOPPING_CART } from "./client/shoppingCartQueries";
 import { STOREFRONT_ACCESS_TOKEN, STOREFRONT_API_URL } from "../constants/api";
 
 const cache = new InMemoryCache();
-
+const DEBUG = true;
 const httpLink = createHttpLink({
   uri: STOREFRONT_API_URL,
+  fetch: (...pl) => {
+    if (!DEBUG) return fetch(...pl);
+    const [_, options] = pl;
+    const body = JSON.parse(options.body);
+    console.info("REQ:", body);
+    return fetch(...pl);
+  },
 });
 const authLink = setContext((_, { headers }) => {
   return {
@@ -83,6 +90,13 @@ function setupInitialCacheData() {
   });
 }
 
+const responseLogger = new ApolloLink((operation, forward) => {
+  return forward(operation).map((result) => {
+    if (DEBUG) console.info("RES:", operation.operationName, result.data);
+    return result;
+  });
+});
+
 function setupApolloClient() {
   setupPersistCache();
 
@@ -90,7 +104,7 @@ function setupApolloClient() {
   setupInitialCacheData();
 
   return new ApolloClient({
-    link: ApolloLink.from([authLink, httpLink]),
+    link: ApolloLink.from([responseLogger, authLink, httpLink]),
     resolvers: {
       Mutation: {
         setAuthenticatedUser: setAuthenticatedUserResolver,

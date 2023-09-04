@@ -193,8 +193,13 @@ export default function CheckoutScene() {
   let renderShippingAddress = () => {
     if (authToken) {
       return (
-        <View style={styles.flex}>
-          <Text style={styles.opacity}>
+        <View style={[styles.flex, { direction: t("dir") }]}>
+          <Text
+            style={[
+              styles.opacity,
+              { textAlign: t("dir") === "ltr" ? "left" : "right" },
+            ]}
+          >
             {t("CheckoutScene.Shipping Address")}
           </Text>
           {loading ? (
@@ -253,7 +258,7 @@ export default function CheckoutScene() {
     >
       <PaymentDetails
         data={paymentData}
-        containerStyle={styles.surfacePaymentDetails}
+        containerStyle={[styles.surfacePaymentDetails, { direction: t("dir") }]}
       />
       <Button
         style={[defaultButton, styles.proceedButtonStyle]}

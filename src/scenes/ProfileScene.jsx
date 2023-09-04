@@ -19,6 +19,7 @@ export default function ProfileScene() {
   let { navigate } = useNavigation();
   let { authToken, setAuthToken } = useAuth();
   let { data } = useGetShop();
+  const { t } = useTranslation();
 
   let { resetShoppingCart } = useResetCart();
 
@@ -48,7 +49,6 @@ export default function ProfileScene() {
   };
 
   let { email, firstName, lastName } = authenticatedUser.authenticatedUser;
-  const { t } = useTranslation();
   return (
     <ScrollView style={styles.container}>
       <TouchableOpacity
@@ -65,7 +65,9 @@ export default function ProfileScene() {
           <Text style={styles.emailTextStyle}>{email}</Text>
         </View>
       </TouchableOpacity>
-      <View style={[styles.menuContainer, styles.divider]}>
+      <View
+        style={[styles.menuContainer, styles.divider, { direction: t("dir") }]}
+      >
         <TouchableOpacity
           style={styles.menuItem}
           onPress={() =>
@@ -128,7 +130,7 @@ export default function ProfileScene() {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.menuContainer}>
+      <View style={[styles.menuContainer, { direction: t("dir") }]}>
         <TouchableOpacity
           style={styles.menuItem}
           onPress={async () => {

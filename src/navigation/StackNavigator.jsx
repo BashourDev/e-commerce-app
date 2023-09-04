@@ -67,7 +67,7 @@ export default function StackNavigator() {
   let { authToken } = useAuth();
   let { data: userData } = useGetAuthenticatedUser();
   let { isRTL } = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   function getTabSceneName(route) {
     const routeName = getFocusedRouteNameFromRoute(route) || "HomeTab";
@@ -89,17 +89,30 @@ export default function StackNavigator() {
             return {
               title:
                 authToken && userData?.authenticatedUser.firstName
-                  ? `${t("StackNavigator.Hello")}, ${
-                      userData.authenticatedUser.firstName
-                    }`
+                  ? `${t("StackNavigator.Hello")}${
+                      i18n.language === "en" ? "," : " "
+                    } ${userData.authenticatedUser.firstName}`
                   : t("StackNavigator.Hello"),
-              headerLeft: () => <LocalizationPicker />,
-              headerRight: () => (
-                <HeaderIconButton
-                  icon="cart"
-                  onPress={() => navigation.navigate("ShoppingCart")}
-                />
-              ),
+              headerLeft: () => {
+                return i18n.language === "en" ? (
+                  <LocalizationPicker />
+                ) : (
+                  <HeaderIconButton
+                    icon="cart"
+                    onPress={() => navigation.navigate("ShoppingCart")}
+                  />
+                );
+              },
+              headerRight: () => {
+                return i18n.language === "ar" ? (
+                  <LocalizationPicker />
+                ) : (
+                  <HeaderIconButton
+                    icon="cart"
+                    onPress={() => navigation.navigate("ShoppingCart")}
+                  />
+                );
+              },
               headerStyle: {
                 shadowColor: COLORS.transparent,
                 elevation: 0,
@@ -124,7 +137,7 @@ export default function StackNavigator() {
                         onPress={() => navigation.navigate("HomeTab")}
                       />
                     ),
-                  title: "",
+                  title: t("StackNavigator.My Profile"),
                   headerStyle: {
                     shadowColor: COLORS.transparent,
                     elevation: 0,

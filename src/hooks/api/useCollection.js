@@ -151,7 +151,7 @@ function useCollectionQuery(collectionHandle, first, priceRange, language) {
   };
 }
 
-function useProductsAndCategoriesQuery(first, language = "EN") {
+function useProductsAndCategoriesQuery(first, language) {
   let [categories, setCategories] = useState([]);
   let [products, setProducts] = useState([]);
   let [isInitFetching, setInitFetching] = useState(true);
@@ -184,6 +184,14 @@ function useProductsAndCategoriesQuery(first, language = "EN") {
 
     if (type === "update") {
       setProducts(moreProducts);
+      let categories = data.collections.edges.map((item) => ({
+        id: item.node.id,
+        title: item.node.title,
+        handle: item.node.handle,
+        cursor: item.cursor,
+        image: item.node.image?.transformedSrc || undefined,
+      }));
+      setCategories(categories);
     } else {
       setProducts([...products, ...moreProducts]);
     }

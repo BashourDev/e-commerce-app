@@ -32,6 +32,7 @@ import {
 } from "./components";
 
 import { useTranslation } from "react-i18next";
+import { useGetProductDetailsEnglish } from "../../hooks/api/useProductEnglish";
 
 export default function ProductDetailsScene() {
   let {
@@ -180,7 +181,28 @@ export default function ProductDetailsScene() {
       country: countryCode,
       language: i18n.language.toUpperCase(),
     },
-    fetchPolicy: "network-only",
+    fetchPolicy: "no-cache",
+
+    // onCompleted(value) {
+    //   let defaultOptions = {};
+    //   value.productByHandle?.options.map(({ name, values }) => {
+    //     return (defaultOptions[name] = values[0]);
+    //   });
+    //   setSelectedOptions(defaultOptions);
+    // },
+  });
+  let {
+    data: productDetailsEnglish,
+    loading: getProductDetailsLoadingEnglish,
+    error: getProductDetailsErrorEnglish,
+    refetch: getProductDetailsRefetchEnglish,
+  } = useGetProductDetailsEnglish({
+    variables: {
+      productHandle,
+      country: countryCode,
+      // language: "EN",
+    },
+    fetchPolicy: "no-cache",
 
     onCompleted(value) {
       let defaultOptions = {};
@@ -197,12 +219,16 @@ export default function ProductDetailsScene() {
         selectedOptions: queryVariantID,
         handle: productHandle,
         country: countryCode,
+        language: i18n.language.toUpperCase(),
       },
     });
   }, [selectedOptions, getVariant]); // eslint-disable-line react-hooks/exhaustive-deps
 
   let isLoading =
-    getProductDetailsLoading || addToCartLoading || shoppingCartLoading;
+    getProductDetailsLoading ||
+    addToCartLoading ||
+    shoppingCartLoading ||
+    getProductDetailsLoadingEnglish;
 
   let { data: wishlistData } = useGetWishlistData({
     onCompleted: ({ wishlist }) => {
@@ -227,7 +253,13 @@ export default function ProductDetailsScene() {
     <ActivityIndicator style={styles.centered} />
   ) : (
     <KeyboardAvoidingView keyboardVerticalOffset={bottomButtonHeight}>
-      <View style={[styles.flex, isLandscape && styles.flexRow]}>
+      <View
+        style={[
+          styles.flex,
+          isLandscape && styles.flexRow,
+          { direction: t("dir") },
+        ]}
+      >
         {isLandscape && (
           <ImageList product={productDetails} onImagePress={onPressImage} />
         )}
@@ -243,6 +275,11 @@ export default function ProductDetailsScene() {
               onChangeQuantity={setQuantity}
               product={productDetails}
               options={productDetails.options ? productDetails.options : []}
+              optionsOriginal={
+                getProductDetailsLoadingEnglish
+                  ? []
+                  : productDetailsEnglish.productByHandle.options
+              }
             />
           </ScrollView>
           <View

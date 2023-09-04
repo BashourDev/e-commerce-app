@@ -13,6 +13,7 @@ import {
 import { IconButton, useTheme } from "react-native-paper";
 
 import Text from "./Text";
+import { useTranslation } from "react-i18next";
 
 function TextInput(props, ref) {
   let { colors, roundness, isRTL } = useTheme();
@@ -31,7 +32,7 @@ function TextInput(props, ref) {
     onChangeText,
     onFocus,
     showErrorIcon = true,
-    style,
+    iStyle,
     keyboardType = "default",
     ...otherProps
   } = props;
@@ -60,7 +61,7 @@ function TextInput(props, ref) {
     },
     [onBlur, disabled, editable]
   );
-
+  const { i18n } = useTranslation();
   let handleChangeText = useCallback(
     (text) => {
       if (disabled || !editable) {
@@ -133,7 +134,13 @@ function TextInput(props, ref) {
         ]}
       >
         {hasLabel && (
-          <Text style={[styles.label, { color: getColor("label") }]}>
+          <Text
+            style={[
+              styles.label,
+              { color: getColor("label") },
+              { textAlign: i18n.language === "en" ? "left" : "right" },
+            ]}
+          >
             {label}
           </Text>
         )}
@@ -149,9 +156,9 @@ function TextInput(props, ref) {
           onChangeText={handleChangeText}
           style={[
             { color: disabled ? colors.placeholder : colors.text },
-            style,
+            { textAlign: i18n.language === "en" ? "left" : "right" },
           ]}
-          textAlign={isRTL ? "right" : "left"}
+          // textAlign={isRTL ? "right" : "left"}
           {...otherProps}
         />
         {isError && showErrorIcon && (

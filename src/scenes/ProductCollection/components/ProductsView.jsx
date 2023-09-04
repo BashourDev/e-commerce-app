@@ -113,12 +113,17 @@ export default function ProductsView(props) {
     <View style={containerStyle}>
       {isScreenSizeLarge ? <SideBarMenu /> : <TopBarMenu />}
       <View style={styles.productsContainer}>
-        <Text style={styles.count}>
-          {t("ProductView.Showing")}
-          &nbsp;
+        <Text
+          style={[
+            styles.count,
+            { textAlign: t("dir") === "ltr" ? "left" : "right" },
+          ]}
+        >
+          {t("ProductView.Showing") + " "}
+
           {products.length}
-          &nbsp;
-          {t("ProductView.item(s)")}
+
+          {" " + t("ProductView.item(s)")}
         </Text>
         <ProductList
           data={products}

@@ -19,18 +19,18 @@ import { useTranslation } from "react-i18next";
 export default function LockScene() {
   let { navigate, setOptions } = useNavigation();
   let { isRTL } = useTheme();
-  useEffect(() => {
-    setOptions({
-      headerLeft: () => (
-        <IconButton
-          icon={isRTL ? "chevron-right" : "chevron-left"}
-          color={COLORS.primaryColor}
-          size={24}
-          onPress={() => navigate("Home")}
-        />
-      ),
-    });
-  });
+  // useEffect(() => {
+  //   setOptions({
+  //     headerLeft: () => (
+  //       <IconButton
+  //         icon={isRTL ? "chevron-right" : "chevron-left"}
+  //         color={COLORS.primaryColor}
+  //         size={24}
+  //         onPress={() => navigate("Home")}
+  //       />
+  //     ),
+  //   });
+  // });
   const { t } = useTranslation();
   return (
     <SafeAreaView style={styles.scene}>
@@ -51,13 +51,20 @@ export default function LockScene() {
       >
         {t("LockScene.Register")}
       </Button>
-      <View style={styles.flexRow}>
+      <View
+        style={[
+          styles.flexRow,
+          {
+            flexDirection: t("dir") === "ltr" ? "row" : "row-reverse",
+            gap: "2px",
+          },
+        ]}
+      >
         <Text>{t("LockScene.Already have an account?")}</Text>
         <TouchableOpacity
           onPress={() => navigate("Auth", { initialRouteKey: "Login" })}
         >
           <Text style={styles.loginText} weight="medium">
-            {" "}
             {t("LockScene.Log In")}
           </Text>
         </TouchableOpacity>

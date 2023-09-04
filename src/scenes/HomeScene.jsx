@@ -43,8 +43,9 @@ export default function HomeScene() {
       first,
       after: null,
       country: countryCode,
+      language: i18n.language.toUpperCase(),
     });
-  }, [countryCode]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [countryCode, i18n.language]); // eslint-disable-line react-hooks/exhaustive-deps
 
   let onItemPress = (product) => {
     navigate("ProductDetails", { productHandle: product.handle });
@@ -61,6 +62,7 @@ export default function HomeScene() {
         first,
         after: products[products.length - 1].cursor || null,
         country: countryCode,
+        language: i18n.language.toUpperCase(),
       });
     }
   };
@@ -73,6 +75,7 @@ export default function HomeScene() {
             first,
             after: null,
             country: countryCode,
+            language: i18n.language.toUpperCase(),
           })
         }
       />
@@ -95,7 +98,14 @@ export default function HomeScene() {
       /> */}
 
       <View>
-        <Text style={styles.subTitle}>{t("HomeScene.Browse By Category")}</Text>
+        <Text
+          style={[
+            styles.subTitle,
+            { textAlign: i18n.language === "en" ? "left" : "right" },
+          ]}
+        >
+          {t("HomeScene.Browse By Category")}
+        </Text>
         <CategoryList
           categories={categories}
           onSelect={(collection) => {
@@ -105,7 +115,14 @@ export default function HomeScene() {
           }}
         />
       </View>
-      <Text style={styles.subTitle}>{t("HomeScene.Featured Products")}</Text>
+      <Text
+        style={[
+          styles.subTitle,
+          { textAlign: i18n.language === "en" ? "left" : "right" },
+        ]}
+      >
+        {t("HomeScene.Featured Products")}
+      </Text>
     </View>
   );
 
@@ -121,6 +138,7 @@ export default function HomeScene() {
             placeholder={t("HomeScene.Search")}
             editable={false}
             style={styles.searchInput}
+            iStyle={i18n.language !== "en" ? styles.searchInputFieldArabic : ""}
           />
         </View>
       </TouchableOpacity>
@@ -163,7 +181,7 @@ const styles = StyleSheet.create({
   subTitle: {
     marginTop: 16,
     marginBottom: 12,
-    marginLeft: 24,
+    marginHorizontal: 24,
   },
   itemWrapperStyle: {
     marginHorizontal: 12,
@@ -179,6 +197,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     marginTop: 8,
     marginBottom: 16,
+  },
+  searchInputFieldArabic: {
+    textAlign: "right",
   },
   activityIndicator: {
     marginVertical: 24,

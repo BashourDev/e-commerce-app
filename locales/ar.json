@@ -1,4 +1,5 @@
 {
+  "dir": "rtl",
   "StackNavigator": {
     "Hello": "مرحباً",
     "Wishlist": "قائمة الرغبات",
@@ -49,7 +50,7 @@
     "Out of Stock": "إنتهى من المخزن"
   },
   "SearchModal": {
-    "Find by brand, category, etc.": "البحث حسب العلامة التجارية أو الفئة ..الخ.",
+    "Find by brand, category, etc.": "البحث حسب العلامة التجارية أو الفئة ..الخ",
     "Recent Searches": "عمليات البحث الأخيرة",
     "Search Results": "نتائج البحث"
   },
@@ -86,7 +87,7 @@
     "Save Changes": "حفظ التغييرات"
   },
   "ForgotPasswordScene": {
-    "An email has been sent to reset your password. Please check your email.": "تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور الخاصة بك. تفقد بريدك الالكتروني من فضلك.",
+    "An email has been sent to reset your password. Please check your email.": "تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور الخاصة بك. تفقد بريدك الالكتروني من فضلك",
     "An Error Occured!": "حدث خطأ!",
     "Email Has Been Sent!": "تم ارسال البريد الالكتروني!",
     "Try Again": "حاول مجدداً",
@@ -100,7 +101,7 @@
     "Search": "بحث"
   },
   "LockScene": {
-    "Hey there! To continue please log in or create an account.": "مرحبًا! للمتابعة يرجى تسجيل الدخول أو إنشاء حساب.",
+    "Hey there! To continue please log in or create an account.": "مرحبًا! للمتابعة يرجى تسجيل الدخول أو إنشاء حساب",
     "Register": "اشتراك",
     "Already have an account?": "هل لديك حساب؟",
     "Log In": "تسجيل دخول"
@@ -146,7 +147,7 @@
     "Password": "كلمة المرور",
     "Password does not match": "كلمة السر غير متطابقة",
     "Confirm Password": "تأكيد كلمة المرور",
-    "By clicking Register, you agree with our": "بالنقر فوق اشتراك فإنك توافق على ",
+    "By clicking Register, you agree with our": "بالنقر على اشتراك فإنك توافق على ",
     "Terms & Conditions": "الشروط والأحكام",
     "Register": "اشتراك"
   },
@@ -154,10 +155,10 @@
     "Privacy Policy": "سياسة الخصوصية",
     "Terms & Conditions": "الشروط والأحكام",
     "Payment": "الدفع",
-    "Please check your connection.": "يرجى التحقق من الاتصال بالانترنت."
+    "Please check your connection.": "يرجى التحقق من الاتصال بالانترنت"
   },
   "WishlistScene": {
-    "No products yet.": "لا توجد منتجات حتى الآن.",
+    "No products yet.": "لا توجد منتجات حتى الآن",
     "Showing": "يتم عرض",
     "item(s)": "قطع\\ة"
   },
@@ -251,7 +252,7 @@
     "No description": "لا يوجد وصف"
   },
   "ShoppingCartScene": {
-    "Shopping cart is empty. Please add item to the cart.": "عربة التسوق فارغة. الرجاء إضافة منتج إلى عربة التسوق.",
+    "Shopping cart is empty. Please add item to the cart.": "عربة التسوق فارغة. الرجاء إضافة منتج إلى عربة التسوق",
     "Back To Home": "العودة إلى الرئيسية",
     "Checkout": "الدفع",
     "Item successfully removed": "تم إزالة المنتج"
@@ -273,7 +274,7 @@
   },
   "OrderPlacedConfimationScene": {
     "Thank you for your purchase! Your order": "شكرا لك! طلبك",
-    "has been received and will be processed shortly.": "تم استلامه وسيتم معالجته قريبا.",
+    "has been received and will be processed shortly.": "تم استلامه وسيتم معالجته قريبا",
     "View Order History": "عرض تاريخ الطلب",
     "Back To Home": "العودة إلى الرئيسية"
   }

@@ -117,7 +117,7 @@ let styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    paddingLeft: 24,
+    paddingHorizontal: 24,
   },
   titleContainer: {
     flexDirection: "row",
@@ -140,7 +140,7 @@ let styles = StyleSheet.create({
     maxHeight: 170,
   },
   menuItem: {
-    paddingLeft: 16,
+    paddingHorizontal: 16,
     paddingVertical: 14,
     flex: 1,
   },

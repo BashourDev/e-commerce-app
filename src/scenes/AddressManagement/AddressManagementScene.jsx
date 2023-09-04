@@ -21,12 +21,14 @@ import {
 
 import { DeleteAddressModal } from "./components";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../../helpers/useAuth";
 
 export default function AddressManagementScene() {
   let { navigate } = useNavigation();
-  let {
-    params: { customerAccessToken },
-  } = useRoute();
+  // let {
+  //   params: { customerAccessToken },
+  // } = useRoute();
+  let { authToken: customerAccessToken } = useAuth();
   let [addressId, setAddressId] = useState("");
   let [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   let { screenSize } = useDimensions();

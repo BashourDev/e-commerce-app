@@ -54,9 +54,10 @@ export default function SearchModal(props) {
         first: 10,
         searchText: debouncedSearchText,
         country: countryCode,
+        language: i18n.language.toUpperCase(),
       },
     });
-  }, [countryCode, debouncedSearchText, searchProducts]);
+  }, [countryCode, debouncedSearchText, searchProducts, i18n.language]);
 
   let renderList = (props) => {
     let { recent, results } = props;
@@ -82,7 +83,14 @@ export default function SearchModal(props) {
                 }
               }}
             >
-              <Text style={styles.searchResults}>{item.title}</Text>
+              <Text
+                style={[
+                  styles.searchResults,
+                  { textAlign: t("dir") === "ltr" ? "left" : "right" },
+                ]}
+              >
+                {item.title}
+              </Text>
             </TouchableOpacity>
           );
         }}
@@ -113,6 +121,7 @@ export default function SearchModal(props) {
             <SearchInput
               placeholder={t("SearchModal.Find by brand, category, etc.")}
               style={styles.searchInput}
+              iStyle={{ textAlign: t("dir") === "ltr" ? "left" : "right" }}
               autoFocus={true}
               autoCapitalize="none"
               value={searchText}
@@ -132,7 +141,12 @@ export default function SearchModal(props) {
             />
           </View>
           <View style={styles.searchResultList}>
-            <Text style={styles.labelText}>
+            <Text
+              style={[
+                styles.labelText,
+                { textAlign: t("dir") === "ltr" ? "left" : "right" },
+              ]}
+            >
               {!searchText
                 ? t("SearchModal.Recent Searches")
                 : t("SearchModal.Search Results")}

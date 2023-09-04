@@ -17,7 +17,7 @@ export default function WishlistScene() {
 
   let { data: wishlistData, error, refetch } = useGetWishlistData();
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   if (error && !wishlistData?.wishlist.length) {
     return <ErrorPage onRetry={refetch} />;
@@ -34,10 +34,14 @@ export default function WishlistScene() {
   } else {
     return (
       <View style={styles.container}>
-        <Text style={styles.count}>
-          {t("WishlistScene.Showing")}&nbsp; {wishlistData.wishlist.length}
-          &nbsp;
-          {t("WishlistScene.item(s)")}
+        <Text
+          style={[
+            styles.count,
+            { textAlign: t("dir") === "ltr" ? "left" : "right" },
+          ]}
+        >
+          {t("WishlistScene.Showing") + " "} {wishlistData.wishlist.length}
+          {" " + t("WishlistScene.item(s)")}
         </Text>
         <ProductList
           data={wishlistData.wishlist}
@@ -70,6 +74,7 @@ const styles = StyleSheet.create({
   count: {
     marginVertical: 16,
     marginHorizontal: 12,
+    textAlign: "right",
   },
   contentContainer: {
     marginBottom: 16,

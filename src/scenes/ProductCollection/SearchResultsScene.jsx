@@ -99,6 +99,7 @@ export default function SearchResultsScene() {
           sortKey: sortKey,
           reverse,
           country: countryCode,
+          language: i18n.language.toUpperCase(),
         },
       });
     }
@@ -109,6 +110,7 @@ export default function SearchResultsScene() {
     radioButtonValue,
     searchKeyword,
     searchProducts,
+    i18n.language,
   ]);
 
   let onClearFilter = () => setPriceRange([0, maxPriceValue]);
@@ -133,6 +135,7 @@ export default function SearchResultsScene() {
         first,
         after: results[results.length - 1].cursor || null,
         country: countryCode,
+        language: i18n.language.toUpperCase(),
       });
     }
   };
@@ -145,6 +148,7 @@ export default function SearchResultsScene() {
             first,
             searchText: `${searchKeyword}`,
             country: countryCode,
+            language: i18n.language.toUpperCase(),
           })
         }
       />

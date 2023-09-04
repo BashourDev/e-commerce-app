@@ -23,7 +23,7 @@ export default function ShoppingCartPayment(props) {
     isVoucherCodeValid,
   } = props;
   let formatCurrency = useCurrencyFormatter();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   let paymentData = [
     {
       name: t("ShoppingCartPayment.Subtotal"),
@@ -40,8 +40,13 @@ export default function ShoppingCartPayment(props) {
   ];
   return (
     <>
-      <View style={styles.voucherCodeContainer}>
-        <Text style={styles.opacity}>
+      <View style={[styles.voucherCodeContainer, { direction: t("dir") }]}>
+        <Text
+          style={[
+            styles.opacity,
+            { textAlign: i18n.language === "en" ? "left" : "right" },
+          ]}
+        >
           {t("ShoppingCartPayment.Voucher code or giftcard")}
         </Text>
         <View style={styles.voucherInputButtonContainer}>
@@ -77,7 +82,7 @@ export default function ShoppingCartPayment(props) {
       </View>
       <PaymentDetails
         data={paymentData}
-        containerStyle={styles.surfacePaymentDetails}
+        containerStyle={[styles.surfacePaymentDetails, { direction: t("dir") }]}
       />
     </>
   );

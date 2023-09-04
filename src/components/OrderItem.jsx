@@ -25,7 +25,7 @@ export default function OrderItem(props) {
   let [quantity, setQuantity] = useState(props.orderItem.quantity);
   let [itemPrice] = useState(originalPrice);
   let formatCurrency = useCurrencyFormatter();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <View style={[styles.container, containerStyle]}>
       <View style={styles.imageContainer}>
@@ -38,7 +38,13 @@ export default function OrderItem(props) {
       </View>
 
       <View style={styles.infoContainer}>
-        <Text weight="normal" style={styles.fontSmall}>
+        <Text
+          weight="normal"
+          style={[
+            styles.fontSmall,
+            { textAlign: i18n.language === "en" ? "left" : "right" },
+          ]}
+        >
           {title} {cardType === "order" ? ` × ${quantity}` : ""}
         </Text>
         <View style={styles.price}>
@@ -60,7 +66,15 @@ export default function OrderItem(props) {
             </View>
           ) : null}
         </View>
-        <Text style={[styles.greyText, styles.fontSmall]}>{variant}</Text>
+        <Text
+          style={[
+            styles.greyText,
+            styles.fontSmall,
+            { textAlign: i18n.language === "en" ? "left" : "right" },
+          ]}
+        >
+          {variant}
+        </Text>
       </View>
 
       {cardType === "checkout" ? (

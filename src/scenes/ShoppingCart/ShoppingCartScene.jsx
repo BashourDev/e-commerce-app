@@ -166,6 +166,7 @@ export default function ShoppingCartScene() {
         lineItems: shoppingCartItems,
         checkoutID: cartID,
         country: countryCode,
+        language: i18n.language.toUpperCase(),
       },
     });
   };
@@ -184,6 +185,7 @@ export default function ShoppingCartScene() {
         lineItems: shoppingCartItems,
         checkoutID: cartID,
         country: countryCode,
+        language: i18n.language.toUpperCase(),
       },
     });
     setShoppingCart({ variables: { items: shoppingCartItems, id: cartID } });
@@ -219,6 +221,7 @@ export default function ShoppingCartScene() {
             checkoutID: shoppingCart.id,
             lineItems: shoppingCartItems,
             country: countryCode,
+            language: i18n.language.toUpperCase(),
           },
         });
       }
@@ -257,6 +260,7 @@ export default function ShoppingCartScene() {
                 lineItems: shoppingCartItems,
               },
               country: countryCode,
+              language: i18n.language.toUpperCase(),
             },
           });
           return;
@@ -309,7 +313,11 @@ export default function ShoppingCartScene() {
         <OrderItem
           cardType="checkout"
           orderItem={item}
-          containerStyle={[styles.orderItem, index > 0 && styles.border]}
+          containerStyle={[
+            styles.orderItem,
+            index > 0 && styles.border,
+            { direction: t("dir") },
+          ]}
           key={item.variantID}
         />
       );

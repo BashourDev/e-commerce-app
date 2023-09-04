@@ -57,7 +57,7 @@ function PriceSlider(props, ref) {
     }
     return value;
   };
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <View
       style={{ flex: 1 }}
@@ -88,12 +88,20 @@ function PriceSlider(props, ref) {
           marginVertical: screenSize === ScreenSize.Small ? 8 : 24,
         }}
       /> */}
-      <View style={styles.textInputContainer}>
+      <View
+        style={[
+          styles.textInputContainer,
+          { flexDirection: i18n.language === "en" ? "row" : "row-reverse" },
+        ]}
+      >
         <TextInput
           mode="outlined"
           label={t("PriceSlider.Min Price")}
           keyboardType="number-pad"
           containerStyle={[styles.textInput, styles.margin]}
+          iStyle={{
+            textAlign: i18n.language === "en" ? "left" : "right",
+          }}
           value={formatNumber(priceRange[0])}
           onChangeText={(text) => {
             setPriceRange([clampMinValue(parseNumber(text)), priceRange[1]]);
@@ -103,6 +111,9 @@ function PriceSlider(props, ref) {
           mode="outlined"
           label={t("PriceSlider.Max Price")}
           containerStyle={styles.textInput}
+          iStyle={{
+            textAlign: i18n.language === "en" ? "left" : "right",
+          }}
           keyboardType="number-pad"
           value={formatNumber(priceRange[1])}
           onChangeText={(text) => {

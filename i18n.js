@@ -14,8 +14,10 @@ const languageResoureces = {
   },
 };
 i18next.use(initReactI18next).init({
-  fallbackLng: "en",
-  lng: locale[0] + locale[1],
+  // fallbackLng: "en",
+  // lng: locale[0] + locale[1],
+  fallbackLng: "ar",
+  lng: "ar",
   resources: languageResoureces,
   compatibilityJSON: "v3",
 });

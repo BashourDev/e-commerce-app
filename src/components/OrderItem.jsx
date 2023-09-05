@@ -73,7 +73,7 @@ export default function OrderItem(props) {
             { textAlign: i18n.language === "en" ? "left" : "right" },
           ]}
         >
-          {variant}
+          {variant === "Title Default Title" ? "-----" : variant}
         </Text>
       </View>
 

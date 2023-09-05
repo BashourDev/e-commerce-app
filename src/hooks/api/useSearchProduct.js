@@ -27,9 +27,7 @@ function useSearchProductsQuery(language) {
       fetchPolicy: "network-only",
       language: language,
     });
-  console.log("====================================");
-  console.log("useSearchProduct", data, loading, error);
-  console.log("====================================");
+
   let refetch = async (type, variables) => {
     setIsSearching(false);
     isFetchingMore.current = type === "scroll";

@@ -1,9 +1,6 @@
 import { getDiscount } from "./getDiscount";
 
 export default function mapToProducts(products) {
-  console.log("====================================");
-  console.log("mapToProducts", products);
-  console.log("====================================");
   return products.edges.map((item) => {
     let product = item.node;
     let firstImage = product.images.edges[0];

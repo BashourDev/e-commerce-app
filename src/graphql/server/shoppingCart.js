@@ -97,6 +97,10 @@ export const SHOPPING_CART_REPLACE_ITEMS = gql`
               variant {
                 id
                 quantityAvailable
+                product {
+                  id
+                  title
+                }
                 compareAtPriceV2 {
                   amount
                   currencyCode

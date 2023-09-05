@@ -10,7 +10,7 @@ import mapToProducts from "../../helpers/mapToProducts.js";
 
 export default function getProducts(searchData) {
   if (searchData) {
-    return mapToProducts(searchData.products);
+    return mapToProducts(searchData.search);
   }
   return [];
 }
@@ -27,13 +27,15 @@ function useSearchProductsQuery(language) {
       fetchPolicy: "network-only",
       language: language,
     });
-
+  console.log("====================================");
+  console.log("useSearchProduct", data, loading, error);
+  console.log("====================================");
   let refetch = async (type, variables) => {
     setIsSearching(false);
     isFetchingMore.current = type === "scroll";
     let { data } = await refetchQuery(variables);
-    let moreResults = mapToProducts(data.products);
-    hasMore.current = !!data.products.pageInfo.hasNextPage;
+    let moreResults = mapToProducts(data.search);
+    hasMore.current = !!data.search.pageInfo.hasNextPage;
 
     if (type === "update") {
       setResults(moreResults);
@@ -48,8 +50,8 @@ function useSearchProductsQuery(language) {
       setIsSearching(true);
     }
     if (isSearching && !!data) {
-      let products = mapToProducts(data.products);
-      hasMore.current = !!data.products.pageInfo.hasNextPage;
+      let products = mapToProducts(data.search);
+      hasMore.current = !!data.search.pageInfo.hasNextPage;
 
       setResults(products);
     }

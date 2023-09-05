@@ -37,10 +37,16 @@ export default function ShippingAddressForm(props) {
   let cityRef = useRef();
   let zipRef = useRef();
   let phoneRef = useRef();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <View style={styles.flex}>
-      <Text style={[styles.opacity, styles.shippingInfo]}>
+      <Text
+        style={[
+          styles.opacity,
+          styles.shippingInfo,
+          { textAlign: i18n.language === "en" ? "left" : "right" },
+        ]}
+      >
         {t("ShippingAddressForm.Shipping Information")}
       </Text>
       <TextInput

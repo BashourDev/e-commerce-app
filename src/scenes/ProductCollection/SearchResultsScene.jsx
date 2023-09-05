@@ -54,7 +54,7 @@ export default function SearchResultsScene() {
   } = useSearchProductsQuery(i18n.language.toUpperCase());
 
   let getSortKeys = (value) => {
-    let sortKey = ProductSortKeys.BEST_SELLING;
+    let sortKey = ProductSortKeys.RELEVANCE;
     let reverse = false;
 
     if (
@@ -95,10 +95,14 @@ export default function SearchResultsScene() {
       searchProducts({
         variables: {
           first,
-          searchText: `${searchKeyword} variants.price:>=${priceRange[0]} variants.price:<=${priceRange[1]}`,
+          searchText: `${searchKeyword}`,
           sortKey: sortKey,
           reverse,
           country: countryCode,
+          // productFilters: `[{ "variants.price": >=${priceRange[0]} },{ "variants.price": <=${priceRange[1]} }]`,
+          productFilters: [
+            { price: { min: priceRange[0], max: priceRange[1] } },
+          ],
           language: i18n.language.toUpperCase(),
         },
       });

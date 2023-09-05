@@ -19,6 +19,7 @@ export function mapToLineItems(lineItems) {
         priceV2,
         quantityAvailable: stockAvailable,
       } = variant;
+      title = variant.product?.title || title;
       quantityAvailable = stockAvailable ?? 0;
       let priceUsed = Number(priceV2.amount);
       let compareAtPriceUsed = Number(

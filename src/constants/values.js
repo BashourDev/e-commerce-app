@@ -2,11 +2,13 @@ import { dataError, noInternetError } from "../../assets/images";
 import i18next from "../../i18n";
 export const PRODUCT_SORT_VALUES = {
   POPULARITY: "Popularity",
+  RELEVANCE: "Relevance",
   PRICE_LOW_TO_HIGH: "Price from Low to High",
   PRICE_HIGH_TO_LOW: "Price from High to Low",
 };
 export const PRODUCT_SORT_VALUES_ARABIC = {
   POPULARITY: "الشعبية",
+  RELEVANCE: "الصلة بموضوع البحث",
   PRICE_LOW_TO_HIGH: "السعر من الأقل إلى الأعلى",
   PRICE_HIGH_TO_LOW: "السعر من الأعلى إلى الأقل",
 };

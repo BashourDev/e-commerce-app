@@ -56,7 +56,7 @@ export default function LockScene() {
           styles.flexRow,
           {
             flexDirection: t("dir") === "ltr" ? "row" : "row-reverse",
-            gap: "2px",
+            gap: 2,
           },
         ]}
       >

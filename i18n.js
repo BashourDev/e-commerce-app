@@ -1,6 +1,7 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import { locale } from "expo-localization";
+import * as SecureStore from "expo-secure-store";
 
 import en from "./locales/en.json";
 import ar from "./locales/ar.json";
@@ -13,11 +14,25 @@ const languageResoureces = {
     translation: ar,
   },
 };
+const preferredLng = locale[0] + locale[1];
+const getPreferredLng = async () => {
+  let result = await SecureStore.getItemAsync("lng");
+  if (result) {
+    preferredLng = result;
+  } else {
+    setPreferredLng(preferredLng);
+  }
+};
+getPreferredLng();
+export const setPreferredLng = async (value) => {
+  await SecureStore.setItemAsync("lng", value);
+};
+
 i18next.use(initReactI18next).init({
-  // fallbackLng: "en",
-  // lng: locale[0] + locale[1],
-  fallbackLng: "ar",
-  lng: "ar",
+  fallbackLng: "en",
+  lng: preferredLng,
+  // fallbackLng: "ar",
+  // lng: "ar",
   resources: languageResoureces,
   compatibilityJSON: "v3",
 });

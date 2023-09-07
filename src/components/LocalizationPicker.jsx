@@ -15,6 +15,7 @@ import { Text } from "../core-ui";
 import useDefaultCountry from "../hooks/api/useDefaultCountry";
 import useLocalization from "../hooks/api/useLocalization";
 import i18next from "i18next";
+import { setPreferredLng } from "../../i18n";
 
 export default function CurrencyPicker() {
   let [visible, setVisible] = useState(false);
@@ -102,7 +103,9 @@ export default function CurrencyPicker() {
       {/* <Text weight="medium">{selectedCountryCode.countryCode}</Text> */}
       <Text
         onPress={() => {
-          i18next.changeLanguage(i18next.language === "en" ? "ar" : "en");
+          const newLanguage = i18next.language === "en" ? "ar" : "en";
+          i18next.changeLanguage(newLanguage);
+          setPreferredLng(newLanguage);
         }}
         weight="medium"
       >

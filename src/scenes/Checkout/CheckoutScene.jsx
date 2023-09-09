@@ -51,7 +51,7 @@ export default function CheckoutScene() {
   let { screenSize } = useDimensions();
   const first = 5;
   let formatCurrency = useCurrencyFormatter();
-
+  const { t, i18n } = useTranslation();
   let toggleModalVisible = () => setIsModalVisible(!isModalVisible);
 
   let {
@@ -59,6 +59,7 @@ export default function CheckoutScene() {
     data: updateAddressData,
     loading: updateAddressLoading,
   } = useCheckoutUpdateAddress({
+    language: i18n.language,
     onCompleted: ({ checkoutShippingAddressUpdateV2 }) => {
       if (
         checkoutShippingAddressUpdateV2 &&
@@ -111,6 +112,7 @@ export default function CheckoutScene() {
 
     await updateCartAddress({
       variables: {
+        language: i18n.language,
         checkoutId: cartId,
         shippingAddress: {
           ...usedAddress,
@@ -189,7 +191,7 @@ export default function CheckoutScene() {
       />
     );
   }
-  const { t } = useTranslation();
+
   let renderShippingAddress = () => {
     if (authToken) {
       return (

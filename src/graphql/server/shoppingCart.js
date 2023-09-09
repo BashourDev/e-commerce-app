@@ -130,7 +130,8 @@ export const SHOPPING_CART_UPDATE_ADDRESS = gql`
   mutation ShoppingCartUpdateAddress(
     $checkoutId: ID!
     $shippingAddress: MailingAddressInput!
-  ) {
+    $language: LanguageCode
+  ) @inContext(language: $language) {
     checkoutShippingAddressUpdateV2(
       checkoutId: $checkoutId
       shippingAddress: $shippingAddress

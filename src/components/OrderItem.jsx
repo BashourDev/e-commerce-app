@@ -238,6 +238,5 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: "flex-start",
     gap: 2,
-    marginRight: 5,
   },
 });

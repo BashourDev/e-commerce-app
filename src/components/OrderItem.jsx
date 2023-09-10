@@ -8,6 +8,7 @@ import { Text, TextInput } from "../core-ui";
 import { valueBetweenZeroToMax } from "../helpers/valueBetweenZeroToMax";
 import useCurrencyFormatter from "../hooks/api/useCurrencyFormatter";
 import { useTranslation } from "react-i18next";
+import { IconButton } from "react-native-paper";
 
 export default function OrderItem(props) {
   let {
@@ -79,7 +80,48 @@ export default function OrderItem(props) {
 
       {cardType === "checkout" ? (
         <View style={styles.amountContainer}>
-          <TextInput
+          <View style={styles.quantityButtonsContainer}>
+            <IconButton
+              icon="minus"
+              iconColor={COLORS.primaryColor}
+              size={14}
+              onPress={() => {
+                let newQuantity = quantity - 1;
+                setQuantity(
+                  valueBetweenZeroToMax(newQuantity, quantityAvailable)
+                );
+                onChangeQuantity
+                  ? onChangeQuantity(
+                      variantID,
+                      newQuantity <= 0 ? 1 : newQuantity
+                    )
+                  : null;
+              }}
+              disabled={quantity === 1}
+            />
+            <Text style={styles.quantityTextVar}>{quantity}</Text>
+            <IconButton
+              icon="plus"
+              iconColor={COLORS.primaryColor}
+              size={14}
+              onPress={() => {
+                let newQuantity = quantity + 1;
+                setQuantity(
+                  valueBetweenZeroToMax(newQuantity, quantityAvailable)
+                );
+                onChangeQuantity
+                  ? onChangeQuantity(
+                      variantID,
+                      newQuantity > quantityAvailable
+                        ? quantityAvailable
+                        : newQuantity
+                    )
+                  : null;
+              }}
+              disabled={quantity === quantityAvailable}
+            />
+          </View>
+          {/* <TextInput
             keyboardType="number-pad"
             returnKeyType="done"
             value={quantity.toString()}
@@ -98,7 +140,7 @@ export default function OrderItem(props) {
             }}
             containerStyle={[outlinedTextInput, styles.amountInputWidth]}
             style={[outlinedTextInput, quantity < 999 && styles.amount]}
-          />
+          /> */}
           <TouchableOpacity
             activeOpacity={0.5}
             style={styles.remove}
@@ -136,6 +178,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-end",
     maxWidth: 70,
+    marginHorizontal: 8,
   },
   amountInputWidth: {
     width: 50,
@@ -171,5 +214,30 @@ const styles = StyleSheet.create({
   },
   fontMedium: {
     fontSize: FONT_SIZE.medium,
+  },
+  quantityButton: {
+    backgroundColor: "#fff",
+    borderWidth: 0,
+    paddingHorizontal: 3,
+    paddingVertical: 1,
+    width: 8,
+    fontSize: 12,
+    color: "#000000",
+    textAlign: "center",
+  },
+  quantityTextVar: { alignSelf: "center", fontSize: 18 },
+  quantityButtonsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    shadowColor: "#171717",
+    elevation: 1,
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    borderRadius: 10,
+    alignSelf: "flex-start",
+    gap: 2,
+    marginRight: 5,
   },
 });

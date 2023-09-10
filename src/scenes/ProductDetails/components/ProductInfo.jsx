@@ -10,6 +10,7 @@ import { valueBetweenZeroToMax } from "../../../helpers/valueBetweenZeroToMax";
 import useCurrencyFormatter from "../../../hooks/api/useCurrencyFormatter";
 
 import { useTranslation } from "react-i18next";
+import { IconButton } from "react-native-paper";
 
 export default function ProductInfo(props) {
   let {
@@ -110,7 +111,32 @@ export default function ProductInfo(props) {
         >
           {t("ProductInfo.Quantity")}
         </Text>
-        <TextInput
+        <View style={styles.quantityButtonsContainer}>
+          <IconButton
+            icon="minus"
+            iconColor={COLORS.primaryColor}
+            size={24}
+            onPress={() =>
+              onChangeQuantity(
+                valueBetweenZeroToMax(quantity - 1, quantityAvailable)
+              )
+            }
+            disabled={quantity === 1}
+          />
+          <Text style={styles.quantityTextVar}>{quantity}</Text>
+          <IconButton
+            icon="plus"
+            iconColor={COLORS.primaryColor}
+            size={24}
+            onPress={() =>
+              onChangeQuantity(
+                valueBetweenZeroToMax(quantity + 1, quantityAvailable)
+              )
+            }
+            disabled={quantity === quantityAvailable}
+          />
+        </View>
+        {/* <TextInput
           containerStyle={[outlinedTextInput, styles.textInputWidth]}
           style={outlinedTextInput}
           value={quantity.toString()}
@@ -121,7 +147,7 @@ export default function ProductInfo(props) {
             )
           }
           keyboardType="numeric"
-        />
+        /> */}
       </View>
       <View style={[styles.paddingHorizontal, styles.description, ,]}>
         <Text
@@ -178,5 +204,29 @@ const styles = StyleSheet.create({
   description: {
     marginTop: 16,
     marginBottom: 24,
+  },
+  quantityButton: {
+    backgroundColor: "#fff",
+    borderWidth: 0,
+    paddingHorizontal: 3,
+    paddingVertical: 1,
+    width: 10,
+    fontSize: 16,
+    color: "#000000",
+    textAlign: "center",
+  },
+  quantityTextVar: { alignSelf: "center", fontSize: 18 },
+  quantityButtonsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    shadowColor: "#171717",
+    elevation: 1,
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    borderRadius: 10,
+    alignSelf: "flex-start",
+    gap: 3,
   },
 });

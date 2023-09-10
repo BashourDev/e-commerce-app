@@ -30,10 +30,11 @@ function useCheckoutCreate(options) {
 }
 
 function useCheckoutUpdateAddress(options) {
-  let [updateCartAddress, { data, loading }] = useMutation(
+  let [updateCartAddress, { data, loading, error }] = useMutation(
     SHOPPING_CART_UPDATE_ADDRESS,
     { ...options }
   );
+  console.log(error);
   return { updateCartAddress, data, loading };
 }
 function useCheckoutCustomerAssociate(options) {

@@ -59,7 +59,7 @@ export default function CheckoutScene() {
     data: updateAddressData,
     loading: updateAddressLoading,
   } = useCheckoutUpdateAddress({
-    language: i18n.language,
+    language: i18n.language.toUpperCase(),
     onCompleted: ({ checkoutShippingAddressUpdateV2 }) => {
       if (
         checkoutShippingAddressUpdateV2 &&
@@ -112,7 +112,7 @@ export default function CheckoutScene() {
 
     await updateCartAddress({
       variables: {
-        language: i18n.language,
+        language: i18n.language.toUpperCase(),
         checkoutId: cartId,
         shippingAddress: {
           ...usedAddress,
@@ -121,8 +121,20 @@ export default function CheckoutScene() {
     });
   };
 
-  let navigateToPayment = (webUrl) => {
-    navigate("WebView", { webUrl, type: "payment" });
+  let navigateToPayment = (webUrl = "") => {
+    let temp = webUrl.split("/checkouts/");
+    let temp2 = temp[1].split("?");
+    let cID = temp2[0];
+    let key = temp2[1];
+    let newWebUrl =
+      i18n.language === "ar"
+        ? `https://e48d9c-2.myshopify.com/checkouts/co/${cID}/information?${key}&locale=ar-AE`
+        : webUrl;
+
+    navigate("WebView", {
+      webUrl: newWebUrl,
+      type: "payment",
+    });
   };
 
   let containerStyle = () => {
@@ -147,6 +159,10 @@ export default function CheckoutScene() {
 
   let onProceedPressed = async () => {
     if (!updateAddressLoading) {
+      console.log(
+        "checkouuuuut",
+        updateAddressData.checkoutShippingAddressUpdateV2.checkout
+      );
       if (
         updateAddressData &&
         updateAddressData.checkoutShippingAddressUpdateV2?.checkoutUserErrors
@@ -156,7 +172,14 @@ export default function CheckoutScene() {
           updateAddressData.checkoutShippingAddressUpdateV2.checkout?.webUrl
         );
       } else {
-        toggleModalVisible();
+        if (address.country === "United Arab Emirates") {
+          address.province = "Dubai";
+          navigateToPayment(
+            updateAddressData.checkoutShippingAddressUpdateV2.checkout?.webUrl
+          );
+        } else {
+          toggleModalVisible();
+        }
       }
     }
   };

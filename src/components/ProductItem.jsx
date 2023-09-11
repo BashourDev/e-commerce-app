@@ -47,7 +47,11 @@ export default function ProductItem(props) {
 
   return (
     <TouchableOpacity
-      style={[styles.container, containerStyle]}
+      style={[
+        styles.container,
+        containerStyle,
+        i18n.language === "ar" && { transform: [{ scaleX: -1 }] },
+      ]}
       onPress={onPress}
     >
       {renderImage()}
@@ -63,7 +67,12 @@ export default function ProductItem(props) {
       >
         {title}
       </Text>
-      <View style={styles.priceContainer}>
+      <View
+        style={[
+          styles.priceContainer,
+          i18n.language === "ar" && { alignSelf: "flex-end" },
+        ]}
+      >
         <Text style={styles.priceText} weight="bold">
           {discount && discount > 0
             ? formatCurrency(afterDiscount)

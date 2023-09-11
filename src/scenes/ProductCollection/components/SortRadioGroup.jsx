@@ -43,7 +43,7 @@ export default function SortRadioGroup(props) {
             : PRODUCT_SORT_VALUES_ARABIC.POPULARITY
         }
         {...(!radioButtonValue && { checked: true })}
-        style={[styles.radioButton, { direction: t("dir") }]}
+        style={[styles.radioButton]}
         textStyle={
           !radioButtonValue
             ? [styles.radioButtonText, styles.activeTextStyle]
@@ -65,7 +65,7 @@ export default function SortRadioGroup(props) {
             ? PRODUCT_SORT_VALUES.PRICE_HIGH_TO_LOW
             : PRODUCT_SORT_VALUES_ARABIC.PRICE_HIGH_TO_LOW
         }
-        style={[styles.radioButton, { direction: t("dir") }]}
+        style={[styles.radioButton]}
         textStyle={textStyle(
           i18n.language === "en"
             ? PRODUCT_SORT_VALUES.PRICE_HIGH_TO_LOW
@@ -83,7 +83,7 @@ export default function SortRadioGroup(props) {
             ? PRODUCT_SORT_VALUES.PRICE_LOW_TO_HIGH
             : PRODUCT_SORT_VALUES_ARABIC.PRICE_LOW_TO_HIGH
         }
-        style={[styles.radioButton, { direction: t("dir") }]}
+        style={[styles.radioButton]}
         textStyle={textStyle(
           i18n.language === "en"
             ? PRODUCT_SORT_VALUES.PRICE_LOW_TO_HIGH

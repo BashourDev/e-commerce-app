@@ -316,7 +316,8 @@ export default function ShoppingCartScene() {
           containerStyle={[
             styles.orderItem,
             index > 0 && styles.border,
-            { direction: t("dir") },
+            // { direction: t("dir") },
+            i18n.language === "ar" && { flexDirection: "row-reverse" },
           ]}
           key={item.variantID}
         />

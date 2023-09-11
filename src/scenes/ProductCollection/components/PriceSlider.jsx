@@ -91,7 +91,8 @@ function PriceSlider(props, ref) {
       <View
         style={[
           styles.textInputContainer,
-          { flexDirection: i18n.language === "en" ? "row" : "row-reverse" },
+          { gap: 12 },
+          i18n.language === "ar" && { flexDirection: "row-reverse" },
         ]}
       >
         <TextInput
@@ -156,6 +157,6 @@ const styles = StyleSheet.create({
     height: 60,
   },
   margin: {
-    marginRight: 16,
+    // marginHorizontal: 16,
   },
 });

@@ -24,7 +24,12 @@ export default function ManageAddress(props) {
   const { t, i18n } = useTranslation();
   return (
     <TouchableOpacity style={[styles.container, style]}>
-      <View style={[styles.header, { direction: t("dir") }]}>
+      <View
+        style={[
+          styles.header,
+          i18n.language === "ar" && { flexDirection: "row-reverse" },
+        ]}
+      >
         <Text style={styles.label}>{fullName}</Text>
         <Menu
           style={[styles.menuBox, styles.padding]}

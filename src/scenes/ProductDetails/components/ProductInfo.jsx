@@ -56,7 +56,7 @@ export default function ProductInfo(props) {
       onChangeQuantity(quantityAvailable);
     }
   }, [quantityAvailable]); // eslint-disable-line react-hooks/exhaustive-deps
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <>
       <View style={styles.padding}>
@@ -111,7 +111,12 @@ export default function ProductInfo(props) {
         >
           {t("ProductInfo.Quantity")}
         </Text>
-        <View style={styles.quantityButtonsContainer}>
+        <View
+          style={[
+            styles.quantityButtonsContainer,
+            i18n.language === "ar" && { alignSelf: "flex-end" },
+          ]}
+        >
           <IconButton
             icon="minus"
             iconColor={COLORS.primaryColor}

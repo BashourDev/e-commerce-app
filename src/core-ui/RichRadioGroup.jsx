@@ -30,7 +30,13 @@ export default function RichRadioGroup(props) {
   ];
   const { i18n } = useTranslation();
   return (
-    <View style={[styles.container, containerStyle]}>
+    <View
+      style={[
+        styles.container,
+        containerStyle,
+        i18n.language === "ar" && { alignSelf: "flex-end" },
+      ]}
+    >
       <Text
         style={[
           styles.categoryTitle,
@@ -48,7 +54,8 @@ export default function RichRadioGroup(props) {
           let isItemSelected =
             (originalValuesProvided ? originalValues[index] : item) ===
             selectedValue;
-          let marginHorizontal = index === 0 ? 0 : 16;
+          let marginHorizontal =
+            index === (i18n.language === "ar" ? values.length - 1 : 0) ? 0 : 16;
           return (
             <TouchableOpacity
               key={index}

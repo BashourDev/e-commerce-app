@@ -283,7 +283,7 @@ export default function CheckoutScene() {
     >
       <PaymentDetails
         data={paymentData}
-        containerStyle={[styles.surfacePaymentDetails, { direction: t("dir") }]}
+        containerStyle={[styles.surfacePaymentDetails]}
       />
       <Button
         style={[defaultButton, styles.proceedButtonStyle]}

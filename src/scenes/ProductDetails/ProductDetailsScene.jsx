@@ -257,7 +257,7 @@ export default function ProductDetailsScene() {
         style={[
           styles.flex,
           isLandscape && styles.flexRow,
-          { direction: t("dir") },
+          // { direction: t("dir") },
         ]}
       >
         {isLandscape && (

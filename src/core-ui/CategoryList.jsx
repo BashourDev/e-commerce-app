@@ -11,6 +11,7 @@ import { COLORS } from "../constants/colors";
 import { FONT_SIZE } from "../constants/fonts";
 
 import Text from "./Text";
+import { useTranslation } from "react-i18next";
 
 function Separator() {
   return <View style={styles.separator} />;
@@ -19,11 +20,13 @@ function Separator() {
 export default function CategoryList(props) {
   let { containerStyle, textStyle, categories, onSelect, ...otherprops } =
     props;
+  const { i18n } = useTranslation();
   return (
     <FlatList
       showsHorizontalScrollIndicator={false}
       horizontal={true}
       data={categories}
+      style={i18n.language === "ar" && { flexDirection: "row-reverse" }}
       renderItem={({ item }) => (
         <TouchableOpacity
           style={[

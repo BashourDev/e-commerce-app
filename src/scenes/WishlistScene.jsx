@@ -46,7 +46,12 @@ export default function WishlistScene() {
         <ProductList
           data={wishlistData.wishlist}
           numColumns={numColumns}
-          contentContainerStyle={styles.contentContainer}
+          contentContainerStyle={[
+            {
+              transform: [{ scaleX: -1 }],
+            },
+            styles.contentContainer,
+          ]}
           onItemPress={(product) =>
             navigate("ProductDetails", { productHandle: product.handle })
           }

@@ -19,7 +19,7 @@ export default function ProfileScene() {
   let { navigate } = useNavigation();
   let { authToken, setAuthToken } = useAuth();
   let { data } = useGetShop();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   let { resetShoppingCart } = useResetCart();
 
@@ -52,7 +52,12 @@ export default function ProfileScene() {
   return (
     <ScrollView style={styles.container}>
       <TouchableOpacity
-        style={styles.profileContainer}
+        style={[
+          styles.profileContainer,
+          // uncomment to align the profile to the right
+          // note: it doesn't look good on the right :)
+          // { flexDirection: "row-reverse", gap: 5 },
+        ]}
         onPress={() =>
           navigate("EditProfile", { customerAccessToken: authToken })
         }
@@ -66,7 +71,11 @@ export default function ProfileScene() {
         </View>
       </TouchableOpacity>
       <View
-        style={[styles.menuContainer, styles.divider, { direction: t("dir") }]}
+        style={[
+          styles.menuContainer,
+          styles.divider,
+          i18n.language === "ar" && { alignItems: "flex-end" },
+        ]}
       >
         <TouchableOpacity
           style={styles.menuItem}
@@ -130,7 +139,12 @@ export default function ProfileScene() {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={[styles.menuContainer, { direction: t("dir") }]}>
+      <View
+        style={[
+          styles.menuContainer,
+          i18n.language === "ar" && { alignItems: "flex-end" },
+        ]}
+      >
         <TouchableOpacity
           style={styles.menuItem}
           onPress={async () => {

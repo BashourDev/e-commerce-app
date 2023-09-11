@@ -4,10 +4,11 @@ import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { COLORS } from "../constants/colors";
 import { FONT_SIZE } from "../constants/fonts";
 import { Surface, Text } from "../core-ui";
+import { useTranslation } from "react-i18next";
 
 export default function PaymentDetails(props) {
   let { data, containerStyle } = props;
-
+  const { i18n } = useTranslation();
   return (
     <Surface containerStyle={[styles.surfacePaymentDetails, containerStyle]}>
       {data.map((item, index) => {
@@ -15,7 +16,11 @@ export default function PaymentDetails(props) {
         if (data.length - 1 === index) {
           return (
             <View
-              style={[styles.innerPaymentDetailsContainer, styles.border]}
+              style={[
+                styles.innerPaymentDetailsContainer,
+                styles.border,
+                i18n.language === "ar" && { flexDirection: "row-reverse" },
+              ]}
               key={name}
             >
               <Text style={styles.mediumText}>{name}</Text>
@@ -26,7 +31,13 @@ export default function PaymentDetails(props) {
           );
         } else {
           return (
-            <View style={styles.innerPaymentDetailsContainer} key={name}>
+            <View
+              style={[
+                styles.innerPaymentDetailsContainer,
+                i18n.language === "ar" && { flexDirection: "row-reverse" },
+              ]}
+              key={name}
+            >
               <Text style={[styles.mediumText, styles.marginBottom]}>
                 {name}
               </Text>

@@ -5,12 +5,19 @@ import { RadioButton as PaperRadioButton } from "react-native-paper";
 import { COLORS } from "../constants/colors";
 
 import Text from "./Text";
+import { useTranslation } from "react-i18next";
 
 export default function RadioButton(props) {
   let { style, size, checked, textStyle, label, ...radioProps } = props;
-
+  const { i18n } = useTranslation();
   return (
-    <View style={[styles.container, style]}>
+    <View
+      style={[
+        styles.container,
+        style,
+        i18n.language === "ar" && { flexDirection: "row-reverse" },
+      ]}
+    >
       <PaperRadioButton.Android
         {...radioProps}
         color={COLORS.primaryColor}

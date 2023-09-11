@@ -14,7 +14,7 @@ const languageResoureces = {
     translation: ar,
   },
 };
-const preferredLng = locale[0] + locale[1];
+let preferredLng = locale[0] + locale[1];
 const getPreferredLng = async () => {
   let result = await SecureStore.getItemAsync("lng");
   if (result) {

@@ -38,7 +38,12 @@ export default function OrderItem(props) {
         />
       </View>
 
-      <View style={styles.infoContainer}>
+      <View
+        style={[
+          styles.infoContainer,
+          i18n.language === "ar" && { paddingRight: 4 },
+        ]}
+      >
         <Text
           weight="normal"
           style={[
@@ -48,7 +53,12 @@ export default function OrderItem(props) {
         >
           {title} {cardType === "order" ? ` × ${quantity}` : ""}
         </Text>
-        <View style={styles.price}>
+        <View
+          style={[
+            styles.price,
+            i18n.language === "ar" && { alignSelf: "flex-end" },
+          ]}
+        >
           <View>
             <Text weight="bold" style={styles.fontMedium}>
               {priceAfterDiscount && priceAfterDiscount > 0

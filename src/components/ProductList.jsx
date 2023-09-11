@@ -11,7 +11,7 @@ export default function ProductList(props) {
   return (
     <FlatList
       data={data}
-      style={{ direction: t("dir") }}
+      // style={{ direction: t("dir") }}
       keyExtractor={(item) => item.id}
       numColumns={numColumns}
       key={numColumns}

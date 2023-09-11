@@ -40,7 +40,7 @@ export default function ShoppingCartPayment(props) {
   ];
   return (
     <>
-      <View style={[styles.voucherCodeContainer, { direction: t("dir") }]}>
+      <View style={[styles.voucherCodeContainer]}>
         <Text
           style={[
             styles.opacity,
@@ -49,7 +49,12 @@ export default function ShoppingCartPayment(props) {
         >
           {t("ShoppingCartPayment.Voucher code or giftcard")}
         </Text>
-        <View style={styles.voucherInputButtonContainer}>
+        <View
+          style={[
+            styles.voucherInputButtonContainer,
+            i18n.language === "ar" && { flexDirection: "row-reverse", gap: 14 },
+          ]}
+        >
           <View style={styles.textInputContainer}>
             <TextInput
               autoCapitalize="none"
@@ -82,7 +87,10 @@ export default function ShoppingCartPayment(props) {
       </View>
       <PaymentDetails
         data={paymentData}
-        containerStyle={[styles.surfacePaymentDetails, { direction: t("dir") }]}
+        containerStyle={[
+          styles.surfacePaymentDetails,
+          // , { direction: t("dir") }
+        ]}
       />
     </>
   );

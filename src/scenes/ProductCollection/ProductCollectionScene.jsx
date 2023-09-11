@@ -120,7 +120,7 @@ export default function ProductCollectionScene() {
       refetch("scroll", {
         collectionHandle,
         first,
-        after: collection[collection.length - 1].cursor || null,
+        after: collection[collection.length - 1]?.cursor || null,
         country: countryCode,
       });
     }

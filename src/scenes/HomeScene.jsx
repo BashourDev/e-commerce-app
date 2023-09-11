@@ -149,11 +149,49 @@ export default function HomeScene() {
         setVisible={setSearchModalVisible}
       />
 
+      <View>
+        {/* <Carousel
+        data={carouselData}
+        height={screenSize === ScreenSize.Small ? 180 : 384}
+      /> */}
+
+        <View>
+          <Text
+            style={[
+              styles.subTitle,
+              { textAlign: i18n.language === "en" ? "left" : "right" },
+            ]}
+          >
+            {t("HomeScene.Browse By Category")}
+          </Text>
+          <CategoryList
+            categories={categories}
+            onSelect={(collection) => {
+              navigate("ProductCollection", {
+                collection,
+              });
+            }}
+          />
+        </View>
+        <Text
+          style={[
+            styles.subTitle,
+            { textAlign: i18n.language === "en" ? "left" : "right" },
+          ]}
+        >
+          {t("HomeScene.Featured Products")}
+        </Text>
+      </View>
       <ProductList
-        ListHeaderComponent={renderHeaderComponent()}
+        // ListHeaderComponent={renderHeaderComponent()}
         data={products}
         numColumns={numColumns}
         onItemPress={onItemPress}
+        contentContainerStyle={
+          i18n.language === "ar" && {
+            transform: [{ scaleX: -1 }],
+          }
+        }
         columnWrapperStyle={styles.itemWrapperStyle}
         onEndReached={onProductsEndReached}
         onEndReachedThreshold={0.25}

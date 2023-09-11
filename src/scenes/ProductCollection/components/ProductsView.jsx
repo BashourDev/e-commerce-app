@@ -128,7 +128,12 @@ export default function ProductsView(props) {
         <ProductList
           data={products}
           numColumns={numColumns}
-          contentContainerStyle={styles.productList}
+          contentContainerStyle={[
+            {
+              transform: [{ scaleX: -1 }],
+            },
+            styles.productList,
+          ]}
           onItemPress={onItemPress}
           onEndReached={onEndReached}
           onEndReachedThreshold={0.25}

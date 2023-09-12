@@ -218,7 +218,12 @@ export default function CheckoutScene() {
   let renderShippingAddress = () => {
     if (authToken) {
       return (
-        <View style={[styles.flex, { direction: t("dir") }]}>
+        <View
+          style={[
+            styles.flex,
+            // , { direction: t("dir") }
+          ]}
+        >
           <Text
             style={[
               styles.opacity,

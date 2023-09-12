@@ -26,6 +26,7 @@ export default function CheckoutAddress({
         styles.rowFlex,
         isSelected ? styles.selectedBorder : styles.greyBorder,
         style,
+        i18n.language === "ar" && { flexDirection: "row-reverse" },
       ]}
       onPress={onSelect}
       testID={`checkoutAddress-${id}`}
@@ -38,7 +39,12 @@ export default function CheckoutAddress({
         onPress={onSelect}
       />
       <View style={styles.textContainer}>
-        <View style={styles.nameText}>
+        <View
+          style={[
+            styles.nameText,
+            i18n.language === "ar" && { flexDirection: "row-reverse" },
+          ]}
+        >
           <Text style={styles.label}>{fullName}</Text>
           <TouchableOpacity onPress={onEditPressed}>
             <Text style={[styles.label, styles.textCapitalized]}>

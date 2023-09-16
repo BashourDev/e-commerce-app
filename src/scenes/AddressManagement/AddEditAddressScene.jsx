@@ -42,7 +42,7 @@ export default function AddEditAddressScene() {
   let { authToken: customerAccessToken } = useAuth();
   let { navigate, setOptions } = useNavigation();
   let {
-    params: { address, rootScene },
+    params: { address, rootScene, cartData = {} },
   } = useRoute();
   const { t } = useTranslation();
   let [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
@@ -74,7 +74,7 @@ export default function AddEditAddressScene() {
 
   let { editAddress, loading: loadingEditAddress } = useCustomerEditAddress({
     onCompleted: () => {
-      navigate(rootScene);
+      navigate(rootScene, { cartData });
     },
   });
 
@@ -83,7 +83,7 @@ export default function AddEditAddressScene() {
   let { customerAddressDelete, loading: loadingDeleteAddress } =
     useCustomerAddressDelete({
       onCompleted: () => {
-        navigate(rootScene);
+        navigate(rootScene, { cartData });
       },
     });
 
@@ -143,7 +143,7 @@ export default function AddEditAddressScene() {
         setErrorMessage(customerUserErrors[0].message);
         toggleModalVisible();
       } else {
-        navigate(rootScene);
+        navigate(rootScene, { cartData });
       }
     } else {
       let result = await editAddress({
@@ -161,7 +161,7 @@ export default function AddEditAddressScene() {
         setErrorMessage(customerUserErrors[0].message);
         toggleModalVisible();
       } else {
-        navigate(rootScene);
+        navigate(rootScene, { cartData });
       }
     }
   };

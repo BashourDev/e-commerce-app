@@ -145,11 +145,18 @@ export default function CheckoutScene() {
     }
   };
   let addNewAddress = () => {
-    navigate("AddEditAddress", { rootScene: "Checkout" });
+    navigate("AddEditAddress", {
+      rootScene: "Checkout",
+      cartData: { id: cartId, subtotalPrice: cartSubtotalPrice, totalPrice },
+    });
   };
 
   let onPressEdit = (address) => {
-    navigate("AddEditAddress", { address, rootScene: "Checkout" });
+    navigate("AddEditAddress", {
+      address,
+      rootScene: "Checkout",
+      cartData: { id: cartId, subtotalPrice: cartSubtotalPrice, totalPrice },
+    });
   };
 
   let onSelect = async (item) => {

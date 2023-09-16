@@ -92,7 +92,8 @@ function setupInitialCacheData() {
 
 const responseLogger = new ApolloLink((operation, forward) => {
   return forward(operation).map((result) => {
-    if (DEBUG) console.info("RES:", operation.operationName, result.data);
+    // if (DEBUG) console.info("RES:", operation.operationName, result.data);
+    if (DEBUG) console.info("RES:", operation.operationName, result);
     return result;
   });
 });

@@ -6,9 +6,11 @@ import {
   SET_DEFAULT_COUNTRY,
 } from "../../graphql/client/clientQueries";
 import useLocalization from "./useLocalization";
+import { useTranslation } from "react-i18next";
 
 export default function useDefaultCountry() {
-  let { data: localizationData } = useLocalization();
+  const { i18n } = useTranslation();
+  let { data: localizationData } = useLocalization(i18n.language.toUpperCase());
 
   let { data, loading, refetch, error } = useQuery(GET_DEFAULT_COUNTRY);
 

@@ -42,6 +42,7 @@ export default function OrderPlacedConfirmation() {
             first,
             after: orderHistory[orderHistory.length - 1].cursor || null,
             country: countryCode,
+            language: i18n.language.toUpperCase(),
           })
         }
       />

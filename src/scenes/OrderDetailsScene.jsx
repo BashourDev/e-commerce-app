@@ -26,7 +26,7 @@ export default function OrderDetailsScene() {
     },
   } = useRoute();
   let { screenSize } = useDimensions();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   let formatCurrency = useCurrencyFormatter();
 
   let paymentData = [
@@ -57,13 +57,23 @@ export default function OrderDetailsScene() {
         }
       >
         <View style={styles.orderInfoSection}>
-          <Surface containerStyle={styles.surfaceOrderContainer}>
+          <Surface
+            containerStyle={[
+              styles.surfaceOrderContainer,
+              i18n.language === "ar" && { flexDirection: "row-reverse" },
+            ]}
+          >
             <Text weight="medium" style={styles.mediumText}>
               {t("OrderDetailsScene.Order No.")}
             </Text>
             <Text style={styles.mediumText}>{orderNumber}</Text>
           </Surface>
-          <Surface containerStyle={styles.surfaceOrderContainer}>
+          <Surface
+            containerStyle={[
+              styles.surfaceOrderContainer,
+              i18n.language === "ar" && { flexDirection: "row-reverse" },
+            ]}
+          >
             <Text weight="medium" style={styles.mediumText}>
               {t("OrderDetailsScene.Ordered")}
             </Text>
@@ -71,7 +81,12 @@ export default function OrderDetailsScene() {
           </Surface>
         </View>
         <View style={styles.productDetailsContainer}>
-          <Text style={styles.greyText}>
+          <Text
+            style={[
+              styles.greyText,
+              i18n.language === "ar" && { textAlign: "right" },
+            ]}
+          >
             {t("OrderDetailsScene.Product Details")}
           </Text>
           <View style={styles.orderItemContainer}>
@@ -86,20 +101,62 @@ export default function OrderDetailsScene() {
           </View>
         </View>
         <View style={styles.shippingAddressContainer}>
-          <Text style={styles.greyText}>
+          <Text
+            style={[
+              styles.greyText,
+              i18n.language === "ar" && { textAlign: "right" },
+            ]}
+          >
             {t("OrderDetailsScene.Shipping Address")}
           </Text>
           <Surface containerStyle={styles.surfaceShippingContainer}>
-            <Text style={[styles.mediumText, styles.marginBottom]}>{name}</Text>
-            <Text style={styles.greyText}>{address1}</Text>
-            <Text style={styles.greyText}>{`${city}, ${province} ${zip}`}</Text>
-            <Text style={styles.greyText}>{country}</Text>
-            <Text style={styles.greyText}>
+            <Text
+              style={[
+                styles.mediumText,
+                styles.marginBottom,
+                i18n.language === "ar" && { textAlign: "right" },
+              ]}
+            >
+              {name}
+            </Text>
+            <Text
+              style={[
+                styles.greyText,
+                i18n.language === "ar" && { textAlign: "right" },
+              ]}
+            >
+              {address1}
+            </Text>
+            <Text
+              style={[
+                styles.greyText,
+                i18n.language === "ar" && { textAlign: "right" },
+              ]}
+            >{`${city}, ${province} ${zip}`}</Text>
+            <Text
+              style={[
+                styles.greyText,
+                i18n.language === "ar" && { textAlign: "right" },
+              ]}
+            >
+              {country}
+            </Text>
+            <Text
+              style={[
+                styles.greyText,
+                i18n.language === "ar" && { textAlign: "right" },
+              ]}
+            >
               {t("OrderDetailsScene.Phone:")} {phone}
             </Text>
           </Surface>
         </View>
-        <Text style={styles.greyText}>
+        <Text
+          style={[
+            styles.greyText,
+            i18n.language === "ar" && { textAlign: "right" },
+          ]}
+        >
           {t("OrderDetailsScene.Payment Details")}
         </Text>
         <PaymentDetails

@@ -33,6 +33,7 @@ export default function OrderHistoryScene() {
             first,
             after: orderHistory[orderHistory.length - 1].cursor || null,
             country: countryCode,
+            language: i18n.language.toUpperCase(),
           })
         }
       />
@@ -49,6 +50,7 @@ export default function OrderHistoryScene() {
         first,
         after: orderHistory[orderHistory.length - 1].cursor || null,
         country: countryCode,
+        language: i18n.language.toUpperCase(),
       });
     }
   };

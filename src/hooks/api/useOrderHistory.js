@@ -94,7 +94,7 @@ function useOrderHistory(first, language, customerAccessToken, options) {
       language: language,
     },
     notifyOnNetworkStatusChange: true,
-    fetchPolicy: "network-only",
+    fetchPolicy: "no-cache",
     ...options,
   });
 

@@ -59,6 +59,10 @@ export const GET_ORDER_HISTORY = gql`
                   variant {
                     id
                     quantityAvailable
+                    product {
+                      id
+                      title
+                    }
                     compareAtPriceV2 {
                       amount
                       currencyCode

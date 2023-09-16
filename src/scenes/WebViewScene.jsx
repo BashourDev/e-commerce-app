@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 import { WebView } from "react-native-webview";
@@ -15,9 +15,9 @@ export default function WebScene() {
   } = useRoute();
   let { navigate, setOptions } = useNavigation();
   let { resetShoppingCart } = useResetCart();
-
+  const [webUrlState, setWebUrlState] = useState(webUrl);
   let title;
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   switch (type) {
     case "policy":
       title = t("WebViewScene.Privacy Policy");
@@ -34,12 +34,23 @@ export default function WebScene() {
     });
   });
 
-  return webUrl ? (
+  return webUrlState ? (
     <SafeAreaView style={styles.flex}>
       <WebView
         style={styles.container}
-        source={{ uri: webUrl }}
+        source={{ uri: webUrlState }}
         originWhitelist={["*"]}
+        onNavigationStateChange={(webviewState) => {
+          if (type !== "payment" || i18n.language === "en") return;
+          if (
+            webviewState.url.startsWith(
+              "https://e48d9c-2.myshopify.com/checkouts/co/"
+            ) &&
+            !webviewState.url.endsWith("?locale=ar-AE")
+          ) {
+            setWebUrlState(webviewState.url + "?locale=ar-AE");
+          }
+        }}
         onShouldStartLoadWithRequest={({ url }) => {
           if (url.endsWith("thank_you")) {
             resetShoppingCart();

@@ -122,17 +122,17 @@ export default function CheckoutScene() {
   };
 
   let navigateToPayment = (webUrl = "") => {
-    let temp = webUrl.split("/checkouts/");
-    let temp2 = temp[1].split("?");
-    let cID = temp2[0];
-    let key = temp2[1];
-    let newWebUrl =
-      i18n.language === "ar"
-        ? `https://e48d9c-2.myshopify.com/checkouts/co/${cID}/information?${key}&locale=ar-AE`
-        : webUrl;
+    // let temp = webUrl.split("/checkouts/");
+    // let temp2 = temp[1].split("?");
+    // let cID = temp2[0];
+    // let key = temp2[1];
+    // let newWebUrl =
+    //   i18n.language === "ar"
+    //     ? `https://e48d9c-2.myshopify.com/checkouts/co/${cID}/information?${key}&locale=ar-AE`
+    //     : webUrl;
 
     navigate("WebView", {
-      webUrl: newWebUrl,
+      webUrl: webUrl,
       type: "payment",
     });
   };

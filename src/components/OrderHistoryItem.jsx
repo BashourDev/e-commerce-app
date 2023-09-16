@@ -17,20 +17,36 @@ import { useTranslation } from "react-i18next";
 export default function OrderHistoryItem(props) {
   let { order, containerStyle, onPress } = props;
   let formatCurrency = useCurrencyFormatter();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <TouchableOpacity
       style={[styles.container, containerStyle]}
       onPress={onPress}
     >
-      <Text weight="medium" style={styles.orderNumber}>
-        {t("OrderHistoryItem.Order {orderID}", { orderID: order.orderNumber })}
+      <Text
+        weight="medium"
+        style={[
+          styles.orderNumber,
+          i18n.language === "ar" && { textAlign: "right" },
+        ]}
+      >
+        {t("OrderHistoryItem.Order")} {order.orderNumber}
       </Text>
-      <View style={styles.textStyle}>
+      <View
+        style={[
+          styles.textStyle,
+          i18n.language === "ar" && { flexDirection: "row-reverse" },
+        ]}
+      >
         <Text>{t("OrderHistoryItem.Ordered")}</Text>
         <Text>{formatDateTime(order.orderTime)}</Text>
       </View>
-      <View style={styles.textStyle}>
+      <View
+        style={[
+          styles.textStyle,
+          i18n.language === "ar" && { flexDirection: "row-reverse" },
+        ]}
+      >
         <Text>{t("OrderHistoryItem.Total")}</Text>
         <Text>{formatCurrency(order.totalPayment)}</Text>
       </View>

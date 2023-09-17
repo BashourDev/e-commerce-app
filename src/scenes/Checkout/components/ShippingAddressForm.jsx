@@ -15,21 +15,31 @@ import {
 } from "../../../constants/theme";
 
 import { useTranslation } from "react-i18next";
+import ProvinceModal from "../../../components/ProvinceModal";
 
 export default function ShippingAddressForm(props) {
   let { address, onChangeAddress } = props;
   let [isCountryModalVisible, setCountryModalVisible] = useState(false);
+  let [isProvinceModalVisible, setIsProvinceModalVisible] = useState(false);
 
   let toggleCountryModal = () => {
     setCountryModalVisible(!isCountryModalVisible);
   };
 
-  let onPressCountry = (country) => {
-    onChangeAddress({ ...address, country });
-    toggleCountryModal();
-    zipRef.current?.focus();
+  let toggleProvinceModal = () => {
+    setIsProvinceModalVisible(!isProvinceModalVisible);
   };
 
+  let onPressCountry = (country) => {
+    onChangeAddress({ ...address, country, province: "" });
+    toggleCountryModal();
+    // zipRef.current?.focus();
+  };
+
+  let onPressProvince = (province) => {
+    onChangeAddress({ ...address, province });
+    toggleProvinceModal();
+  };
   let lastNameRef = useRef();
   let address1Ref = useRef();
   let address2Ref = useRef();
@@ -120,22 +130,7 @@ export default function ShippingAddressForm(props) {
         onChangeText={(city) => onChangeAddress({ ...address, city })}
         returnKeyType="next"
         labelStyle={textInputLabel}
-        onSubmitEditing={() => provinceRef.current?.focus()}
-        containerStyle={flatTextInputContainerStyle}
-        style={flatTextInputStyle}
-      />
-      <TextInput
-        label={t("ShippingAddressForm.Province")}
-        ref={provinceRef}
-        clearTextOnFocus={false}
-        autoCapitalize="words"
-        textContentType="addressState"
-        mode="flat"
-        value={address.province}
-        onChangeText={(province) => onChangeAddress({ ...address, province })}
-        returnKeyType="next"
-        labelStyle={textInputLabel}
-        onSubmitEditing={toggleCountryModal}
+        // onSubmitEditing={() => provinceRef.current?.focus()}
         containerStyle={flatTextInputContainerStyle}
         style={flatTextInputStyle}
       />
@@ -155,6 +150,37 @@ export default function ShippingAddressForm(props) {
           style={flatTextInputStyle}
         />
       </TouchableOpacity>
+      <TouchableOpacity onPress={toggleProvinceModal}>
+        <TextInput
+          label={t("ShippingAddressForm.Province")}
+          clearTextOnFocus={false}
+          autoCapitalize="words"
+          textContentType="provinceName"
+          mode="flat"
+          value={address.province}
+          returnKeyType="next"
+          labelStyle={textInputLabel}
+          pointerEvents="none"
+          editable={false}
+          containerStyle={flatTextInputContainerStyle}
+          style={flatTextInputStyle}
+        />
+      </TouchableOpacity>
+      {/* <TextInput
+        label={t("ShippingAddressForm.Province")}
+        ref={provinceRef}
+        clearTextOnFocus={false}
+        autoCapitalize="words"
+        textContentType="addressState"
+        mode="flat"
+        value={address.province}
+        onChangeText={(province) => onChangeAddress({ ...address, province })}
+        returnKeyType="next"
+        labelStyle={textInputLabel}
+        onSubmitEditing={toggleCountryModal}
+        containerStyle={flatTextInputContainerStyle}
+        style={flatTextInputStyle}
+      /> */}
       <TextInput
         label={t("ShippingAddressForm.Postal Code")}
         ref={zipRef}
@@ -188,6 +214,12 @@ export default function ShippingAddressForm(props) {
         countryVisible={isCountryModalVisible}
         toggleModal={toggleCountryModal}
         onPressCountry={onPressCountry}
+      />{" "}
+      <ProvinceModal
+        provinceVisible={isProvinceModalVisible}
+        toggleModal={toggleProvinceModal}
+        onPressProvince={onPressProvince}
+        selectedCountry={address.country}
       />
     </View>
   );

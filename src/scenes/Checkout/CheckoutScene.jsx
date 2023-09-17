@@ -30,6 +30,7 @@ import { useCheckoutUpdateAddress } from "../../hooks/api/useShopifyCart";
 import { AddressList, ShippingAddressForm } from "./components";
 
 import { useTranslation } from "react-i18next";
+import { provinces } from "../../constants/provinces";
 
 export default function CheckoutScene() {
   let { navigate } = useNavigation();
@@ -209,7 +210,7 @@ export default function CheckoutScene() {
       !address.firstName ||
       !address.lastName ||
       !address.phone ||
-      !address.province ||
+      (!address.province && provinces[address.country].length !== 0) ||
       !address.zip;
 
   if (error) {

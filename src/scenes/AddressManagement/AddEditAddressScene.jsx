@@ -37,6 +37,8 @@ import { newAddress } from "../../constants/defaultValues";
 
 import { DeleteAddressModal } from "./components";
 import { useTranslation } from "react-i18next";
+import ProvinceModal from "../../components/ProvinceModal";
+import { provinces } from "../../constants/provinces";
 
 export default function AddEditAddressScene() {
   let { authToken: customerAccessToken } = useAuth();
@@ -47,6 +49,7 @@ export default function AddEditAddressScene() {
   const { t } = useTranslation();
   let [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   let [isCountryModalVisible, setIsCountryModalVisible] = useState(false);
+  let [isProvinceModalVisible, setIsProvinceModalVisible] = useState(false);
   let [addressData, setAddressData] = useState(newAddress);
   let [isModalVisible, setIsModalVisible] = useState(false);
   let [errorMessage, setErrorMessage] = useState("");
@@ -59,7 +62,8 @@ export default function AddEditAddressScene() {
     addressData.firstName === "" ||
     addressData.lastName === "" ||
     addressData.phone === "" ||
-    addressData.province === "" ||
+    (addressData.province === "" &&
+      provinces[addressData.country].length !== 0) ||
     addressData.zip === "";
 
   let lastNameRef = useRef();
@@ -110,6 +114,10 @@ export default function AddEditAddressScene() {
     setIsCountryModalVisible(!isCountryModalVisible);
   };
 
+  let toggleProvinceModal = () => {
+    setIsProvinceModalVisible(!isProvinceModalVisible);
+  };
+
   let onPressCancel = () => {
     toggleDeleteModal();
   };
@@ -123,8 +131,13 @@ export default function AddEditAddressScene() {
 
   let onPressCountry = (country) => {
     toggleCountryModal();
-    setAddressData({ ...addressData, country });
-    provinceRef.current && provinceRef.current.focus();
+    setAddressData({ ...addressData, country, province: "" });
+    // provinceRef.current && provinceRef.current.focus();
+  };
+
+  let onPressProvince = (province) => {
+    toggleProvinceModal();
+    setAddressData({ ...addressData, province });
   };
 
   let onPressSaveAddress = async () => {
@@ -214,6 +227,12 @@ export default function AddEditAddressScene() {
         toggleModal={toggleCountryModal}
         onPressCountry={onPressCountry}
       />
+      <ProvinceModal
+        provinceVisible={isProvinceModalVisible}
+        toggleModal={toggleProvinceModal}
+        onPressProvince={onPressProvince}
+        selectedCountry={addressData.country}
+      />
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -276,7 +295,19 @@ export default function AddEditAddressScene() {
             style={flatTextInputStyle}
           />
         </TouchableOpacity>
-        <TextInput
+        <TouchableOpacity onPress={toggleProvinceModal}>
+          <TextInput
+            mode="flat"
+            label={t("AddEditAddressScene.State / Province")}
+            labelStyle={textInputLabel}
+            value={addressData.province}
+            pointerEvents="none"
+            editable={false}
+            containerStyle={flatTextInputContainerStyle}
+            style={flatTextInputStyle}
+          />
+        </TouchableOpacity>
+        {/* <TextInput
           onSubmitEditing={() => {
             cityRef.current && cityRef.current.focus();
           }}
@@ -292,7 +323,7 @@ export default function AddEditAddressScene() {
           containerStyle={flatTextInputContainerStyle}
           style={flatTextInputStyle}
           autoCapitalize="words"
-        />
+        /> */}
         <TextInput
           onSubmitEditing={() => {
             zipRef.current && zipRef.current.focus();

@@ -27,6 +27,12 @@
     "Select Country": "Select Country",
     "Find Country": "Find Country"
   },
+  "ProvinceModal": {
+    "There's no result for": "There's no result for",
+    "Please try another word": "Please try another word",
+    "Select Province": "Select Province",
+    "Find Province": "Find Province"
+  },
   "ErrorPage": {
     "Try Again": "Try Again"
   },

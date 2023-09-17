@@ -211,7 +211,7 @@ export default function CheckoutScene() {
       !address.lastName ||
       !address.phone ||
       (!address.province && provinces[address.country].length !== 0) ||
-      !address.zip;
+      (!address.zip && address.country !== "United Arab Emirates");
 
   if (error) {
     return (

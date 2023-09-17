@@ -13,11 +13,14 @@ export default function WebScene() {
   let {
     params: { type, webUrl },
   } = useRoute();
+  const { t, i18n } = useTranslation();
   let { navigate, setOptions } = useNavigation();
   let { resetShoppingCart } = useResetCart();
+  if (type !== "payment" && i18n.language === "ar") {
+    webUrl = webUrl.replace("locale=en", "locale=ar");
+  }
   const [webUrlState, setWebUrlState] = useState(webUrl);
   let title;
-  const { t, i18n } = useTranslation();
   switch (type) {
     case "policy":
       title = t("WebViewScene.Privacy Policy");

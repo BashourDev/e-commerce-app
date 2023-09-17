@@ -64,7 +64,7 @@ export default function AddEditAddressScene() {
     addressData.phone === "" ||
     (addressData.province === "" &&
       provinces[addressData.country].length !== 0) ||
-    addressData.zip === "";
+    (addressData.zip === "" && addressData.country !== "United Arab Emirates");
 
   let lastNameRef = useRef();
   let address1Ref = useRef();
@@ -131,7 +131,7 @@ export default function AddEditAddressScene() {
 
   let onPressCountry = (country) => {
     toggleCountryModal();
-    setAddressData({ ...addressData, country, province: "" });
+    setAddressData({ ...addressData, country, province: "", zip: "" });
     // provinceRef.current && provinceRef.current.focus();
   };
 
@@ -295,18 +295,20 @@ export default function AddEditAddressScene() {
             style={flatTextInputStyle}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={toggleProvinceModal}>
-          <TextInput
-            mode="flat"
-            label={t("AddEditAddressScene.State / Province")}
-            labelStyle={textInputLabel}
-            value={addressData.province}
-            pointerEvents="none"
-            editable={false}
-            containerStyle={flatTextInputContainerStyle}
-            style={flatTextInputStyle}
-          />
-        </TouchableOpacity>
+        {(provinces[addressData.country]?.length || 0) > 0 && (
+          <TouchableOpacity onPress={toggleProvinceModal}>
+            <TextInput
+              mode="flat"
+              label={t("AddEditAddressScene.State / Province")}
+              labelStyle={textInputLabel}
+              value={addressData.province}
+              pointerEvents="none"
+              editable={false}
+              containerStyle={flatTextInputContainerStyle}
+              style={flatTextInputStyle}
+            />
+          </TouchableOpacity>
+        )}
         {/* <TextInput
           onSubmitEditing={() => {
             cityRef.current && cityRef.current.focus();
@@ -339,20 +341,22 @@ export default function AddEditAddressScene() {
           style={flatTextInputStyle}
           autoCapitalize="words"
         />
-        <TextInput
-          onSubmitEditing={() => {
-            phoneRef.current && phoneRef.current.focus();
-          }}
-          returnKeyType="next"
-          ref={zipRef}
-          mode="flat"
-          label={t("AddEditAddressScene.Postal / Zip Code")}
-          labelStyle={textInputLabel}
-          value={addressData.zip}
-          onChangeText={(zip) => setAddressData({ ...addressData, zip })}
-          containerStyle={flatTextInputContainerStyle}
-          style={flatTextInputStyle}
-        />
+        {addressData.country !== "United Arab Emirates" && (
+          <TextInput
+            onSubmitEditing={() => {
+              phoneRef.current && phoneRef.current.focus();
+            }}
+            returnKeyType="next"
+            ref={zipRef}
+            mode="flat"
+            label={t("AddEditAddressScene.Postal / Zip Code")}
+            labelStyle={textInputLabel}
+            value={addressData.zip}
+            onChangeText={(zip) => setAddressData({ ...addressData, zip })}
+            containerStyle={flatTextInputContainerStyle}
+            style={flatTextInputStyle}
+          />
+        )}
         <TextInput
           returnKeyType="done"
           ref={phoneRef}

@@ -19,16 +19,24 @@ import { useGetShop } from "../hooks/api/useCustomerAddress";
 import { useTranslation } from "react-i18next";
 import { provinces } from "../constants/provinces";
 
-function EmptyCountryList(searchCountry) {
+function EmptyProvinceList(searchProvince) {
   const { t } = useTranslation();
   return (
     <View style={styles.emptyContainer}>
       <Image source={searchImage} style={styles.searchImage} />
-      <View style={styles.flexRow}>
-        <Text>{t("ProvinceModal.There's no result for")}</Text>
-        <Text weight="medium">{searchCountry}</Text>
-      </View>
-      <Text>{t("ProvinceModal.Please try another word")}</Text>
+      {searchProvince !== "" ? (
+        <>
+          <View style={styles.flexRow}>
+            <Text>{t("ProvinceModal.There's no result for")}</Text>
+            <Text weight="medium">{searchProvince}</Text>
+          </View>
+          <Text>{t("ProvinceModal.Please try another word")}</Text>
+        </>
+      ) : (
+        <>
+          <Text>{t("ProvinceModal.No available selections")}</Text>
+        </>
+      )}
     </View>
   );
 }
@@ -97,7 +105,7 @@ export default function ProvinceModal(props) {
           <FlatList
             style={styles.countryList}
             data={provinceList}
-            ListEmptyComponent={EmptyCountryList(searchProvince)}
+            ListEmptyComponent={EmptyProvinceList(searchProvince)}
             keyboardShouldPersistTaps="always"
             renderItem={({ item }) => {
               let isActive = selectedProvince === item;

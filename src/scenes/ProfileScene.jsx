@@ -107,11 +107,11 @@ export default function ProfileScene() {
             {t("ProfileScene.Order History")}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem} onPress={() => {}}>
+        {/* <TouchableOpacity style={styles.menuItem} onPress={() => {}}>
           <Text style={styles.buttonLabelStyle}>
             {t("ProfileScene.About Us")}
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           style={styles.menuItem}
           onPress={() => {

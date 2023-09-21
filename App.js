@@ -39,7 +39,7 @@ export default function App() {
 
   return (
     <ApolloProvider client={client}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="default" />
       <ThemeProvider theme={CustomTheme}>
         <NetworkProvider>
           <AuthProvider>

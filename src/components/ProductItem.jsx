@@ -91,10 +91,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 12,
     paddingVertical: 8,
+    overflow: "hidden",
   },
   image: {
     width: "100%",
     aspectRatio: 0.85,
+    borderRadius: 5,
   },
   imageContainer: {
     marginBottom: 12,

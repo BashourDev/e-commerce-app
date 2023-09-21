@@ -12,6 +12,7 @@ import { FONT_SIZE } from "../constants/fonts";
 
 import Text from "./Text";
 import { useTranslation } from "react-i18next";
+import { LinearGradient } from "expo-linear-gradient";
 
 function Separator() {
   return <View style={styles.separator} />;
@@ -27,7 +28,7 @@ export default function CategoryList(props) {
       horizontal={true}
       data={categories}
       style={i18n.language === "ar" && { flexDirection: "row-reverse" }}
-      renderItem={({ item }) => (
+      renderItem={({ item, index }) => (
         <TouchableOpacity
           style={[
             styles.categoryItemContainer,
@@ -37,11 +38,23 @@ export default function CategoryList(props) {
           ]}
           onPress={() => onSelect(item)}
         >
-          {item.image ? (
-            <ImageBackground
-              source={{ uri: item.image }}
-              imageStyle={styles.borderRadius}
-              style={styles.categoryItemContainer}
+          {/* {item.image ? ( */}
+          <ImageBackground
+            source={{
+              uri:
+                item.image ||
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsvXYx8VBAUf4zeJmbQRrSlAbhThWSTL6AVHjWisWT0U-8pyL_bCDhQNhg2Z6w1QfZTOw&usqp=CAU",
+            }}
+            imageStyle={styles.borderRadius}
+            style={styles.categoryItemContainer}
+          >
+            <LinearGradient
+              colors={[
+                "transparent",
+                "rgba(0, 0, 0, 0.5)",
+                "rgba(0, 0, 0, 0.8)",
+              ]}
+              style={{ minWidth: "100%", alignItems: "center" }}
             >
               <Text
                 weight="medium"
@@ -49,12 +62,13 @@ export default function CategoryList(props) {
               >
                 {item.title}
               </Text>
-            </ImageBackground>
-          ) : (
+            </LinearGradient>
+          </ImageBackground>
+          {/* ) : (
             <Text weight="medium" style={[styles.categoryItemText, textStyle]}>
               {item.title}
             </Text>
-          )}
+          )} */}
         </TouchableOpacity>
       )}
       ItemSeparatorComponent={Separator}
@@ -68,21 +82,25 @@ export default function CategoryList(props) {
 const styles = StyleSheet.create({
   categoryItemContainer: {
     flex: 1,
-    height: 48,
-    minWidth: 80,
-    justifyContent: "center",
-    alignItems: "center",
+    height: 70,
+    minWidth: 120,
+    justifyContent: "flex-end",
+    alignItems: "flex-start",
   },
   borderRadius: {
-    borderRadius: 2,
+    borderRadius: 5,
+    overflow: "hidden",
   },
   color: {
     backgroundColor: COLORS.primaryColor,
   },
   categoryItemText: {
-    marginHorizontal: 12,
+    marginHorizontal: 22,
+    paddingTop: 3,
     color: COLORS.white,
     fontSize: FONT_SIZE.medium,
+    width: "100%",
+    textAlign: "center",
   },
   separator: {
     marginHorizontal: 6,

@@ -14,6 +14,7 @@ import { NetworkStateEnum, useNetwork } from "../helpers/useNetwork";
 import { useProductsAndCategoriesQuery } from "../hooks/api/useCollection";
 import useDefaultCountry from "../hooks/api/useDefaultCountry";
 import { useTranslation } from "react-i18next";
+import Footer from "../components/Footer";
 
 export default function HomeScene() {
   let { navigate } = useNavigation();
@@ -91,7 +92,7 @@ export default function HomeScene() {
   }
 
   let renderHeaderComponent = () => (
-    <View>
+    <View style={i18n.language === "ar" && { transform: [{ scaleX: -1 }] }}>
       {/* <Carousel
         data={carouselData}
         height={screenSize === ScreenSize.Small ? 180 : 384}
@@ -149,12 +150,7 @@ export default function HomeScene() {
         setVisible={setSearchModalVisible}
       />
 
-      <View>
-        {/* <Carousel
-        data={carouselData}
-        height={screenSize === ScreenSize.Small ? 180 : 384}
-      /> */}
-
+      {/* <View>
         <View>
           <Text
             style={[
@@ -181,10 +177,10 @@ export default function HomeScene() {
         >
           {t("HomeScene.Featured Products")}
         </Text>
-      </View>
+      </View> */}
       <ProductList
-        // ListHeaderComponent={renderHeaderComponent()}
-        data={products}
+        ListHeaderComponent={renderHeaderComponent()}
+        data={[...products, ...products, ...products, ...products]}
         numColumns={numColumns}
         onItemPress={onItemPress}
         contentContainerStyle={
@@ -198,7 +194,9 @@ export default function HomeScene() {
         ListFooterComponent={() => {
           return hasMore ? (
             <ActivityIndicator style={styles.activityIndicator} />
-          ) : null;
+          ) : (
+            <Footer />
+          );
         }}
       />
     </View>

@@ -40,7 +40,7 @@ export default function ShoppingCartPayment(props) {
   ];
   return (
     <>
-      <View style={[styles.voucherCodeContainer]}>
+      {/* <View style={[styles.voucherCodeContainer]}>
         <Text
           style={[
             styles.opacity,
@@ -90,7 +90,7 @@ export default function ShoppingCartPayment(props) {
             {t("ShoppingCartPayment.Add")}
           </Button>
         </View>
-      </View>
+      </View> */}
       <PaymentDetails
         data={paymentData}
         containerStyle={[

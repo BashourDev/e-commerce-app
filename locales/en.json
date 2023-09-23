@@ -201,6 +201,8 @@
     "Subtotal": "Subtotal",
     "Shipping": "Shipping",
     "Calculated at next step": "Calculated at next step",
+    "Discount": "Discount",
+    "DiscountNote": "Can be applied at next step",
     "Total": "Total",
     "Proceed to payment": "Proceed to payment",
     "An Error Occured!": "An Error Occured!",

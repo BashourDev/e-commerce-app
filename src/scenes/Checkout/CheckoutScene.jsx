@@ -280,6 +280,10 @@ export default function CheckoutScene() {
       value: t("CheckoutScene.Calculated at next step"),
     },
     {
+      name: t("CheckoutScene.Discount"),
+      value: t("CheckoutScene.DiscountNote"),
+    },
+    {
       name: t("CheckoutScene.Total"),
       value: formatCurrency(subtotalPrice),
     },

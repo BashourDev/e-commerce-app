@@ -71,7 +71,13 @@ export default function ShoppingCartPayment(props) {
                   ? t("ShoppingCartPayment.Voucher code does not exist")
                   : undefined
               }
-              errorMessageStyle={styles.errorMessage}
+              errorMessageStyle={[
+                styles.errorMessage,
+                i18n.language === "ar" && {
+                  textAlign: "right",
+                  marginRight: 14,
+                },
+              ]}
             />
           </View>
           <Button

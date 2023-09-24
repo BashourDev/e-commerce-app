@@ -31,8 +31,8 @@
     "There's no result for": "There's no result for",
     "Please try another word": "Please try another word",
     "No available selections": "No available selections",
-    "Select Province": "Select Province",
-    "Find Province": "Find Province"
+    "Select Province": "Select Province/Emirate",
+    "Find Province": "Find Province/Emirate"
   },
   "ErrorPage": {
     "Try Again": "Try Again"
@@ -179,7 +179,7 @@
     "Last Name": "Last Name",
     "Address": "Address",
     "Country": "Country",
-    "State / Province": "State / Province",
+    "State / Province": "State/Province/Emirate",
     "City": "City",
     "Postal / Zip Code": "Postal / Zip Code",
     "Phone Number": "Phone Number",

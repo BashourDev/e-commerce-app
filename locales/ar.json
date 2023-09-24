@@ -5,7 +5,7 @@
     "Wishlist": "قائمة الرغبات",
     "My Profile": "ملفي الشخصي",
     "Welcome": "مرحباً",
-    "Forgot Password": "هل نسيت كلمة السر",
+    "Forgot Password": "هل نسيت كلمة المرور",
     "Manage Addresses": "إدارة العناوين",
     "Edit Profile": "تعديل الملف الشخصي",
     "Order History": "تاريخ الطلبات",
@@ -31,8 +31,8 @@
     "There's no result for": "لا توجد نتيجة لـ",
     "Please try another word": "يرجى المحاولة بكلمة أخرى",
     "No available selections": "لا يوجد خيارات",
-    "Select Province": "اختيار المقاطعة\\الإمارة",
-    "Find Province": "البحث عن مقاطعة\\إمارة"
+    "Select Province": "اختيار المقاطعة/الإمارة",
+    "Find Province": "البحث عن مقاطعة/إمارة"
   },
   "ErrorPage": {
     "Try Again": "حاول مجدداً"
@@ -54,7 +54,7 @@
     "Total": "المجموع الإجمالي"
   },
   "ProductItem": {
-    "Out of Stock": "إنتهى من المخزن"
+    "Out of Stock": "غير متوفر في المخزون"
   },
   "SearchModal": {
     "Find by brand, category, etc.": "البحث حسب العلامة التجارية أو الفئة ..الخ",
@@ -63,8 +63,8 @@
   },
   "values": {
     "Popularity": "الشعبية",
-    "Price from Low to High": "السعر من الأقل إلى الأعلى",
-    "Price from High to Low": "السعر من الأعلى إلى الأقل",
+    "Price from Low to High": "السعر من الأدنى إلى الأعلى",
+    "Price from High to Low": "السعر من الأعلى إلى الأدنى",
     "No Internet Connection": "لا يوجد اتصال بالإنترنت",
     "Please check your internet settings and try again later": "يرجى التحقق من إعدادات الإنترنت لديك والمحاولة مرة أخرى لاحقًا",
     "Something Went Wrong": "حدث خطأ ما",
@@ -87,7 +87,7 @@
   },
   "EditProfileScene": {
     "First Name": "الاسم الأول",
-    "Last Name": "الكنية",
+    "Last Name": "الاسم الأخير",
     "Email Address": "البريد الإلكتروني",
     "Phone Number": "رقم الهاتف",
     "Password": "كلمة المرور",
@@ -104,7 +104,7 @@
   },
   "HomeScene": {
     "Browse By Category": "تصفح حسب الفئة",
-    "Featured Products": "منتجات مميزة",
+    "Featured Products": "المنتجات المميزة",
     "Search": "بحث"
   },
   "LockScene": {
@@ -118,7 +118,7 @@
     "Something went wrong!": "هناك خطأ ما!",
     "Email Address": "البريد الإلكتروني",
     "Password": "كلمة المرور",
-    "Forgot Password?": "هل نسيت كلمة السر؟",
+    "Forgot Password?": "هل نسيت كلمة المرور؟",
     "Log in": "تسجيل الدخول"
   },
   "OrderDetailsScene": {
@@ -149,10 +149,10 @@
     "Something went wrong!": "هناك خطأ ما!",
     "Close": "إغلاق",
     "First Name": "الاسم الأول",
-    "Last Name": "الكنية",
+    "Last Name": "الاسم الأخير",
     "Email Address": "البريد الإلكتروني",
     "Password": "كلمة المرور",
-    "Password does not match": "كلمة السر غير متطابقة",
+    "Password does not match": "كلمة المرور غير متطابقة",
     "Confirm Password": "تأكيد كلمة المرور",
     "By clicking Register, you agree with our": "بالنقر على اشتراك فإنك توافق على ",
     "Terms & Conditions": "الشروط والأحكام",
@@ -167,19 +167,19 @@
   "WishlistScene": {
     "No products yet.": "لا توجد منتجات حتى الآن",
     "Showing": "يتم عرض",
-    "item(s)": "قطع\\ة"
+    "item(s)": "قطع/ة"
   },
   "AddEditAddressScene": {
     "New Address": "عنوان جديد",
-    "Edit Address": "تعديل عنوان",
+    "Edit Address": "تعديل العنوان",
     "Delete": "حذف",
     "An Error Occured!": "حدث خطأ!",
     "Close": "إغلاق",
     "First Name": "الاسم الأول",
-    "Last Name": "الكنية",
+    "Last Name": "الاسم الأخير",
     "Address": "العنوان",
     "Country": "الدولة",
-    "State / Province": "الولاية / المقاطعة",
+    "State / Province": "الولاية/المقاطعة/الإمارة",
     "City": "المدينة",
     "Postal / Zip Code": "الرمز البريدي",
     "Phone Number": "رقم الهاتف",
@@ -193,7 +193,7 @@
     "Delete Address": "حذف العنوان",
     "Are you sure you want to delete this address? This action cannot be undone": "هل أنت متأكد أنك تريد حذف هذا العنوان؟ لا يمكن التراجع عن هذا الإجراء",
     "No, Cancel": "لا، إلغاء",
-    "Yes, Delete": "نعم، احذف"
+    "Yes, Delete": "نعم، حذف"
   },
   "CheckoutScene": {
     "Shipping Address": "عنوان الشحن",
@@ -213,7 +213,7 @@
   "ShippingAddressForm": {
     "Shipping Information": "معلومات الشحن",
     "First Name": "الاسم الأول",
-    "Last Name": "الكنية",
+    "Last Name": "الاسم الأخير",
     "Address 1": "العنوان الأول",
     "Address 2 (optional)": "العنوان الثاني (اختياري)",
     "City": "المدينة",

@@ -34,6 +34,7 @@ import { BottomButton, ShoppingCartPayment } from "./components";
 import useDefaultCountry from "../../hooks/api/useDefaultCountry";
 
 import { useTranslation } from "react-i18next";
+import { CheckoutErrorCode } from "../../constants/values";
 
 function extractDataCheckout(checkout) {
   let {

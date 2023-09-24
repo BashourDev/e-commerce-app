@@ -180,7 +180,7 @@ export default function HomeScene() {
       </View> */}
       <ProductList
         ListHeaderComponent={renderHeaderComponent()}
-        data={[...products, ...products, ...products, ...products]}
+        data={products}
         numColumns={numColumns}
         onItemPress={onItemPress}
         contentContainerStyle={

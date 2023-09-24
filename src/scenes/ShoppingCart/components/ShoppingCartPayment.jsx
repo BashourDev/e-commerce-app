@@ -40,7 +40,7 @@ export default function ShoppingCartPayment(props) {
   ];
   return (
     <>
-      <View style={[styles.voucherCodeContainer]}>
+      {/* <View style={[styles.voucherCodeContainer]}>
         <Text
           style={[
             styles.opacity,
@@ -71,7 +71,13 @@ export default function ShoppingCartPayment(props) {
                   ? t("ShoppingCartPayment.Voucher code does not exist")
                   : undefined
               }
-              errorMessageStyle={styles.errorMessage}
+              errorMessageStyle={[
+                styles.errorMessage,
+                i18n.language === "ar" && {
+                  textAlign: "right",
+                  marginRight: 14,
+                },
+              ]}
             />
           </View>
           <Button
@@ -84,7 +90,7 @@ export default function ShoppingCartPayment(props) {
             {t("ShoppingCartPayment.Add")}
           </Button>
         </View>
-      </View>
+      </View> */}
       <PaymentDetails
         data={paymentData}
         containerStyle={[

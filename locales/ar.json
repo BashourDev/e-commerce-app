@@ -201,6 +201,8 @@
     "Subtotal": "المجموع الجزئي",
     "Shipping": "الشحن",
     "Calculated at next step": "يتم حسابه بالخطوة التالية",
+    "Discount": "الحسم",
+    "DiscountNote": "يمكن إضافته بالخطوة التالية",
     "Total": "المجموع الإجمالي",
     "Proceed to payment": "الانتقال إلى الدفع",
     "An Error Occured!": "حدث خطأ!",

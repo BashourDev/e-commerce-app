@@ -8,17 +8,12 @@ import { useTranslation } from "react-i18next";
 const Footer = () => {
   const { i18n, t } = useTranslation();
   return (
-    <LinearGradient
+    <View
       style={[
         styles.container,
         i18n.language === "ar" && {
           transform: [{ scaleX: -1 }],
         },
-      ]}
-      colors={[
-        COLORS.primaryColor + "77",
-        COLORS.primaryColor + "AA",
-        COLORS.primaryColor,
       ]}
     >
       <View
@@ -49,7 +44,7 @@ const Footer = () => {
       <Text style={styles.copyright}>
         © Copyright Sabah Style {new Date().getFullYear()}
       </Text>
-    </LinearGradient>
+    </View>
   );
 };
 
@@ -59,6 +54,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 10,
     paddingHorizontal: 10,
+    backgroundColor: COLORS.primaryColor,
   },
   upperContainer: {
     display: "flex",

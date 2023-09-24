@@ -14,7 +14,7 @@ import { priceAfterDiscount } from "../helpers/priceAfterDiscount";
 import useCurrencyFormatter from "../hooks/api/useCurrencyFormatter";
 import { useTranslation } from "react-i18next";
 
-export default function ProductItem(props) {
+export default function ProductItemV(props) {
   let {
     product: { title, images, price, discount, availableForSale },
     onPress,
@@ -27,15 +27,12 @@ export default function ProductItem(props) {
   let renderImage = () => {
     return availableForSale ? (
       <View style={styles.imageContainer}>
-        <Image
-          style={[styles.image, imageStyle, { minWidth: 150 }]}
-          source={{ uri: images[0] }}
-        />
+        <Image style={[styles.image, imageStyle]} source={{ uri: images[0] }} />
       </View>
     ) : (
       <View style={styles.imageContainer}>
         <ImageBackground
-          style={[styles.image, imageStyle, { minWidth: 150 }]}
+          style={[styles.image, imageStyle]}
           source={{ uri: images[0] }}
         >
           <View style={styles.oosBackground}>
@@ -53,7 +50,7 @@ export default function ProductItem(props) {
       style={[
         styles.container,
         containerStyle,
-        // i18n.language === "ar" && { transform: [{ scaleX: -1 }] },
+        i18n.language === "ar" && { transform: [{ scaleX: -1 }] },
       ]}
       onPress={onPress}
     >

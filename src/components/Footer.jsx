@@ -11,9 +11,9 @@ const Footer = () => {
     <View
       style={[
         styles.container,
-        i18n.language === "ar" && {
-          transform: [{ scaleX: -1 }],
-        },
+        // i18n.language === "ar" && {
+        //   transform: [{ scaleX: -1 }],
+        // },
       ]}
     >
       <View

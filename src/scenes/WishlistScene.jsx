@@ -10,6 +10,7 @@ import { Text } from "../core-ui";
 import { useColumns } from "../helpers/columns";
 import { useGetWishlistData } from "../hooks/api/useWishlist";
 import { useTranslation } from "react-i18next";
+import ProductListV from "../components/ProductListV";
 
 export default function WishlistScene() {
   let { navigate } = useNavigation();
@@ -43,11 +44,11 @@ export default function WishlistScene() {
           {t("WishlistScene.Showing") + " "} {wishlistData.wishlist.length}
           {" " + t("WishlistScene.item(s)")}
         </Text>
-        <ProductList
+        <ProductListV
           data={wishlistData.wishlist}
           numColumns={numColumns}
           contentContainerStyle={[
-            {
+            i18n.language === "ar" && {
               transform: [{ scaleX: -1 }],
             },
             styles.contentContainer,

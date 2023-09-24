@@ -16,6 +16,7 @@ import SortModal from "./SortModal";
 import SortRadioGroup from "./SortRadioGroup";
 
 import { useTranslation } from "react-i18next";
+import ProductListV from "../../../components/ProductListV";
 
 export default function ProductsView(props) {
   let { onItemPress, products, sortProps, filterProps, onEndReached, hasMore } =
@@ -44,7 +45,7 @@ export default function ProductsView(props) {
     styles.flex,
     isScreenSizeLarge && styles.containerLandscape,
   ];
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   let SideBarMenu = () => {
     return (
       <ScrollView style={styles.sideBarMenu}>
@@ -125,11 +126,11 @@ export default function ProductsView(props) {
 
           {" " + t("ProductView.item(s)")}
         </Text>
-        <ProductList
+        <ProductListV
           data={products}
           numColumns={numColumns}
           contentContainerStyle={[
-            {
+            i18n.language === "ar" && {
               transform: [{ scaleX: -1 }],
             },
             styles.productList,

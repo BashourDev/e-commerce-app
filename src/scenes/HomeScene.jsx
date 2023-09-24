@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 
 import { useNavigation } from "@react-navigation/native";
 
 import { ErrorPage, ProductList, SearchModal } from "../components";
 import { COLORS } from "../constants/colors";
-import { Carousel, CategoryList, SearchInput, Text } from "../core-ui";
+import { Carousel, SearchInput, Text } from "../core-ui";
 // import { carouselData } from '../fixtures/carousel';
 import { useColumns } from "../helpers/columns";
 import { ScreenSize, useDimensions } from "../helpers/dimensions";
@@ -15,6 +15,7 @@ import { useProductsAndCategoriesQuery } from "../hooks/api/useCollection";
 import useDefaultCountry from "../hooks/api/useDefaultCountry";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
+import CategoryProducts from "../components/CategoryProducts";
 
 export default function HomeScene() {
   let { navigate } = useNavigation();
@@ -150,25 +151,7 @@ export default function HomeScene() {
         setVisible={setSearchModalVisible}
       />
 
-      {/* <View>
-        <View>
-          <Text
-            style={[
-              styles.subTitle,
-              { textAlign: i18n.language === "en" ? "left" : "right" },
-            ]}
-          >
-            {t("HomeScene.Browse By Category")}
-          </Text>
-          <CategoryList
-            categories={categories}
-            onSelect={(collection) => {
-              navigate("ProductCollection", {
-                collection,
-              });
-            }}
-          />
-        </View>
+      <ScrollView>
         <Text
           style={[
             styles.subTitle,
@@ -177,28 +160,27 @@ export default function HomeScene() {
         >
           {t("HomeScene.Featured Products")}
         </Text>
-      </View> */}
-      <ProductList
-        ListHeaderComponent={renderHeaderComponent()}
-        data={products}
-        numColumns={numColumns}
-        onItemPress={onItemPress}
-        contentContainerStyle={
-          i18n.language === "ar" && {
-            transform: [{ scaleX: -1 }],
-          }
-        }
-        columnWrapperStyle={styles.itemWrapperStyle}
-        onEndReached={onProductsEndReached}
-        onEndReachedThreshold={0.25}
-        ListFooterComponent={() => {
-          return hasMore ? (
-            <ActivityIndicator style={styles.activityIndicator} />
-          ) : (
-            <Footer />
-          );
-        }}
-      />
+        <ProductList
+          data={products}
+          onItemPress={onItemPress}
+          onEndReached={onProductsEndReached}
+          onEndReachedThreshold={0.25}
+          ListFooterComponent={() => {
+            return hasMore ? (
+              <ActivityIndicator style={styles.activityIndicator} />
+            ) : null;
+          }}
+        />
+        {categories.map((category) => (
+          <>
+            <CategoryProducts
+              collectionHandleProp={category.handle}
+              collectionTitle={category.title}
+            />
+          </>
+        ))}
+        <Footer />
+      </ScrollView>
     </View>
   );
 }
@@ -206,6 +188,7 @@ export default function HomeScene() {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+    justifyContent: "center",
     backgroundColor: COLORS.white,
   },
   centered: {

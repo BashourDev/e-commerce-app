@@ -34,8 +34,9 @@ const Footer = () => {
           ]}
         >
           <Image
-            source={require("../../assets/icon.png")}
+            source={require("../../assets/images/logo-footer.png")}
             style={styles.logo}
+            resizeMode="contain"
           />
           <Text style={styles.motto}>{t("Footer.Motto")}</Text>
         </View>

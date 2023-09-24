@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { IconButton, useTheme } from "react-native-paper";
 
 import { getFocusedRouteNameFromRoute, Route } from "@react-navigation/native";
@@ -87,12 +87,19 @@ export default function StackNavigator() {
           let tabScene = getTabSceneName(route);
           if (tabScene === "HomeTab") {
             return {
-              title:
-                authToken && userData?.authenticatedUser.firstName
-                  ? `${t("StackNavigator.Hello")}${
-                      i18n.language === "en" ? "," : " "
-                    } ${userData.authenticatedUser.firstName}`
-                  : t("StackNavigator.Hello"),
+              headerTitle: () => (
+                // authToken && userData?.authenticatedUser.firstName
+                //   ? `${t("StackNavigator.Hello")}${
+                //       i18n.language === "en" ? "," : " "
+                //     } ${userData.authenticatedUser.firstName}`
+                //   : t("StackNavigator.Hello")
+
+                <Image
+                  source={require("../../assets/images/logo-header.png")}
+                  resizeMode="contain"
+                  style={{ zIndex: 999, width: 65, height: 55 }}
+                />
+              ),
               headerLeft: () => {
                 return i18n.language === "en" ? (
                   <LocalizationPicker />

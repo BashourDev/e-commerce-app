@@ -22,13 +22,13 @@
     "Phone": "Phone"
   },
   "CountryModal": {
-    "There's no result for": "There's no result for",
+    "There's no result for": "There's no result for ",
     "Please try another word": "Please try another word",
     "Select Country": "Select Country",
     "Find Country": "Find Country"
   },
   "ProvinceModal": {
-    "There's no result for": "There's no result for",
+    "There's no result for": "There's no result for ",
     "Please try another word": "Please try another word",
     "No available selections": "No available selections",
     "Select Province": "Select Province/Emirate",

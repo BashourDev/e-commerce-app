@@ -19,11 +19,19 @@ import { useGetShop } from "../hooks/api/useCustomerAddress";
 import { useTranslation } from "react-i18next";
 
 function EmptyCountryList(searchCountry) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <View style={styles.emptyContainer}>
       <Image source={searchImage} style={styles.searchImage} />
-      <View style={styles.flexRow}>
+      <View
+        style={[
+          styles.flexRow,
+          i18n.language === "ar" && {
+            flexDirection: "row-reverse",
+            gap: 5,
+          },
+        ]}
+      >
         <Text>{t("CountryModal.There's no result for")}</Text>
         <Text weight="medium">{searchCountry}</Text>
       </View>

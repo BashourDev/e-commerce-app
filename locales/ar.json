@@ -22,13 +22,13 @@
     "Phone": "الهاتف"
   },
   "CountryModal": {
-    "There's no result for": "لا توجد نتيجة لـ",
+    "There's no result for": "لا توجد نتيجة لـ ",
     "Please try another word": "يرجى المحاولة بكلمة أخرى",
     "Select Country": "اختبار الدولة",
     "Find Country": "البحث عن دولة"
   },
   "ProvinceModal": {
-    "There's no result for": "لا توجد نتيجة لـ",
+    "There's no result for": "لا توجد نتيجة لـ ",
     "Please try another word": "يرجى المحاولة بكلمة أخرى",
     "No available selections": "لا يوجد خيارات",
     "Select Province": "اختيار المقاطعة/الإمارة",

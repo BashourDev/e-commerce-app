@@ -219,15 +219,15 @@
     "Address 1": "العنوان الأول",
     "Address 2 (optional)": "العنوان الثاني (اختياري)",
     "City": "المدينة",
-    "Province": "المقاطعة",
+    "Province": "المقاطعة/الإمارة",
     "Country": "الدولة",
     "Postal Code": "الرمز البريدي",
     "Phone Number": "رقم الهاتف"
   },
   "FilterModal": {
     "Price": "السعر",
-    "Clear": "حذف",
-    "Set Filter": "وضع الفلتر"
+    "Clear": "إعادة ضبط",
+    "Set Filter": "تطبيق الفلتر"
   },
   "PriceSlider": {
     "Min Price": "سعر الحد الأدنى",
@@ -236,11 +236,11 @@
   "ProductView": {
     "Sort By": "ترتيب حسب",
     "Price": "السعر",
-    "Clear": "حذف",
-    "Set Filter": "وضع الفلتر",
+    "Clear": "إعادة ضبط",
+    "Set Filter": "تطبيق الفلتر",
     "Filter": "فلتر",
     "Showing": "يتم عرض",
-    "item(s)": "قطع\\ة"
+    "item(s)": "قطع/ة"
   },
   "SortModal": {
     "Sort By": "ترتيب حسب"
@@ -253,7 +253,7 @@
     "Check out this product": "تعرف على هذا المنتج",
     "Unavailable": "غير متوفر",
     "Add to Cart": "إضافة إلى عربة التسوق",
-    "Out of Stock": "إنتهى من المخزن"
+    "Out of Stock": "غير متوفر في المخزون"
   },
   "ProductInfo": {
     "Quantity": "الكمية",
@@ -261,7 +261,7 @@
     "No description": "لا يوجد وصف"
   },
   "ShoppingCartScene": {
-    "Shopping cart is empty. Please add item to the cart.": "عربة التسوق فارغة. الرجاء إضافة منتج إلى عربة التسوق",
+    "Shopping cart is empty. Please add item to the cart.": "عربة التسوق فارغة. الرجاء إضافة منتجات إلى عربة التسوق",
     "Back To Home": "العودة إلى الرئيسية",
     "Checkout": "الدفع",
     "Item successfully removed": "تم إزالة المنتج"

@@ -219,7 +219,7 @@
     "Address 1": "Address 1",
     "Address 2 (optional)": "Address 2 (optional)",
     "City": "City",
-    "Province": "Province",
+    "Province": "Province/Emirate",
     "Country": "Country",
     "Postal Code": "Postal Code",
     "Phone Number": "Phone Number"
@@ -261,7 +261,7 @@
     "No description": "No description"
   },
   "ShoppingCartScene": {
-    "Shopping cart is empty. Please add item to the cart.": "Shopping cart is empty. Please add item to the cart.",
+    "Shopping cart is empty. Please add item to the cart.": "Shopping cart is empty. Please add items to the cart.",
     "Back To Home": "Back To Home",
     "Checkout": "Checkout",
     "Item successfully removed": "Item successfully removed"

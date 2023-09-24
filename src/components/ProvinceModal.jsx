@@ -20,14 +20,22 @@ import { useTranslation } from "react-i18next";
 import { provinces } from "../constants/provinces";
 
 function EmptyProvinceList(searchProvince) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <View style={styles.emptyContainer}>
       <Image source={searchImage} style={styles.searchImage} />
       {searchProvince !== "" ? (
         <>
-          <View style={styles.flexRow}>
-            <Text>{t("ProvinceModal.There's no result for")}</Text>
+          <View
+            style={[
+              styles.flexRow,
+              i18n.language === "ar" && {
+                flexDirection: "row-reverse",
+                gap: 5,
+              },
+            ]}
+          >
+            <Text>{t("ProvinceModal.There's no result for")} </Text>
             <Text weight="medium">{searchProvince}</Text>
           </View>
           <Text>{t("ProvinceModal.Please try another word")}</Text>

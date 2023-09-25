@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 
 import { useFocusEffect, useRoute } from "@react-navigation/native";
 
 import { ErrorPage } from "../../components";
 import { COLORS } from "../../constants/colors";
-import { KeyboardAvoidingView, Toast } from "../../core-ui";
+import { KeyboardAvoidingView, Text, Toast } from "../../core-ui";
 import { ScreenSize, useDimensions } from "../../helpers/dimensions";
 import { useAuth } from "../../helpers/useAuth";
 import { useGetCustomerData } from "../../hooks/api/useCustomer";
@@ -33,6 +33,7 @@ import {
 
 import { useTranslation } from "react-i18next";
 import { useGetProductDetailsEnglish } from "../../hooks/api/useProductEnglish";
+import WebView from "react-native-webview";
 
 export default function ProductDetailsScene() {
   let {
@@ -47,7 +48,7 @@ export default function ProductDetailsScene() {
   let [isImageModalVisible, setIsImageModalVisible] = useState(false);
   let [activeIndex, setActiveIndex] = useState(0);
   let [bottomButtonHeight, setBottomButtonHeight] = useState(0);
-
+  const [loaded, setLoaded] = useState(false);
   let { authToken } = useAuth();
   let { setShoppingCartID } = useSetShoppingCartID();
   let { shoppingCartCustomerAssociate } = useCheckoutCustomerAssociate();
@@ -281,6 +282,56 @@ export default function ProductDetailsScene() {
                   : productDetailsEnglish.productByHandle.options
               }
             />
+
+            <ScrollView style={[styles.flex, !loaded && { display: "none" }]}>
+              <WebView
+                javaScriptEnabled
+                nestedScrollEnabled
+                scrollEnabled
+                automaticallyAdjustContentInsets={false}
+                style={[styles.container, { minHeight: 350 }]}
+                source={{
+                  uri: "https://sabahstyle.com/products/dummy-title",
+                }}
+                originWhitelist={["*"]}
+                onLoad={() => setLoaded(true)}
+                injectedJavaScript={`
+                let currentDocument = document.getElementById("AirReviews-BlockWrapper");
+                let keepId = "";
+                let count = 0;
+                while(keepId === "" && count < 10){
+                  currentDocument = currentDocument.parentElement;
+                  if(currentDocument.tagName === 'SECTION'){
+                    keepId = currentDocument.id;
+                  }
+                  count++;
+                }
+                console.log("keepId",keepId);
+                let sections = document.getElementsByTagName("section");
+                for(let i=0; i< sections.length; i++){
+                  if(sections[i].id !== keepId){
+                    sections[i].remove()
+                  }
+                }
+
+                while(document.getElementsByTagName("body")[0].children.length !== 1){
+
+                  const bodyChildren = document.getElementsByTagName("body")[0].children;
+                  for(let i=0; i < bodyChildren.length; i++){
+                    if(bodyChildren[i].tagName !== "MAIN"){
+
+                      bodyChildren[i].remove();
+                    }
+                  }
+                }
+                document.getElementsByTagName("body")[0].style.overflow="scroll"
+                `}
+                startInLoadingState={true}
+                renderLoading={() => (
+                  <ActivityIndicator style={styles.center} />
+                )}
+              />
+            </ScrollView>
           </ScrollView>
           <View
             style={[
@@ -345,5 +396,18 @@ const styles = StyleSheet.create({
   bottomLandscapeContainer: {
     marginHorizontal: 36,
     marginBottom: 24,
+  },
+  container: {
+    marginVertical: 24,
+  },
+  center: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  text: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

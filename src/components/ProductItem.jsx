@@ -28,14 +28,14 @@ export default function ProductItem(props) {
     return availableForSale ? (
       <View style={styles.imageContainer}>
         <Image
-          style={[styles.image, imageStyle, { minWidth: 150 }]}
+          style={[styles.image, imageStyle, { minWidth: 150, height: 170 }]}
           source={{ uri: images[0] }}
         />
       </View>
     ) : (
       <View style={styles.imageContainer}>
         <ImageBackground
-          style={[styles.image, imageStyle, { minWidth: 150 }]}
+          style={[styles.image, imageStyle, { minWidth: 150, height: 170 }]}
           source={{ uri: images[0] }}
         >
           <View style={styles.oosBackground}>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 12,
     paddingVertical: 8,
-    // overflow: "hidden",
+    overflow: "hidden",
   },
   image: {
     aspectRatio: 0.85,

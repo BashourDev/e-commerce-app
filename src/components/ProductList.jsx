@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 export default function ProductList(props) {
   let { numColumns, data, onItemPress, ...otherProps } = props;
   let itemRemainder = data.length % numColumns;
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   return (
     <FlatList
       data={data}
@@ -20,12 +20,17 @@ export default function ProductList(props) {
         let productItem = (
           <ProductItem product={item} onPress={() => onItemPress(item)} />
         );
-        // if (index >= data.length - itemRemainder) {
-        //   return <View style={{ flex: 1 / numColumns }}>{productItem}</View>;
-        // }
+        if (index >= data.length - itemRemainder) {
+          return (
+            <View style={{ flex: 1 / numColumns, width: 150, height: 200 }}>
+              {productItem}
+            </View>
+          );
+        }
         return productItem;
       }}
       showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
       {...otherProps}
     />
   );

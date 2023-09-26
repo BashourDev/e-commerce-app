@@ -1,12 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import {
+  Linking,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+} from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 
 import { useFocusEffect, useRoute } from "@react-navigation/native";
 
 import { ErrorPage } from "../../components";
 import { COLORS } from "../../constants/colors";
-import { KeyboardAvoidingView, Text, Toast } from "../../core-ui";
+import { Button, KeyboardAvoidingView, Text, Toast } from "../../core-ui";
 import { ScreenSize, useDimensions } from "../../helpers/dimensions";
 import { useAuth } from "../../helpers/useAuth";
 import { useGetCustomerData } from "../../hooks/api/useCustomer";
@@ -283,20 +289,35 @@ export default function ProductDetailsScene() {
               }
             />
 
-            <ScrollView style={[styles.flex, !loaded && { display: "none" }]}>
+            {/* A button that opens the product's page in the browser to write a review */}
+            {/* <Button
+              style={[styles.flex]}
+              disabled={false}
+              loading={false}
+              onPress={() => {
+                Linking.openURL(
+                  "https://sabahstyle.com/products/" + productHandle
+                );
+              }}
+            >
+              {"Rate this product"}
+            </Button> */}
+
+            {/* the webview that only displays the review section */}
+            <SafeAreaView style={[styles.flex, !loaded && { display: "none" }]}>
               <WebView
                 javaScriptEnabled
                 nestedScrollEnabled
                 scrollEnabled
-                automaticallyAdjustContentInsets={false}
                 style={[styles.container, { minHeight: 350 }]}
                 source={{
-                  uri: "https://sabahstyle.com/products/dummy-title",
+                  uri: "https://sabahstyle.com/products/" + productHandle,
                 }}
                 originWhitelist={["*"]}
                 onLoad={() => setLoaded(true)}
                 injectedJavaScript={`
-                let currentDocument = document.getElementById("AirReviews-BlockWrapper");
+                // find the section to keep
+                let currentDocument = document.getElementById("judgeme_product_reviews");
                 let keepId = "";
                 let count = 0;
                 while(keepId === "" && count < 10){
@@ -306,7 +327,8 @@ export default function ProductDetailsScene() {
                   }
                   count++;
                 }
-                console.log("keepId",keepId);
+
+                // remove other sections
                 let sections = document.getElementsByTagName("section");
                 for(let i=0; i< sections.length; i++){
                   if(sections[i].id !== keepId){
@@ -314,24 +336,48 @@ export default function ProductDetailsScene() {
                   }
                 }
 
-                while(document.getElementsByTagName("body")[0].children.length !== 1){
+                // check if the body has children other than (main, links, scripts and styles)
+                let count2 = 0;
+                let shouldKeepLooping = ()=>{
+                  let children = document.getElementsByTagName("body")[0].children;
+                  for(let i=0; i < children.length; i++){
+                    if(count2 < 10 && children[i].tagName !== "MAIN" && children[i].tagName !== "LINK" && children[i].tagName !== "SCRIPT" && children[i].tagName !== "STYLE"){
 
-                  const bodyChildren = document.getElementsByTagName("body")[0].children;
+                      return true;
+                    }
+                    return false;
+                  }
+                }
+
+                // remove elements which are not (main, links, scripts and styles)
+                while(shouldKeepLooping()){
+                  let bodyChildren = document.getElementsByTagName("body")[0].children;
                   for(let i=0; i < bodyChildren.length; i++){
-                    if(bodyChildren[i].tagName !== "MAIN"){
+                    if(bodyChildren[i].tagName !== "MAIN" && bodyChildren[i].tagName !== "LINK" && bodyChildren[i].tagName !== "SCRIPT" && bodyChildren[i].tagName !== "STYLE"){
 
                       bodyChildren[i].remove();
                     }
                   }
                 }
-                document.getElementsByTagName("body")[0].style.overflow="scroll"
+
+                // missing style link (should be added automatically, keep commented for now)
+                // let linkElement = document.createElement("LINK");
+                // linkElement.rel = "stylesheet";
+                // linkElement.setAttribute('class','jdgm-stylesheet');
+                // linkElement.media = "all";
+                // linkElement.href = "https://cdn.judge.me/widget_v3/form.css";
+                // document.getElementsByTagName("body")[0].appendChild(linkElement);
+
+                // styling the background of the review section
+                document.getElementsByTagName("body")[0].style = "background-color:#FFFFFF;"
+                document.getElementsByTagName("body")[0].setAttribute('class','');
                 `}
                 startInLoadingState={true}
                 renderLoading={() => (
                   <ActivityIndicator style={styles.center} />
                 )}
               />
-            </ScrollView>
+            </SafeAreaView>
           </ScrollView>
           <View
             style={[

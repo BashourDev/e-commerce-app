@@ -172,12 +172,11 @@ export default function HomeScene() {
           }}
         />
         {categories.map((category) => (
-          <>
-            <CategoryProducts
-              collectionHandleProp={category.handle}
-              collectionTitle={category.title}
-            />
-          </>
+          <CategoryProducts
+            key={category.id}
+            collectionHandleProp={category.handle}
+            collectionTitle={category.title}
+          />
         ))}
         <Footer />
       </ScrollView>

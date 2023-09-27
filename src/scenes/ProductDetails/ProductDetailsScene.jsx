@@ -311,7 +311,9 @@ export default function ProductDetailsScene() {
                 scrollEnabled
                 style={[styles.container, { minHeight: 350 }]}
                 source={{
-                  uri: "https://sabahstyle.com/products/" + productHandle,
+                  uri: `https://sabahstyle.com/${
+                    i18n.language === "ar" ? "ar/" : ""
+                  }products/${productHandle}`,
                 }}
                 originWhitelist={["*"]}
                 onLoad={() => setLoaded(true)}
@@ -372,11 +374,18 @@ export default function ProductDetailsScene() {
                 document.getElementsByTagName("body")[0].style = "background-color:#FFFFFF;"
                 document.getElementsByTagName("body")[0].setAttribute('class','');
                 `}
-                startInLoadingState={true}
-                renderLoading={() => (
-                  <ActivityIndicator style={styles.center} />
-                )}
+                // startInLoadingState={true}
+                // renderLoading={() => (
+                //   <ActivityIndicator style={styles.center} />
+                // )}
               />
+            </SafeAreaView>
+            <SafeAreaView>
+              {!loaded && (
+                <ActivityIndicator
+                  style={[styles.center, { marginBottom: 24 }]}
+                />
+              )}
             </SafeAreaView>
           </ScrollView>
           <View

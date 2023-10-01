@@ -1,6 +1,6 @@
 import React from "react";
 import { Text } from "../core-ui";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useColumns } from "../helpers/columns";
 import useDefaultCountry from "../hooks/api/useDefaultCountry";
@@ -32,6 +32,12 @@ export default function CategoryProducts({
   let onItemPress = (product) => {
     navigate("ProductDetails", { productHandle: product.handle });
   };
+
+  let onViewAll = () => {
+    navigate("ProductCollection", {
+      collection: { handle: collectionHandle, title: collectionTitle },
+    });
+  };
   let onEndReached = () => {
     if (!isFetchingMore && hasMore) {
       refetch("scroll", {
@@ -52,14 +58,23 @@ export default function CategoryProducts({
   if (collection.length === 0) return <></>;
   return (
     <>
-      <Text
+      <View
         style={[
           styles.subTitle,
-          { textAlign: i18n.language === "en" ? "left" : "right" },
+          {
+            flexDirection: i18n.language === "en" ? "row" : "row-reverse",
+            justifyContent: "space-between",
+          },
+          // { textAlign: i18n.language === "en" ? "left" : "right" },
         ]}
       >
-        {collectionTitle}
-      </Text>
+        <Text>{collectionTitle}</Text>
+        <TouchableOpacity onPress={() => onViewAll()}>
+          <Text style={{ color: COLORS.primaryColor }}>
+            {t("CategoryProducts.View All")}
+          </Text>
+        </TouchableOpacity>
+      </View>
       <ProductList
         data={collection}
         onItemPress={onItemPress}

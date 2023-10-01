@@ -289,5 +289,8 @@
   },
   "Footer": {
     "Motto": "Shop Now!"
+  },
+  "CategoryProducts": {
+    "View All": "View All"
   }
 }

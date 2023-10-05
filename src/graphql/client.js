@@ -33,12 +33,12 @@ import {
   GET_WISHLIST,
 } from "./client/clientQueries";
 import { GET_SHOPPING_CART } from "./client/shoppingCartQueries";
-import { STOREFRONT_ACCESS_TOKEN, STOREFRONT_API_URL } from "../constants/api";
+// import { STOREFRONT_ACCESS_TOKEN, STOREFRONT_API_URL } from "../constants/api";
 
 const cache = new InMemoryCache();
 const DEBUG = true;
 const httpLink = createHttpLink({
-  uri: STOREFRONT_API_URL,
+  uri: "https://e48d9c-2.myshopify.com/api/2023-07/graphql.json",
   fetch: (...pl) => {
     if (!DEBUG) return fetch(...pl);
     const [_, options] = pl;
@@ -51,7 +51,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      "X-Shopify-Storefront-Access-Token": STOREFRONT_ACCESS_TOKEN,
+      "X-Shopify-Storefront-Access-Token": "3ef76e311ecd536258eea458074e2e80",
     },
   };
 });

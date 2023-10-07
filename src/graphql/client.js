@@ -33,10 +33,11 @@ import {
   GET_WISHLIST,
 } from "./client/clientQueries";
 import { GET_SHOPPING_CART } from "./client/shoppingCartQueries";
-import { STOREFRONT_ACCESS_TOKEN, STOREFRONT_API_URL } from "../constants/api";
+// import { STOREFRONT_ACCESS_TOKEN, STOREFRONT_API_URL } from "../constants/api";
+import { STOREFRONT_ACCESS_TOKEN, STOREFRONT_API_URL } from "@env";
 
 const cache = new InMemoryCache();
-const DEBUG = true;
+const DEBUG = false;
 const httpLink = createHttpLink({
   uri: STOREFRONT_API_URL,
   fetch: (...pl) => {

@@ -210,6 +210,7 @@ export default function StackNavigator() {
         name="ProductDetails"
         component={ProductDetailsScene}
         options={({ navigation }) => ({
+          animationEnabled: false,
           title: t("StackNavigator.Product Details"),
           headerRight: () => (
             <HeaderIconButton
@@ -247,7 +248,13 @@ export default function StackNavigator() {
           title: t("StackNavigator.Checkout"),
         })}
       />
-      <Stack.Screen name="WebView" component={WebViewScene} />
+      <Stack.Screen
+        name="WebView"
+        component={WebViewScene}
+        options={({ navigation }) => ({
+          animationEnabled: false,
+        })}
+      />
 
       <Stack.Screen
         name="OrderPlacedConfirmation"

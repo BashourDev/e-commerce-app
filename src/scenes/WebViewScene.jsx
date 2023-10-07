@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
   },
   container: {
     marginVertical: 24,
+    opacity: 0.99,
   },
   center: {
     flex: 1,

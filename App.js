@@ -1,7 +1,7 @@
 // import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { ApolloProvider } from "@apollo/client";
-import { I18nManager, StatusBar } from "react-native";
+import { I18nManager } from "react-native";
 import AppNavigator from "./src/navigation/AppNavigator";
 
 import { CustomTheme } from "./src/constants/theme";
@@ -24,6 +24,7 @@ import { useFonts } from "expo-font";
 //   cache: new InMemoryCache(),
 // });
 import "./i18n";
+import { StatusBar } from "expo-status-bar";
 I18nManager.forceRTL(CustomTheme.isRTL); // experimental
 
 export default function App() {
@@ -39,7 +40,7 @@ export default function App() {
 
   return (
     <ApolloProvider client={client}>
-      <StatusBar barStyle="default" />
+      <StatusBar style="auto" />
       <ThemeProvider theme={CustomTheme}>
         <NetworkProvider>
           <AuthProvider>

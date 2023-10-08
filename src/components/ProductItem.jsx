@@ -62,7 +62,7 @@ export default function ProductItem(props) {
         <DiscountBadge value={discount} containerStyle={styles.discountBox} />
       ) : null}
       <Text
-        numberOfLines={1}
+        numberOfLines={2}
         style={[
           styles.nameText,
           { textAlign: i18n.language === "en" ? "left" : "right" },
@@ -111,14 +111,15 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: FONT_SIZE.small,
     marginBottom: 6,
+    maxWidth: 150,
   },
   priceText: {
     marginRight: 0,
-    fontSize: FONT_SIZE.medium,
+    fontSize: FONT_SIZE.small,
     color: COLORS.primaryColor,
   },
   discountedPrice: {
-    fontSize: FONT_SIZE.medium,
+    fontSize: FONT_SIZE.small,
     color: COLORS.priceGrey,
     textDecorationLine: "line-through",
   },

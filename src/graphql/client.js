@@ -34,11 +34,12 @@ import {
 } from "./client/clientQueries";
 import { GET_SHOPPING_CART } from "./client/shoppingCartQueries";
 // import { STOREFRONT_ACCESS_TOKEN, STOREFRONT_API_URL } from "../constants/api";
+import { STOREFRONT_ACCESS_TOKEN, STOREFRONT_API_URL } from "@env";
 
 const cache = new InMemoryCache();
 const DEBUG = false;
 const httpLink = createHttpLink({
-  uri: process.env.STOREFRONT_API_URL,
+  uri: STOREFRONT_API_URL,
   fetch: (...pl) => {
     if (!DEBUG) return fetch(...pl);
     const [_, options] = pl;
@@ -51,7 +52,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      "X-Shopify-Storefront-Access-Token": process.env.STOREFRONT_ACCESS_TOKEN,
+      "X-Shopify-Storefront-Access-Token": STOREFRONT_ACCESS_TOKEN,
     },
   };
 });

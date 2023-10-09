@@ -16,7 +16,7 @@ export default function WebScene() {
   const { t, i18n } = useTranslation();
   let { navigate, setOptions } = useNavigation();
   let { resetShoppingCart } = useResetCart();
-  if (type !== "payment" && i18n.language === "ar") {
+  if (webUrl && type !== "payment" && i18n.language === "ar") {
     webUrl = webUrl.replace("locale=en", "locale=ar");
   }
   const [webUrlState, setWebUrlState] = useState(webUrl);

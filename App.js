@@ -14,6 +14,7 @@ import {
 } from "react-native-paper";
 import { client } from "./src/graphql/client";
 import { useFonts } from "expo-font";
+import { COLORS } from "./src/constants/colors";
 
 // Initialize Apollo Client
 // const client = new ApolloClient({
@@ -35,7 +36,7 @@ export default function App() {
     "SourceSansPro-SemiBold": require("./assets/fonts/SourceSansPro-SemiBold.ttf"),
   });
   if (!fontsLoaded) {
-    return <ActivityIndicator />;
+    return <ActivityIndicator color={COLORS.primaryColor} />;
   }
 
   return (

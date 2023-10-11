@@ -134,7 +134,8 @@
     "Payment Details": "Payemnt Details"
   },
   "OrderHistoryScene": {
-    "No orders yet": "No orders yet"
+    "No orders yet": "No orders yet",
+    "Please login to view your orders": "Please login to view your orders"
   },
   "ProfileScene": {
     "Edit Profile": "Edit Profile",

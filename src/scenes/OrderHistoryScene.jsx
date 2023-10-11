@@ -9,10 +9,12 @@ import { Text } from "../core-ui";
 import { useOrderHistory } from "../hooks/api/useOrderHistory";
 import useDefaultCountry from "../hooks/api/useDefaultCountry";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../helpers/useAuth";
 
 export default function OrderHistoryScene() {
   let { navigate } = useNavigation();
   const { t, i18n } = useTranslation();
+  let { authToken } = useAuth();
   let {
     params: { customerAccessToken },
   } = useRoute();
@@ -66,7 +68,13 @@ export default function OrderHistoryScene() {
       keyExtractor={(item) => item.orderID}
       contentContainerStyle={styles.contentContainer}
       ListEmptyComponent={() => {
-        return hasMore ? null : (
+        return !authToken ? (
+          <View style={styles.center}>
+            <Text>
+              {t("OrderHistoryScene.Please login to view your orders")}
+            </Text>
+          </View>
+        ) : hasMore ? null : (
           <View style={styles.center}>
             <Text>{t("OrderHistoryScene.No orders yet")}</Text>
           </View>

@@ -134,7 +134,8 @@
     "Payment Details": "تفاصيل الدفع"
   },
   "OrderHistoryScene": {
-    "No orders yet": "لا توجد طلبات حتى الآن"
+    "No orders yet": "لا توجد طلبات حتى الآن",
+    "Please login to view your orders": "الرجاء تسجيل الدخول لعرض الطلبات"
   },
   "ProfileScene": {
     "Edit Profile": "تعديل الملف الشخصي",

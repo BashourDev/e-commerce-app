@@ -44,6 +44,7 @@ function HeaderIconButton(props) {
           icon={icon}
           onPress={onPress}
           color={COLORS.primaryColor}
+          iconColor={COLORS.primaryColor}
           style={styles.headerButton}
         />
         <View style={styles.cartBadge}>
@@ -58,6 +59,7 @@ function HeaderIconButton(props) {
       icon={icon}
       onPress={onPress}
       color={COLORS.primaryColor}
+      iconColor={COLORS.primaryColor}
       style={styles.headerButton}
     />
   );
@@ -121,7 +123,8 @@ export default function StackNavigator() {
                 );
               },
               headerStyle: {
-                shadowColor: COLORS.transparent,
+                shadowColor: COLORS.black,
+                backgroundColor: "#000",
                 elevation: 0,
               },
             };

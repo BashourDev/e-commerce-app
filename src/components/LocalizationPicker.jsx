@@ -108,6 +108,7 @@ export default function CurrencyPicker() {
           setPreferredLng(newLanguage);
         }}
         weight="medium"
+        style={{ color: COLORS.primaryColor }}
       >
         {i18next.language === "en" ? "AR" : "EN"}
       </Text>

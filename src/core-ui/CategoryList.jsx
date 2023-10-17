@@ -27,7 +27,7 @@ export default function CategoryList(props) {
       showsHorizontalScrollIndicator={false}
       horizontal={true}
       data={categories}
-      style={i18n.language === "ar" && { flexDirection: "row-reverse" }}
+      inverted={i18n.language === "ar"}
       renderItem={({ item, index }) => (
         <TouchableOpacity
           style={[
@@ -49,11 +49,7 @@ export default function CategoryList(props) {
             style={styles.categoryItemContainer}
           >
             <LinearGradient
-              colors={[
-                "transparent",
-                "rgba(0, 0, 0, 0.5)",
-                "rgba(0, 0, 0, 0.8)",
-              ]}
+              colors={["rgba(0, 0, 0, 0.7)", "rgba(0, 0, 0, 0.7)"]}
               style={{ minWidth: "100%", alignItems: "center" }}
             >
               <Text
@@ -88,7 +84,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   borderRadius: {
-    borderRadius: 5,
     overflow: "hidden",
   },
   color: {

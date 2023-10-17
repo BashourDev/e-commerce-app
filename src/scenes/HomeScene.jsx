@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 
 import { useNavigation } from "@react-navigation/native";
 
 import { ErrorPage, ProductList, SearchModal } from "../components";
 import { COLORS } from "../constants/colors";
-import { Carousel, SearchInput, Text } from "../core-ui";
+import { Carousel, CategoryList, SearchInput, Text } from "../core-ui";
 // import { carouselData } from '../fixtures/carousel';
 import { useColumns } from "../helpers/columns";
 import { ScreenSize, useDimensions } from "../helpers/dimensions";
@@ -16,6 +22,7 @@ import useDefaultCountry from "../hooks/api/useDefaultCountry";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import CategoryProducts from "../components/CategoryProducts";
+import WebView from "react-native-webview";
 
 export default function HomeScene() {
   let { navigate } = useNavigation();
@@ -24,6 +31,7 @@ export default function HomeScene() {
   let first = numColumns * 6;
   let { isConnected } = useNetwork();
   let [isSearchModalVisible, setSearchModalVisible] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const { t, i18n } = useTranslation();
   let {
     data: { countryCode },
@@ -93,7 +101,7 @@ export default function HomeScene() {
   }
 
   let renderHeaderComponent = () => (
-    <View style={i18n.language === "ar" && { transform: [{ scaleX: -1 }] }}>
+    <View style={{ marginBottom: 10 }}>
       {/* <Carousel
         data={carouselData}
         height={screenSize === ScreenSize.Small ? 180 : 384}
@@ -117,14 +125,14 @@ export default function HomeScene() {
           }}
         />
       </View>
-      <Text
+      {/* <Text
         style={[
           styles.subTitle,
           { textAlign: i18n.language === "en" ? "left" : "right" },
         ]}
       >
         {t("HomeScene.Featured Products")}
-      </Text>
+      </Text> */}
     </View>
   );
 
@@ -152,6 +160,76 @@ export default function HomeScene() {
       />
 
       <ScrollView>
+        <SafeAreaView style={[{ flex: 1 }, !loaded && { display: "none" }]}>
+          <WebView
+            javaScriptEnabled
+            style={[{ minHeight: 630 }]}
+            source={{
+              uri: `https://sabahstyle.com/${
+                i18n.language === "ar" ? "ar/" : ""
+              }`,
+            }}
+            originWhitelist={["*"]}
+            onLoad={() => setLoaded(true)}
+            injectedJavaScript={`
+                // remove all elements but MAIN from the body
+                let bodyChildren = document.getElementsByTagName("body")[0].children;
+                while(bodyChildren.length > 1){
+                    for(let i = 0; i < bodyChildren.length; i++){
+                        if(bodyChildren[i].tagName !== "MAIN") bodyChildren[i].remove();
+                    }
+                    bodyChildren = document.getElementsByTagName("body")[0].children;
+                }
+
+                // find the section to keep
+                let currentDocument = document.getElementsByTagName("slideshow-component")[0];
+                let keepId = "";
+                let count = 0;
+                while(keepId === "" && count < 100){
+                  currentDocument = currentDocument.parentElement;
+                  if(currentDocument && currentDocument.tagName === 'SECTION'){
+                    keepId = currentDocument.id;
+                  }
+                  count++;
+                }
+
+                // remove all but the required sections from main's children
+                let mainChildren = document.getElementsByTagName("main")[0].children;
+                while(mainChildren.length > 1){
+                    for(let i = 0; i < mainChildren.length; i++){
+                        if(mainChildren[i].id !== keepId) mainChildren[i].remove();
+                    }
+                    mainChildren = document.getElementsByTagName("main")[0].children;
+                }
+
+                // remove all <a> tags
+                let aTags = document.getElementsByTagName("a");
+                while(aTags.length > 0){
+                    for(let i = 0; i < aTags.length; i++){
+                        aTags[i].remove();
+                    }
+                    aTags = document.getElementsByTagName("a");
+                }
+                document.getElementsByTagName("body")[0].style = "background-color:#FFFFFF;"
+                document.getElementsByTagName("body")[0].setAttribute('class','');
+                `}
+            // startInLoadingState={true}
+            // renderLoading={() => (
+            //   <ActivityIndicator style={styles.center} />
+            // )}
+          />
+        </SafeAreaView>
+        <SafeAreaView>
+          {!loaded && (
+            <ActivityIndicator
+              style={[
+                { flex: 1, justifyContent: "flex-start", alignItems: "center" },
+                { marginBottom: 24 },
+              ]}
+            />
+          )}
+        </SafeAreaView>
+        {renderHeaderComponent()}
         <Text
           style={[
             styles.subTitle,

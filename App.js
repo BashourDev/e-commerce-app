@@ -1,5 +1,12 @@
 // import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  ImageBackground,
+  Modal,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { ApolloProvider } from "@apollo/client";
 import { I18nManager } from "react-native";
 import AppNavigator from "./src/navigation/AppNavigator";
@@ -10,6 +17,7 @@ import { Provider as AuthProvider } from "./src/helpers/useAuth";
 import { Provider as NetworkProvider } from "./src/helpers/useNetwork";
 import {
   ActivityIndicator,
+  IconButton,
   Provider as ThemeProvider,
 } from "react-native-paper";
 import { client } from "./src/graphql/client";
@@ -26,6 +34,7 @@ import { COLORS } from "./src/constants/colors";
 // });
 import "./i18n";
 import { StatusBar } from "expo-status-bar";
+import { useEffect, useState } from "react";
 I18nManager.forceRTL(CustomTheme.isRTL); // experimental
 
 export default function App() {
@@ -35,9 +44,17 @@ export default function App() {
     "SourceSansPro-Bold": require("./assets/fonts/SourceSansPro-Bold.ttf"),
     "SourceSansPro-SemiBold": require("./assets/fonts/SourceSansPro-SemiBold.ttf"),
   });
+  const [splashOn, setSplashOn] = useState(true);
   if (!fontsLoaded) {
     return <ActivityIndicator color={COLORS.primaryColor} />;
   }
+
+  // useEffect(() => {
+  //   let to = setTimeout(() => {
+  //     setSplashOn(false);
+  //   }, 5000);
+  //   return () => clearTimeout(to);
+  // }, []);
 
   return (
     <ApolloProvider client={client}>
@@ -46,6 +63,26 @@ export default function App() {
         <NetworkProvider>
           <AuthProvider>
             <AppNavigator />
+            <Modal visible={splashOn}>
+              <ImageBackground
+                source={{
+                  uri: "https://cdn.shopify.com/s/files/1/0821/2991/2109/files/SS-Logo1.jpg",
+                }}
+                onLoad={() => {
+                  setTimeout(() => {
+                    setSplashOn(false);
+                  }, 4000);
+                }}
+                style={{ height: "100%" }}
+                resizeMode="contain"
+              >
+                <IconButton
+                  icon={"close"}
+                  style={{ zIndex: 50 }}
+                  onPress={() => setSplashOn(false)}
+                />
+              </ImageBackground>
+            </Modal>
           </AuthProvider>
         </NetworkProvider>
       </ThemeProvider>

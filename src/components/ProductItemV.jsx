@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
   },
   image: {
     aspectRatio: 0.85,
-    borderRadius: 5,
   },
   imageContainer: {
     marginBottom: 12,

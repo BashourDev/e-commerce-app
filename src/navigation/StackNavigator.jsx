@@ -123,7 +123,7 @@ export default function StackNavigator() {
                 );
               },
               headerStyle: {
-                shadowColor: COLORS.black,
+                shadowColor: COLORS.transparent,
                 backgroundColor: "#000",
                 elevation: 0,
               },
@@ -131,13 +131,24 @@ export default function StackNavigator() {
           } else if (tabScene === "WishlistTab") {
             return {
               headerLeft: () => null,
-              title: t("StackNavigator.Wishlist"),
+              title: (
+                <Text style={{ color: COLORS.primaryColor }}>
+                  {t("StackNavigator.Wishlist")}
+                </Text>
+              ),
+              headerStyle: {
+                backgroundColor: "#000",
+              },
             };
           } else {
             return authToken
               ? {
                   headerLeft: () => null,
-                  title: t("StackNavigator.My Profile"),
+                  title: (
+                    <Text style={{ color: COLORS.primaryColor }}>
+                      {t("StackNavigator.My Profile")}
+                    </Text>
+                  ),
                 }
               : {
                   headerLeft: () =>
@@ -147,9 +158,14 @@ export default function StackNavigator() {
                         onPress={() => navigation.navigate("HomeTab")}
                       />
                     ),
-                  title: t("StackNavigator.My Profile"),
+                  title: (
+                    <Text style={{ color: COLORS.primaryColor }}>
+                      {t("StackNavigator.My Profile")}
+                    </Text>
+                  ),
                   headerStyle: {
                     shadowColor: COLORS.transparent,
+                    backgroundColor: "#000",
                     elevation: 0,
                   },
                 };

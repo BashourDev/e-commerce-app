@@ -39,7 +39,7 @@ import { STOREFRONT_ACCESS_TOKEN, STOREFRONT_API_URL } from "@env";
 const cache = new InMemoryCache();
 const DEBUG = false;
 const httpLink = createHttpLink({
-  uri: STOREFRONT_API_URL,
+  uri: "https://e48d9c-2.myshopify.com/api/2023-07/graphql.json",
   fetch: (...pl) => {
     if (!DEBUG) return fetch(...pl);
     const [_, options] = pl;
@@ -52,7 +52,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      "X-Shopify-Storefront-Access-Token": STOREFRONT_ACCESS_TOKEN,
+      "X-Shopify-Storefront-Access-Token": "3ef76e311ecd536258eea458074e2e80",
     },
   };
 });

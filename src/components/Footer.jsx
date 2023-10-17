@@ -36,9 +36,24 @@ const Footer = () => {
           <Text style={styles.motto}>{t("Footer.Motto")}</Text>
         </View>
         <View style={styles.socialContainer}>
-          <IconButton icon={"facebook"} style={styles.socialIcon} size={20} />
-          <IconButton icon={"instagram"} style={styles.socialIcon} size={20} />
-          <IconButton icon={"twitter"} style={styles.socialIcon} size={20} />
+          <IconButton
+            icon={"facebook"}
+            style={styles.socialIcon}
+            size={20}
+            iconColor={COLORS.primaryColor}
+          />
+          <IconButton
+            icon={"instagram"}
+            style={styles.socialIcon}
+            size={20}
+            iconColor={COLORS.primaryColor}
+          />
+          <IconButton
+            icon={"twitter"}
+            style={styles.socialIcon}
+            size={20}
+            iconColor={COLORS.primaryColor}
+          />
         </View>
       </View>
       <Text style={styles.copyright}>
@@ -54,7 +69,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 10,
     paddingHorizontal: 10,
-    backgroundColor: COLORS.primaryColor,
+    backgroundColor: "#000",
   },
   upperContainer: {
     display: "flex",
@@ -78,12 +93,12 @@ const styles = StyleSheet.create({
   },
   motto: {
     fontSize: 12,
-    color: "#181818",
+    color: COLORS.primaryColor,
     paddingTop: 2,
   },
   copyright: {
     fontSize: 10,
-    color: "#181818",
+    color: COLORS.primaryColor,
   },
 });
 

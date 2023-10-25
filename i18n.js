@@ -23,25 +23,25 @@ const getPreferredLng = async () => {
     setPreferredLng(preferredLng);
   }
 };
-// getPreferredLng().then(() => {
-//   i18next.use(initReactI18next).init({
-//     fallbackLng: "en",
-//     lng: preferredLng,
-//     // fallbackLng: "ar",
-//     // lng: "ar",
-//     resources: languageResoureces,
-//     compatibilityJSON: "v3",
-//   });
-// });
-
-i18next.use(initReactI18next).init({
-  fallbackLng: "en",
-  lng: preferredLng,
-  // fallbackLng: "ar",
-  // lng: "ar",
-  resources: languageResoureces,
-  compatibilityJSON: "v3",
+getPreferredLng().then(() => {
+  i18next.use(initReactI18next).init({
+    fallbackLng: "en",
+    lng: preferredLng,
+    // fallbackLng: "ar",
+    // lng: "ar",
+    resources: languageResoureces,
+    compatibilityJSON: "v3",
+  });
 });
+
+// i18next.use(initReactI18next).init({
+//   fallbackLng: "en",
+//   lng: preferredLng,
+//   // fallbackLng: "ar",
+//   // lng: "ar",
+//   resources: languageResoureces,
+//   compatibilityJSON: "v3",
+// });
 export const setPreferredLng = async (value) => {
   await SecureStore.setItemAsync("lng", value);
 };

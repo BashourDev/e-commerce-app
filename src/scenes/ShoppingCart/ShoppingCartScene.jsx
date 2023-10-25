@@ -424,6 +424,20 @@ export default function ShoppingCartScene() {
             ]}
           >
             {renderCartView()}
+            <SafeAreaView style={[styles.flex]}>
+              <WebView
+                javaScriptEnabled
+                nestedScrollEnabled
+                scrollEnabled
+                style={[styles.container, { minHeight: 350 }]}
+                source={{
+                  uri: `https://sabahstyle.com/${
+                    i18n.language === "ar" ? "ar/" : ""
+                  }cart`,
+                }}
+                originWhitelist={["*"]}
+              />
+            </SafeAreaView>
             <View style={styles.verticalPaymentView}>
               {renderPaymentView()}
               <BottomButton

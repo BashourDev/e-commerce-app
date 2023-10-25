@@ -37,7 +37,7 @@ import { GET_SHOPPING_CART } from "./client/shoppingCartQueries";
 import { STOREFRONT_ACCESS_TOKEN, STOREFRONT_API_URL } from "@env";
 
 const cache = new InMemoryCache();
-const DEBUG = false;
+const DEBUG = true;
 const httpLink = createHttpLink({
   uri: process.env.STOREFRONT_API_URL || STOREFRONT_API_URL,
   fetch: (...pl) => {

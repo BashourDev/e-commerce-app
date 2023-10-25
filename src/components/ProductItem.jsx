@@ -9,10 +9,11 @@ import {
 
 import { COLORS } from "../constants/colors";
 import { FONT_SIZE } from "../constants/fonts";
-import { DiscountBadge, Text } from "../core-ui";
+import { Button, DiscountBadge, Text } from "../core-ui";
 import { priceAfterDiscount } from "../helpers/priceAfterDiscount";
 import useCurrencyFormatter from "../hooks/api/useCurrencyFormatter";
 import { useTranslation } from "react-i18next";
+import { defaultButton, defaultButtonLabel } from "../constants/theme";
 
 export default function ProductItem(props) {
   let {
@@ -24,6 +25,14 @@ export default function ProductItem(props) {
   let afterDiscount = priceAfterDiscount(price, discount || 0);
   let formatCurrency = useCurrencyFormatter();
   const { t, i18n } = useTranslation();
+
+  let buttonLabel = () => {
+    if (availableForSale) {
+      return t("BottomActionBar.Add to Cart");
+    }
+    return t("BottomActionBar.Out of Stock");
+  };
+
   let renderImage = () => {
     return availableForSale ? (
       <View style={styles.imageContainer}>
@@ -85,6 +94,25 @@ export default function ProductItem(props) {
           <Text style={styles.discountedPrice}>{formatCurrency(price)}</Text>
         ) : null}
       </View>
+      <View style={styles.addToBagContainer}>
+        <Button
+          style={[
+            defaultButton,
+            styles.flex,
+            !availableForSale && styles.disabledButton,
+            styles.addToBagBtn,
+          ]}
+          labelStyle={[
+            defaultButtonLabel,
+            !availableForSale && styles.disabledLabel,
+            styles.addToBagLbl,
+          ]}
+          disabled={!availableForSale}
+          onPress={onPress}
+        >
+          {buttonLabel()}
+        </Button>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -136,5 +164,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
+  },
+  flex: {
+    flex: 1,
+    justifyContent: "center",
+    alignContent: "center",
+  },
+  disabledButton: {
+    backgroundColor: COLORS.black,
+    opacity: 0.2,
+  },
+  disabledLabel: {
+    color: COLORS.white,
+  },
+  addToBagContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
+  addToBagBtn: {
+    maxHeight: 35,
+    marginTop: 2,
+  },
+  addToBagLbl: {
+    fontSize: 10,
   },
 });

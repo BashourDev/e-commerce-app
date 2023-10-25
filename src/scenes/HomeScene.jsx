@@ -230,12 +230,7 @@ export default function HomeScene() {
           )}
         </SafeAreaView>
         {renderHeaderComponent()}
-        <Text
-          style={[
-            styles.subTitle,
-            { textAlign: i18n.language === "en" ? "left" : "right" },
-          ]}
-        >
+        <Text weight="bold" style={[styles.subTitle, { textAlign: "center" }]}>
           {t("HomeScene.Featured Products")}
         </Text>
         <ProductList

@@ -68,8 +68,9 @@ export default function CategoryProducts({
           // { textAlign: i18n.language === "en" ? "left" : "right" },
         ]}
       >
-        <Text>{collectionTitle}</Text>
-        <TouchableOpacity onPress={() => onViewAll()}>
+        <View style={{ width: 20 }}></View>
+        <Text weight="bold">{collectionTitle}</Text>
+        <TouchableOpacity onPress={() => onViewAll()} style={{ width: 20 }}>
           <Text style={{ color: COLORS.primaryColor }}>
             {t("CategoryProducts.View All")}
           </Text>

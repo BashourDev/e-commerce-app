@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const CUSTOMER_REGISTER = gql`
   mutation CustomerRegister(
@@ -40,6 +40,10 @@ export const CUSTOMER_CREATE_TOKEN = gql`
       customerAccessToken {
         accessToken
         expiresAt
+      }
+      customerUserErrors {
+        field
+        message
       }
     }
   }

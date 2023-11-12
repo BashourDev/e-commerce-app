@@ -49,6 +49,7 @@ export default function RichRadioGroup(props) {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.categoryContainer}
+        overScrollMode="never"
       >
         {values.map((item, index) => {
           let isItemSelected =

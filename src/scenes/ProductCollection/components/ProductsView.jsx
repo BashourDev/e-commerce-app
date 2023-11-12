@@ -48,7 +48,7 @@ export default function ProductsView(props) {
   const { t, i18n } = useTranslation();
   let SideBarMenu = () => {
     return (
-      <ScrollView style={styles.sideBarMenu}>
+      <ScrollView style={styles.sideBarMenu} overScrollMode="never">
         <View style={[styles.menuContainer, styles.menuBorder]}>
           <Text style={styles.menuTitle}>{t("ProductView.Sort By")}</Text>
           <SortRadioGroup

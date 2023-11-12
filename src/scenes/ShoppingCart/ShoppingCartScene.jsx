@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import { cartPlaceholder } from "../../../assets/images";
 import { ErrorPage, OrderItem } from "../../components";
 import { COLORS } from "../../constants/colors";
-import { KeyboardAvoidingView, Text, Toast } from "../../core-ui";
+import { Button, KeyboardAvoidingView, Text, Toast } from "../../core-ui";
 import { ScreenSize, useDimensions } from "../../helpers/dimensions";
 import { mapToLineItems } from "../../helpers/mapToLineItems.js";
 import { useAuth } from "../../helpers/useAuth";
@@ -35,6 +35,9 @@ import useDefaultCountry from "../../hooks/api/useDefaultCountry";
 
 import { useTranslation } from "react-i18next";
 import { CheckoutErrorCode } from "../../constants/values";
+import WebView from "react-native-webview";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import * as Location from "expo-location";
 
 function extractDataCheckout(checkout) {
   let {
@@ -71,6 +74,7 @@ export default function ShoppingCartScene() {
   let { screenSize } = useDimensions();
   let { navigate } = useNavigation();
   let shoppingCartItems = [];
+  const [shoppingCartItemsState, setshoppingCartItemsState] = useState([]);
   let [cartData, setCartData] = useState({
     id: "",
     lineItemsPrice: 0,
@@ -83,6 +87,13 @@ export default function ShoppingCartScene() {
   let [voucherCode, setVoucherCode] = useState("");
   let [isToastVisible, setIsToastVisible] = useState(false);
   let [isVoucherCodeValid, setIsVoucherCodeValid] = useState(true);
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const [initialRegion, setInitialRegion] = useState({
+    latitude: 25.2,
+    longitude: 55.26,
+    latitudeDelta: 0.005,
+    longitudeDelta: 0.005,
+  });
   let {
     data: { countryCode, currencyCode },
   } = useDefaultCountry();
@@ -90,6 +101,29 @@ export default function ShoppingCartScene() {
   let setVoucherCodeValue = (value) => {
     setVoucherCode(value);
   };
+
+  useEffect(() => {
+    const getLocation = async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        console.log("Permission to access location was denied");
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      // setCurrentLocation(location.coords);
+      console.log("Location", location);
+
+      setInitialRegion({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+      });
+    };
+
+    getLocation();
+  }, []);
 
   let { shoppingCartDiscountApply, loading: DiscountCodeApplyLoading } =
     useCheckoutDiscountApply({
@@ -161,6 +195,7 @@ export default function ShoppingCartScene() {
     shoppingCartItems = newCartData.lineItems.map(({ variantID, quantity }) => {
       return { variantId: variantID, quantity };
     });
+    setshoppingCartItemsState(shoppingCartItems);
     setShoppingCart({ variables: { items: shoppingCartItems, id: cartID } });
     shoppingCartReplaceItems({
       variables: {
@@ -181,6 +216,7 @@ export default function ShoppingCartScene() {
       .map(({ variantID, quantity }) => {
         return { variantId: variantID, quantity };
       });
+    setshoppingCartItemsState(shoppingCartItems);
     await shoppingCartReplaceItems({
       variables: {
         lineItems: shoppingCartItems,
@@ -214,6 +250,7 @@ export default function ShoppingCartScene() {
             return { variantId, quantity };
           }
         );
+        setshoppingCartItemsState(shoppingCartItems);
         await shoppingCartDiscountRemove({
           variables: { checkoutId: shoppingCart.id },
         });
@@ -244,7 +281,8 @@ export default function ShoppingCartScene() {
     fetchPolicy: "no-cache",
     onCompleted: async ({ checkoutLineItemsReplace }) => {
       if (checkoutLineItemsReplace && checkoutLineItemsReplace.checkout) {
-        let shoppingCartItems =
+        // changed shoppingCartItems to global definition
+        shoppingCartItems =
           checkoutLineItemsReplace.checkout.lineItems.edges.map(({ node }) => {
             let { variant, quantity } = node;
             let variantId = variant ? variant.id : "";
@@ -253,6 +291,8 @@ export default function ShoppingCartScene() {
               variantId,
             };
           });
+        setshoppingCartItemsState(shoppingCartItems);
+        console.log("shoppingCartItems Replace", shoppingCartItems);
 
         if (checkoutLineItemsReplace.checkout.currencyCode !== currencyCode) {
           await createCheckout({
@@ -276,6 +316,8 @@ export default function ShoppingCartScene() {
   });
 
   let { shoppingCartCustomerAssociate } = useCheckoutCustomerAssociate();
+  const [checkoutLoadingCompleted, setCheckoutLoadingCompleted] =
+    useState(true);
 
   let {
     createCheckout,
@@ -288,6 +330,7 @@ export default function ShoppingCartScene() {
       language: i18n.language.toUpperCase(),
     },
     onCompleted: async ({ checkoutCreate }) => {
+      console.log("On Complete Before");
       if (checkoutCreate && checkoutCreate.checkout) {
         let { id } = checkoutCreate.checkout;
         setCartID(id);
@@ -298,9 +341,11 @@ export default function ShoppingCartScene() {
         });
         setFirstLoading(false);
       }
+      setCheckoutLoadingCompleted(true);
     },
     onError: () => {
       setFirstLoading(false);
+      console.log("Checkout Error");
     },
   });
 
@@ -401,6 +446,7 @@ export default function ShoppingCartScene() {
             style={styles.flex}
             contentContainerStyle={styles.horizontalCart}
             contentInsetAdjustmentBehavior="automatic"
+            overScrollMode="never"
           >
             {renderCartView()}
           </ScrollView>
@@ -416,6 +462,7 @@ export default function ShoppingCartScene() {
         <KeyboardAvoidingView style={styles.flex}>
           <ScrollView
             style={styles.flex}
+            overScrollMode="never"
             contentContainerStyle={[
               screenSize === ScreenSize.Small
                 ? styles.scrollContentSmall
@@ -425,24 +472,90 @@ export default function ShoppingCartScene() {
           >
             {renderCartView()}
             <SafeAreaView style={[styles.flex]}>
-              <WebView
-                javaScriptEnabled
-                nestedScrollEnabled
-                scrollEnabled
-                style={[styles.container, { minHeight: 350 }]}
-                source={{
-                  uri: `https://sabahstyle.com/${
-                    i18n.language === "ar" ? "ar/" : ""
-                  }cart`,
-                }}
-                originWhitelist={["*"]}
-              />
+              {/* <MapView
+                style={{ width: "100%", height: "100%" }}
+                provider={PROVIDER_GOOGLE}
+              /> */}
+
+              {initialRegion && (
+                <>
+                  <Text style={{ marginBottom: 3, fontWeight: "bold" }}>
+                    Select Delivery Location (Optional)
+                  </Text>
+                  <MapView
+                    style={{ width: "100%", height: "100%" }}
+                    provider={PROVIDER_GOOGLE}
+                    region={initialRegion}
+                    onPress={async (coordinaterr) => {
+                      console.log(
+                        "Coooooords",
+                        coordinaterr.nativeEvent.coordinate
+                      );
+
+                      setCurrentLocation(coordinaterr.nativeEvent.coordinate);
+                    }}
+                  >
+                    {currentLocation && (
+                      <Marker
+                        coordinate={{
+                          latitude: currentLocation.latitude,
+                          longitude: currentLocation.longitude,
+                        }}
+                        title="Your Location"
+                      />
+                    )}
+                  </MapView>
+                  {currentLocation && (
+                    <Button
+                      onPress={async () => {
+                        if (currentLocation) {
+                          setCheckoutLoadingCompleted(false);
+                          console.log("CO Current Location 2", currentLocation);
+                          console.log(
+                            "Current Cart Items",
+                            JSON.stringify(shoppingCartItemsState)
+                          );
+                          await createCheckout({
+                            variables: {
+                              checkoutCreateInput: {
+                                lineItems: shoppingCartItemsState,
+                                // note: `Link To Map https://www.google.com/maps/search/?api=1&query=${coordinaterr.nativeEvent.coordinate.latitude},${coordinaterr.nativeEvent.coordinate.longitude}`,
+                                customAttributes: [
+                                  {
+                                    key: "Link To Map",
+                                    value: `https://www.google.com/maps/search/?api=1&query=${currentLocation.latitude},${currentLocation.longitude}`,
+                                  },
+                                  {
+                                    key: "Latitude",
+                                    value: String(currentLocation.latitude),
+                                  },
+                                  {
+                                    key: "Longitude",
+                                    value: String(currentLocation.longitude),
+                                  },
+                                ],
+                              },
+                              country: countryCode,
+                              language: i18n.language.toUpperCase(),
+                            },
+                          });
+                        }
+                      }}
+                    >
+                      Save Location
+                    </Button>
+                  )}
+                </>
+              )}
             </SafeAreaView>
             <View style={styles.verticalPaymentView}>
               {renderPaymentView()}
+              {/* <Text>{`${currentLocation?.latitude} ${currentLocation?.longitude}`}</Text> */}
               <BottomButton
                 label={t("ShoppingCartScene.Checkout")}
-                onPressAction={() => navigate("Checkout", { cartData })}
+                onPressAction={() => {
+                  navigate("Checkout", { cartData });
+                }}
               />
             </View>
           </ScrollView>

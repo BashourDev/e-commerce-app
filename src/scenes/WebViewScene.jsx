@@ -8,6 +8,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { Text } from "../core-ui";
 import { useResetCart } from "../hooks/api/useShoppingCart";
 import { useTranslation } from "react-i18next";
+import OrderPlacedConfirmation from "./OrderPlacedConfirmationScene";
 
 export default function WebScene() {
   let {
@@ -16,6 +17,7 @@ export default function WebScene() {
   const { t, i18n } = useTranslation();
   let { navigate, setOptions } = useNavigation();
   let { resetShoppingCart } = useResetCart();
+  const [thankYou, setThankYou] = useState(false);
   if (webUrl && type !== "payment" && i18n.language === "ar") {
     webUrl = webUrl.replace("locale=en", "locale=ar");
   }
@@ -56,8 +58,9 @@ export default function WebScene() {
         }}
         onShouldStartLoadWithRequest={({ url }) => {
           if (url.endsWith("thank_you")) {
+            // setThankYou(true);
             resetShoppingCart();
-            navigate("OrderPlacedConfirmation", { orderNumber: "" });
+            navigate("OrderPlacedConfirmation", { orderNumber: "", url: url });
             return false;
           }
           return true;
@@ -65,6 +68,7 @@ export default function WebScene() {
         startInLoadingState={true}
         renderLoading={() => <ActivityIndicator style={styles.center} />}
       />
+      {/* {thankYou && <OrderPlacedConfirmation />} */}
     </SafeAreaView>
   ) : (
     <SafeAreaView style={styles.text}>

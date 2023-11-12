@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "SabahStyle",
-    "slug": "SabahStyle",
+    "name": "Sabah Style",
+    "slug": "sabahstyle",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,23 +14,34 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.bashour.SabahStyle"
+      "bundleIdentifier": "com.bashourdev.sabahstyle"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.bashour.SabahStyle",
-      "versionCode": 2
+      "package": "com.bashourdev.sabahstyle",
+      "versionCode": 2,
+      "config": {
+        "googleMaps": {}
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-localization"],
+    "plugins": [
+      "expo-localization",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ]
+    ],
     "extra": {
       "eas": {
-        "projectId": "b93300f4-c965-45fe-9ca8-767cf24da419"
+        "projectId": "f30d3b31-22ba-4660-807c-ae8bbabe9076"
       }
     }
   }

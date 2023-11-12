@@ -179,7 +179,7 @@ export default function RegisterScene() {
         </ModalBottomSheet>
       </Portal>
       <KeyboardAvoidingView keyboardVerticalOffset={bottomButtonHeight}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} overScrollMode="never">
           <TextInput
             autoFocus={false}
             clearTextOnFocus={false}

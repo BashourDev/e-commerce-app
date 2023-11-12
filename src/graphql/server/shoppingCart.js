@@ -15,6 +15,10 @@ export const SHOPPING_CART_CREATE = gql`
           amount
         }
         id
+        customAttributes {
+          key
+          value
+        }
         currencyCode
         subtotalPriceV2 {
           amount

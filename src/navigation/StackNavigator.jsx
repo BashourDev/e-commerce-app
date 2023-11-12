@@ -78,7 +78,7 @@ export default function StackNavigator() {
 
   return (
     <Stack.Navigator
-      screenOptions={headerOptions}
+      screenOptions={{ ...headerOptions, animationEnabled: false }}
       headerMode="screen"
       initialRouteName={"Home"}
     >
@@ -250,6 +250,7 @@ export default function StackNavigator() {
         name="ProductCollection"
         component={ProductCollectionScene}
         options={({ route }) => ({
+          animationEnabled: false,
           title: route.params.collection.title,
         })}
       />

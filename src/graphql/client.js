@@ -37,7 +37,7 @@ import { GET_SHOPPING_CART } from "./client/shoppingCartQueries";
 import { STOREFRONT_ACCESS_TOKEN, STOREFRONT_API_URL } from "@env";
 
 const cache = new InMemoryCache();
-const DEBUG = true;
+const DEBUG = false;
 const httpLink = createHttpLink({
   uri: process.env.STOREFRONT_API_URL || STOREFRONT_API_URL,
   fetch: (...pl) => {
@@ -95,7 +95,8 @@ function setupInitialCacheData() {
 const responseLogger = new ApolloLink((operation, forward) => {
   return forward(operation).map((result) => {
     // if (DEBUG) console.info("RES:", operation.operationName, result.data);
-    if (DEBUG) console.info("RES:", operation.operationName, result);
+    if (DEBUG)
+      console.info("RES:", operation.operationName, JSON.stringify(result));
     return result;
   });
 });

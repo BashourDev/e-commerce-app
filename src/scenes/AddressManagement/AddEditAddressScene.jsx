@@ -236,6 +236,7 @@ export default function AddEditAddressScene() {
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
+        overScrollMode="never"
       >
         <TextInput
           onSubmitEditing={() => {

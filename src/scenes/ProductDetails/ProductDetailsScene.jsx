@@ -271,7 +271,7 @@ export default function ProductDetailsScene() {
           <ImageList product={productDetails} onImagePress={onPressImage} />
         )}
         <View style={styles.flex}>
-          <ScrollView style={styles.flex}>
+          <ScrollView style={styles.flex} overScrollMode="never">
             {!isLandscape && (
               <ImageList product={productDetails} onImagePress={onPressImage} />
             )}

@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { successImage } from "../../assets/images";
 import { ErrorPage } from "../components";
@@ -17,8 +17,12 @@ import { useAuth } from "../helpers/useAuth";
 import { useOrderHistory } from "../hooks/api/useOrderHistory";
 import useDefaultCountry from "../hooks/api/useDefaultCountry";
 import { useTranslation } from "react-i18next";
+import WebView from "react-native-webview";
 
 export default function OrderPlacedConfirmation() {
+  let {
+    params: { url },
+  } = useRoute();
   let { reset, navigate } = useNavigation();
   let { authToken } = useAuth();
   let first = 10;
@@ -53,7 +57,7 @@ export default function OrderPlacedConfirmation() {
     <ActivityIndicator style={styles.centered} />
   ) : (
     <SafeAreaView style={styles.scene}>
-      <View style={styles.textView}>
+      {/* <View style={styles.textView}>
         <Image source={successImage} style={styles.image} />
         <Text style={styles.purchase}>
           {t(
@@ -65,41 +69,51 @@ export default function OrderPlacedConfirmation() {
               "OrderPlacedConfimationScene.has been received and will be processed shortly."
             )}
         </Text>
+      </View> */}
+
+      <WebView
+        style={styles.container}
+        source={{ uri: url }}
+        originWhitelist={["*"]}
+        startInLoadingState={true}
+        renderLoading={() => <ActivityIndicator style={styles.center} />}
+      />
+      {/* {thankYou && <OrderPlacedConfirmation />} */}
+      <View style={{ marginHorizontal: 24 }}>
+        <Button
+          style={defaultButton}
+          labelStyle={defaultButtonLabel}
+          onPress={() => {
+            reset({
+              index: 0,
+              routes: [
+                {
+                  name: "Home",
+                },
+              ],
+            });
+            navigate("OrderHistory", {
+              customerAccessToken: authToken,
+            });
+          }}
+        >
+          {t("OrderPlacedConfimationScene.View Order History")}
+        </Button>
+
+        <Button
+          preset="invisible"
+          style={styles.backButton}
+          labelStyle={defaultButtonLabel}
+          onPress={() =>
+            reset({
+              index: 0,
+              routes: [{ name: "Home" }],
+            })
+          }
+        >
+          {t("OrderPlacedConfimationScene.Back To Home")}
+        </Button>
       </View>
-
-      <Button
-        style={defaultButton}
-        labelStyle={defaultButtonLabel}
-        onPress={() => {
-          reset({
-            index: 0,
-            routes: [
-              {
-                name: "Home",
-              },
-            ],
-          });
-          navigate("OrderHistory", {
-            customerAccessToken: authToken,
-          });
-        }}
-      >
-        {t("OrderPlacedConfimationScene.View Order History")}
-      </Button>
-
-      <Button
-        preset="invisible"
-        style={styles.backButton}
-        labelStyle={defaultButtonLabel}
-        onPress={() =>
-          reset({
-            index: 0,
-            routes: [{ name: "Home" }],
-          })
-        }
-      >
-        {t("OrderPlacedConfimationScene.Back To Home")}
-      </Button>
     </SafeAreaView>
   );
 }
@@ -108,7 +122,16 @@ const styles = StyleSheet.create({
   scene: {
     flex: 1,
     justifyContent: "space-between",
-    marginHorizontal: 24,
+    // marginHorizontal: 24,
+  },
+  container: {
+    marginVertical: 2,
+    opacity: 0.99,
+  },
+  center: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   textView: {
     flex: 1,

@@ -159,7 +159,7 @@ export default function HomeScene() {
         setVisible={setSearchModalVisible}
       />
 
-      <ScrollView>
+      <ScrollView overScrollMode="never">
         <SafeAreaView style={[{ flex: 1 }, !loaded && { display: "none" }]}>
           <WebView
             javaScriptEnabled

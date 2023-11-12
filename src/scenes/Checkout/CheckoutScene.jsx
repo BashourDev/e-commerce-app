@@ -346,7 +346,9 @@ export default function CheckoutScene() {
       <KeyboardAvoidingView>
         <SafeAreaView style={[styles.flex, styles.landscape, containerStyle()]}>
           {renderBottomModal()}
-          <ScrollView style={styles.flex}>{renderShippingAddress()}</ScrollView>
+          <ScrollView style={styles.flex} overScrollMode="never">
+            {renderShippingAddress()}
+          </ScrollView>
           {renderPaymentView()}
         </SafeAreaView>
       </KeyboardAvoidingView>
@@ -356,7 +358,7 @@ export default function CheckoutScene() {
       <KeyboardAvoidingView>
         <SafeAreaView style={[styles.flex, containerStyle()]}>
           {renderBottomModal()}
-          <ScrollView style={styles.flex}>
+          <ScrollView style={styles.flex} overScrollMode="never">
             {renderShippingAddress()}
             {renderPaymentView()}
           </ScrollView>

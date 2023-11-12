@@ -50,6 +50,7 @@ export default function OrderDetailsScene() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView
+        overScrollMode="never"
         contentContainerStyle={
           screenSize === ScreenSize.Small
             ? styles.container

@@ -50,7 +50,7 @@ export default function ProfileScene() {
 
   let { email, firstName, lastName } = authenticatedUser.authenticatedUser;
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} overScrollMode="never">
       <TouchableOpacity
         style={[
           styles.profileContainer,

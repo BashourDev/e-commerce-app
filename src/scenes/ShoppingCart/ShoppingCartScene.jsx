@@ -408,7 +408,7 @@ export default function ShoppingCartScene() {
 
   if (cartData.lineItems.length <= 0) {
     return (
-      <SafeAreaView style={styles.flex}>
+      <SafeAreaView style={{ ...styles.flex, opacity: 0.99 }}>
         <View style={styles.center}>
           <Image
             source={cartPlaceholder}

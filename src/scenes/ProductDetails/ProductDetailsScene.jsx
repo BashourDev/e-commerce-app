@@ -309,7 +309,7 @@ export default function ProductDetailsScene() {
                 javaScriptEnabled
                 nestedScrollEnabled
                 scrollEnabled
-                style={[styles.container, { minHeight: 350 }]}
+                style={[styles.container, { minHeight: 350, opacity: 0.99 }]}
                 source={{
                   uri: `https://sabahstyle.com/${
                     i18n.language === "ar" ? "ar/" : ""

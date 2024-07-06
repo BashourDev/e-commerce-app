@@ -163,7 +163,7 @@ export default function HomeScene() {
         <SafeAreaView style={[{ flex: 1 }, !loaded && { display: "none" }]}>
           <WebView
             javaScriptEnabled
-            style={[{ minHeight: 630 }]}
+            style={[{ minHeight: 630, opacity: 0.99 }]}
             source={{
               uri: `https://sabahstyle.com/${
                 i18n.language === "ar" ? "ar/" : ""

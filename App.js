@@ -45,6 +45,7 @@ export default function App() {
     "SourceSansPro-SemiBold": require("./assets/fonts/SourceSansPro-SemiBold.ttf"),
   });
   const [splashOn, setSplashOn] = useState(true);
+
   if (!fontsLoaded) {
     return <ActivityIndicator color={COLORS.primaryColor} />;
   }

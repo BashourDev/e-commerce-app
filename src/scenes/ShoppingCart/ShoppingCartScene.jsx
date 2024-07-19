@@ -477,7 +477,7 @@ export default function ShoppingCartScene() {
                 provider={PROVIDER_GOOGLE}
               /> */}
 
-              {initialRegion && (
+              {/* {initialRegion && (
                 <>
                   <Text style={{ marginBottom: 3, fontWeight: "bold" }}>
                     Select Delivery Location (Optional)
@@ -546,7 +546,7 @@ export default function ShoppingCartScene() {
                     </Button>
                   )}
                 </>
-              )}
+              )} */}
             </SafeAreaView>
             <View style={styles.verticalPaymentView}>
               {renderPaymentView()}

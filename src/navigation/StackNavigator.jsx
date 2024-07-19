@@ -31,7 +31,6 @@ import {
 
 import TabNavigator from "./TabNavigator";
 import { useTranslation } from "react-i18next";
-import { enableLayoutAnimations } from "react-native-reanimated";
 
 const Stack = createStackNavigator();
 
@@ -119,11 +118,7 @@ export default function StackNavigator() {
                 ) : (
                   <HeaderIconButton
                     icon="cart"
-                    onPress={() =>
-                      navigation.navigate("ShoppingCart", {
-                        enableLayoutAnimations: false,
-                      })
-                    }
+                    onPress={() => navigation.navigate("ShoppingCart")}
                   />
                 );
               },

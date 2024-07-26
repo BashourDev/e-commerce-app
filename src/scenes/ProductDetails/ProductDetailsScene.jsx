@@ -306,6 +306,7 @@ export default function ProductDetailsScene() {
             {/* the webview that only displays the review section */}
             <SafeAreaView style={[styles.flex, !loaded && { display: "none" }]}>
               <WebView
+              onMessage={(event) => {}}
                 javaScriptEnabled
                 nestedScrollEnabled
                 scrollEnabled

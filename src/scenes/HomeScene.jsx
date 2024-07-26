@@ -162,6 +162,7 @@ export default function HomeScene() {
       <ScrollView overScrollMode="never">
         <SafeAreaView style={[{ flex: 1 }, !loaded && { display: "none" }]}>
           <WebView
+          onMessage={(event) => {}}
             javaScriptEnabled
             style={[{ minHeight: 630, opacity: 0.99 }]}
             source={{
